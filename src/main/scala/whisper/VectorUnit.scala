@@ -193,8 +193,9 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
     addLanes(i) := sat(rsrC(s, 16), 16).pad(17)
   }
   // --- pass 3: a8 = sat8(rsr(y16 * mult, shift))
-  val p3Mult = Mux(cmd.static8, cmd.reqMult, recip)
-  val p3Shift = Mux(cmd.static8, cmd.reqShift, 16.U)
+  val isEmbed = cmd.op === VecOp.EMBED.U
+  val p3Mult = Mux(isEmbed, 1.U, Mux(cmd.static8, cmd.reqMult, recip))
+  val p3Shift = Mux(isEmbed, 0.U, Mux(cmd.static8, cmd.reqShift, 16.U))
   val p3Lanes = Wire(Vec(L, SInt(8.W)))
   for (i <- 0 until L) p3Lanes(i) := sat(rsr(rbRd(i) * Cat(0.U(1.W), p3Mult).asSInt, p3Shift), 8)
   val p3Lanes2 = RegNext(p3Lanes)
