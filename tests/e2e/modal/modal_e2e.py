@@ -83,8 +83,9 @@ def main(set: str = "default_full", clips: str = "", threads: int = 4, per_conta
         return files
 
     print(f"launching {len(groups)} containers for {len(sel)} clips of {set}")
-    results = list(run_clips.starmap([(set, g, payload(g), threads) for g in groups]))
-    for res in results:
+    # results are written as each container finishes (unordered), so a preempted/slow container
+    # does not hold back the others
+    for res in run_clips.starmap([(set, g, payload(g), threads) for g in groups], order_outputs=False):
         for c, r in res.items():
             for name, txt in r.items():
                 if name != "log":
