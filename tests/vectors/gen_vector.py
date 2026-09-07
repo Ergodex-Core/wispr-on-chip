@@ -84,6 +84,13 @@ def main():
     y = scaled_add(ad.ma, g2, ad.mb, pos, 16)
     assert np.array_equal(y, D["enc.x0"][:R])
     emit("add_pos_enc", dict(op="ADD", ma=int(ad.ma), mb=int(ad.mb), b_src="rom", b_tensor="enc.pos", b_row0=0), g2, True, y.astype(np.int16), True)
+    # 6b. fused GELU + ADD with ROM pos-emb: gelu(conv2 out) + pos -> x0 (the chip's x0 op)
+    g2c = qm.gelus["enc.conv2"]
+    c2 = D["enc.conv2.out"][:R]
+    y = scaled_add(ad.ma, gelu16(g2c, c2), ad.mb, pos, 16)
+    assert np.array_equal(y, D["enc.x0"][:R])
+    emit("add_gelu_pos_enc", dict(op="ADD", ma=int(ad.ma), mb=int(ad.mb), b_src="rom", b_tensor="enc.pos", b_row0=0,
+                                  gelu_a=True, m_phi=int(g2c.m_phi), s_phi=int(g2c.s_phi)), c2, True, y.astype(np.int16), True)
     # 7. EMBED: token rows of the LM matrix, then ADD with per-token mult + dec.pos
     toks = [50258, 50259, 50359, 50363, 440, 1, 51864]
     L = qm.linears["dec.lm"]

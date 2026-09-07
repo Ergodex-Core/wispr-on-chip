@@ -183,7 +183,7 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
     val phi = lo + (((hi - lo) * f + 8.U) >> 4)
     val g = sat(rsrC(h * Cat(0.U(1.W), phi).asSInt, 15), 16)
     val gs = Mux(cmd.smooth, sat(rsrC(g * gLanes(i), 15), 16), g)
-    geluLanes(i) := Mux(cmd.gelu, gs, h).pad(17)
+    geluLanes(i) := Mux(cmd.gelu || cmd.geluA, gs, h).pad(17)
   }
   // --- ADD
   val addLanes = Wire(Vec(L, SInt(17.W)))

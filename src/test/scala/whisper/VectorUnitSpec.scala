@@ -65,6 +65,7 @@ class VectorUnitSpec extends AnyFlatSpec with WhisperSim {
             c.ma.poke(m("ma").toLong.U); c.mb.poke(m("mb").toLong.U)
             if (m("b_src") == "rom") { c.bSrc.poke(1.U); c.bBase.poke((WeightTables.byName(m("b_tensor")).base + rowOff * 12).U); c.bStride.poke(12.U); c.bBits16.poke(false.B) }
             else { c.bSrc.poke(0.U); c.bBank.poke(1.U); c.bBase.poke((rowOff * bStride).U); c.bStride.poke(bStride.U); c.bBits16.poke(b16.B) }
+            if (m.getOrElse("gelu_a", "false") == "true") { c.geluA.poke(true.B); c.mPhi.poke(m("m_phi").toLong.U); c.sPhi.poke(m("s_phi").toInt.U) }
             if (m.getOrElse("ma_from_table", "false") == "true") { c.maFromTable.poke(true.B); c.maTableBase.poke(WeightTables.byName(m("ma_table")).base.U); c.tok.poke(toks(rowOff).U) }
           case "EMBED" =>
             c.lmBase.poke(WeightTables.byName("dec.lm.w").base.U); c.tok.poke(toks(rowOff).U)
