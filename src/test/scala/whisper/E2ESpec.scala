@@ -12,7 +12,7 @@ import scala.io.Source
 class E2ESpec extends AnyFlatSpec with WhisperSim {
   val dir = new File(sys.env.getOrElse("E2E_DIR", WhisperConfig.defaultRepoRoot + "/out/e2e/smoke_var"))
   val clips = Source.fromFile(new File(dir, "clips.txt")).getLines().filter(_.nonEmpty).toSeq
-  val pollStep = sys.env.get("E2E_POLL").map(_.toInt).getOrElse(256)   // FastSim: cycles between host polls
+  val pollStep = sys.env.get("E2E_POLL").map(_.toInt).getOrElse(4096)  // FastSim: cycles between host polls
 
   it should s"transcribe ${clips.size} clips from $dir" in {
     val cfg = WhisperConfig()
@@ -41,22 +41,18 @@ class E2ESpec extends AnyFlatSpec with WhisperSim {
           dut.clock.step(3)
         }
         val t0 = System.nanoTime()
+        dut.io.tokens.ready.poke(false.B)                // tokens accumulate in the 256-deep queue (FastSim: no per-cycle polling)
         reg(0, 1)                                        // start
-        val toks = scala.collection.mutable.ArrayBuffer[Int]()
         var cycles = 0L
         var running = true
         while (running) {
-          // poll tokens every cycle would be slow; step in batches and drain the token queue after each batch
-          for (_ <- 0 until pollStep) {
-            if (dut.io.tokens.valid.peek().litToBoolean) toks += dut.io.tokens.bits.id.peek().litValue.toInt
-            dut.clock.step()
-          }
-          cycles += pollStep
+          dut.clock.step(pollStep); cycles += pollStep
           if (dut.io.done.peek().litToBoolean) running = false
           if (cycles > 400000000L) { info(s"$clip: timeout"); running = false }
         }
-        // drain
-        for (_ <- 0 until 32) { if (dut.io.tokens.valid.peek().litToBoolean) toks += dut.io.tokens.bits.id.peek().litValue.toInt; dut.clock.step() }
+        val toks = scala.collection.mutable.ArrayBuffer[Int]()
+        dut.io.tokens.ready.poke(true.B)
+        for (_ <- 0 until 300) { if (dut.io.tokens.valid.peek().litToBoolean) toks += dut.io.tokens.bits.id.peek().litValue.toInt; dut.clock.step() }
         val secs = (System.nanoTime() - t0) / 1e9
         dut.io.regRdAddr.poke(7.U)
         info(f"$clip: ${toks.size} tokens, $cycles cycles, $secs%.1f s (${cycles / secs}%.0f cycles/s)")

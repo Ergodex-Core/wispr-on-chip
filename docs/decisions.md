@@ -84,3 +84,10 @@ left open, is recorded here.
     op is sized from it, the sequencer substitutes it), so short clips *can* pay less, but the WER gate
     and the e2e token comparison are run at 3000 frames. Cost: every clip costs the full encoder
     (see status.md cycle table).
+
+13. **2026-09-07 — No memory may have a write port with a constant all-true (or absent) mask if any
+    other port of it uses byte masks.** firtool 1.x (via Chisel 7.15) silently lowers such a memory
+    without masks on *every* port, so masked writes clobber whole words. The KV cache therefore has only
+    data-dependent-mask ports in the chip, and its test-only load port takes its mask from IO
+    (`KVCache(debugPort = true)`). Found by `KVWriteSpec` (engine → cache path), which the unit tests
+    of Phase 3 did not cover because they loaded the cache directly.
