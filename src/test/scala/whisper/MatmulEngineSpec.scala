@@ -28,6 +28,8 @@ object Vectors {
 class MatmulEngineSpec extends AnyFlatSpec with WhisperSim {
   val allCases = Option(Vectors.root.listFiles()).getOrElse(Array.empty[File]).map(_.getName).sorted
   require(allCases.nonEmpty, "run `uv run python tests/vectors/gen_matmul.py` first")
+  def realBackend: WeightBackend = RomInit
+  def romLiteralMaxBits: Int = 4 * 1024 * 1024
 
   def pack(words: Array[Long], from: Int, n: Int): BigInt =
     (0 until n).foldLeft(BigInt(0))((acc, i) => acc | (BigInt(words(from + i)) << (32 * i)))
@@ -40,7 +42,7 @@ class MatmulEngineSpec extends AnyFlatSpec with WhisperSim {
     val mode = m("out_mode")
     val random = m("kind") == "random"
     val cfg = if (random) WhisperConfig(weightBackend = Sram, weightTensors = Some(Seq("enc.0")))
-              else WhisperConfig(weightBackend = RomInit, weightTensors = Some(Seq(m("tensor"))))
+              else WhisperConfig(weightBackend = realBackend, weightTensors = Some(Seq(m("tensor"))), romLiteralMaxBits = romLiteralMaxBits)
     val w8s = cfg.tensors.filter(_.kind == "w8").sortBy(_.depth)
     val wT = if (random) w8s.find(_.depth >= KT * NT * 4).getOrElse(fail(s"no container for $name"))
              else WeightTables.byName(m("tensor") + ".w")
@@ -54,8 +56,10 @@ class MatmulEngineSpec extends AnyFlatSpec with WhisperSim {
     val modeId = mode match { case "int8" => 0; case "int16" => 1; case "raw" => 2; case "wide" => 3 }
     val outStride = if (modeId >= 2) N / 32 else m("y_stride").toInt
     val actWords = 1 << 16
-    info(s"$name: M=$M K=$K N=$N mode=$mode weights=${wT.name}")
+    info(s"$name: M=$M K=$K N=$N mode=$mode weights=${wT.name} backend=${cfg.weightBackend}")
+    val tElab = System.nanoTime()
     simulate(new MatmulTestbench(cfg, actWords), subdirectory = Some(name)) { dut =>
+      info(f"$name: elaboration+build ${(System.nanoTime() - tElab) / 1e9}%.0f s")
       dut.io.cmd.valid.poke(false.B)
       dut.io.actLoad.valid.poke(false.B)
       dut.io.rowfacLoad.valid.poke(false.B)
@@ -142,6 +146,15 @@ class MatmulEngineSpec extends AnyFlatSpec with WhisperSim {
     }
   }
 
-  val selected = sys.env.get("MATMUL_CASES").map(_.split(",").toSeq).getOrElse(allCases.toSeq)
+  def selected: Seq[String] = sys.env.get("MATMUL_CASES").map(_.split(",").toSeq).getOrElse(allCases.toSeq)
   for (c <- selected) it should s"be bit-exact on $c" in runCase(c)
+}
+
+/** Phase 5: the ASIC ROM path. Every weight of one encoder layer (six tensors incl. the 4.7 Mbit fc1/fc2)
+  * as a literal `VecInit` ROM, bit-exact on the same real-activation cases; elaboration time and
+  * generated Verilog size are reported in the test log. */
+class RomLiteralLayerSpec extends MatmulEngineSpec {
+  override def realBackend: WeightBackend = RomLiteral
+  override def romLiteralMaxBits: Int = 8 * 1024 * 1024
+  override def selected: Seq[String] = sys.env.get("ROMLIT_CASES").map(_.split(",").toSeq).getOrElse(Seq("real_enc0_q", "real_enc0_fc1", "real_enc0_fc2"))
 }

@@ -36,15 +36,23 @@ golden:                     ## run the int golden model over the eval sets and r
 	$(UV) python golden/run_golden.py --set testclean_200,varied
 	$(UV) python golden/wer.py --hyp out/golden_int
 
-test:                       ## python unit tests + scala/verilator unit tests
-	$(UV) pytest -q
-	$(SBT) test
+vectors:                    ## regenerate RTL unit-test vectors from the golden model
+	$(UV) python tests/vectors/gen_matmul.py
+	$(UV) python tests/vectors/gen_vector.py
+	$(UV) python tests/vectors/gen_attention.py
 
-e2e:                        ## default Verilator e2e set (short clips)
-	$(UV) python tests/e2e/run_e2e.py --set default
+test:                       ## python unit tests + scala/verilator unit tests (bit-exact vs golden vectors)
+	$(UV) pytest -q golden/tests
+	$(SBT) "testOnly whisper.WeightStoreEquivalenceSpec whisper.MatmulEngineSpec whisper.VectorUnitSpec whisper.AttentionSpec whisper.KVWriteSpec whisper.RomLiteralLayerSpec"
+
+e2e:                        ## default Verilator e2e set (2/5/12 s clips + 10 short test-clean utterances), full 30 s context
+	$(UV) python tests/e2e/run_e2e.py --set default --frames full
 
 e2e-long:                   ## long e2e set (29 s clip + 20-utterance RTL set)
-	$(UV) python tests/e2e/run_e2e.py --set long
+	$(UV) python tests/e2e/run_e2e.py --set long --frames full
+
+e2e-smoke:                  ## one 2 s clip
+	$(UV) python tests/e2e/run_e2e.py --set smoke --frames full
 
 all: weights-check test e2e
 

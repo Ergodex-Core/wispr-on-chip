@@ -94,6 +94,9 @@ class KVCache(cfg: WhisperConfig, debugPort: Boolean = false) extends Module {
   when(explicit) { flushPend := false.B }
   io.in.ready := true.B
   assert(!(newGroup && flushBusy), "KV transposer: new key group while the other buffer is still flushing")
+  assert(!kFlushing || kWord < words.U, "KV cache K write address out of range")
+  assert(!(io.in.fire && !io.cmd.isK) || vWord < words.U, "KV cache V write address out of range")
+  assert(!io.rd.en || io.rd.addr < words.U, "KV cache read address out of range")
   when(kFlushing) {
     mem.write(kWord(addrBits - 1, 0), kData, kMask.toSeq)
     kG := kG + 1.U

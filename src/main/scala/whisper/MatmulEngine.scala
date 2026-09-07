@@ -169,6 +169,7 @@ class MatmulEngine(cfg: WhisperConfig) extends Module {
     val rowfac = new Bundle { val bank = Output(UInt(3.W)); val addr = Output(UInt(13.W)); val en = Output(Bool()); val data = Input(UInt(16.W)) }
     val out = Decoupled(new MatmulOut(cfg))
     val cycles = Output(UInt(32.W))          // cycles spent busy (for utilisation measurement)
+    val satCount = Output(UInt(32.W))        // debug: output lanes that saturated (int8/int16 modes)
   })
   val cmd = Reg(new MatmulCmd)
   val busy = RegInit(false.B)
@@ -330,8 +331,14 @@ class MatmulEngine(cfg: WhisperConfig) extends Module {
   // stage D: y = sat(rsr(u, s2)) ; wide: sat32(t)
   val vD = RegNext(vC, false.B); val tagD = RegNext(tagC)
   val yD = Reg(Vec(C, SInt(32.W)))
+  val satLane = Wire(Vec(C, Bool()))
+  val satCount = RegInit(0.U(32.W))
+  io.satCount := satCount
   for (n <- 0 until C) {
     val r = (uC(n) + (1.S(64.W) << (s2 - 1.U))) >> s2
+    val lim8 = r > 127.S || r < -128.S
+    val lim16 = r > 32767.S || r < -32768.S
+    satLane(n) := vC && Mux(cmd.outMode === MatmulMode.Int8.U, lim8, Mux(cmd.outMode === MatmulMode.Int16.U, lim16, false.B))
     yD(n) := MuxLookup(cmd.outMode, Sat.sint(r, 8))(Seq(
       MatmulMode.Int8.U -> Sat.sint(r, 8),
       MatmulMode.Int16.U -> Sat.sint(r, 16),
@@ -339,6 +346,7 @@ class MatmulEngine(cfg: WhisperConfig) extends Module {
       MatmulMode.Wide.U -> Sat.sint(tC(n), 32),
     ))
   }
+  when(vC) { satCount := satCount + PopCount(satLane) }
   // raw mode: the accumulator sum itself, delayed to stage D for a single output timing
   val rawD = ShiftRegister(sum, 4)
 
@@ -354,6 +362,11 @@ class MatmulEngine(cfg: WhisperConfig) extends Module {
   io.out.bits.data := Mux(cmd.outMode === MatmulMode.Raw.U, rawD, yD)
   io.out.bits.last := tagD.lastJob
   assert(!io.out.valid || io.out.ready, "MatmulEngine output sink must never stall")
+  // Decoupled irrevocability on the command port (valid may not drop / bits may not change without a fire)
+  val cmdVQ = RegNext(io.cmd.valid && !io.cmd.ready, false.B); val cmdBQ = RegNext(io.cmd.bits.asUInt)
+  assert(!cmdVQ || (io.cmd.valid && io.cmd.bits.asUInt === cmdBQ), "MatmulCmd handshake is not irrevocable")
+  assert(!io.cmd.fire || (io.cmd.bits.rows =/= 0.U && io.cmd.bits.rows <= accRows.U && io.cmd.bits.kTiles =/= 0.U && io.cmd.bits.nTiles =/= 0.U),
+    "MatmulCmd rows/kTiles/nTiles out of range")
 
   // ------------------------------------------------------------------ job control
   val finish = vD && tagD.lastJob

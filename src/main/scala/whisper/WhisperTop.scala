@@ -66,7 +66,7 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, ((framesIn + 127.U) >> 7) << 7)
   io.regRdData := MuxLookup(io.regRdAddr, 0.U)(Seq(
     0.U -> Cat(seq.io.paused, doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
-    4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> eng.io.cycles))
+    4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> eng.io.cycles, 10.U -> eng.io.satCount))
   io.done := doneR
   io.busy := seq.io.busy
   when(seq.io.busy) { doneR := false.B }
@@ -111,6 +111,15 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   io.tokens.bits.last := false.B
   tokQ.io.deq.ready := io.tokens.ready
   when(seq.io.tokOut.fire) { tokCount := tokCount + 1.U }
+  // token stream: irrevocable and always a real vocabulary id
+  val tokVQ = RegNext(io.tokens.valid && !io.tokens.ready, false.B); val tokBQ = RegNext(io.tokens.bits.id)
+  assert(!tokVQ || (io.tokens.valid && io.tokens.bits.id === tokBQ), "token stream is not irrevocable")
+  assert(!io.tokens.valid || io.tokens.bits.id < 51865.U, "token id out of vocabulary")
+  // sequencer -> unit command ports are irrevocable
+  for ((v, r, b, n) <- Seq((seq.io.vec.valid, seq.io.vec.ready, seq.io.vec.bits.asUInt, "vec"), (seq.io.att.valid, seq.io.att.ready, seq.io.att.bits.asUInt, "att"))) {
+    val vq = RegNext(v && !r, false.B); val bq = RegNext(b)
+    assert(!vq || (v && b === bq), s"$n command handshake is not irrevocable")
+  }
 
   // ---------------- engine output demux
   val eo = eng.io.out
@@ -139,6 +148,8 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
     val attW = att.io.wr.valid && att.io.wr.bits.bank === i.U
     val melW = melWrite.valid && (i == 0).B
     assert(PopCount(Seq(engW, vuW, attW, melW)) <= 1.U, "activation bank write conflict")
+    assert(!b.io.wr.valid || b.io.wr.bits.addr < b.words256.U, "activation bank write address out of range")
+    assert(!b.io.rd.en || b.io.rd.addr < b.words256.U, "activation bank read address out of range")
     b.io.wr.valid := engW || vuW || attW || melW
     b.io.wr.bits.wide := engW && eo.bits.mode === MatmulMode.Int16.U
     b.io.wr.bits.addr := Mux(engW, eo.bits.addr, Mux(vuW, vu.io.wr.bits.addr, Mux(attW, att.io.wr.bits.addr, melWrite.bits.addr)))(b.addrBits - 1, 0)
