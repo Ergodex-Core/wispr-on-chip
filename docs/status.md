@@ -94,3 +94,19 @@ tests/vectors/gen_attention.py && sbt "testOnly whisper.VectorUnitSpec whisper.A
 
 Bugs found by these tests and fixed: pipelined divider produced one extra quotient bit (attention
 output exactly 2×); vector-unit pass-3 half-word misalignment; array valid-chain reset alignment.
+
+## Phase 4 — full chip on Verilator (2026-09-07) — in progress
+
+`WhisperTop` (sequencer + 186-instruction generated micro-program, engine, vector unit, attention,
+KV cache, sampler, 8 activation banks, weight store RomInit) elaborates and runs under Verilator.
+
+Smoke clip `varied/en_2s_f` (1024-frame context): **RTL tokens identical to the golden int model**
+(`14710 380 291 980 23010 30` = "Won't you tell Douglas?"), 10.15 M cycles, 854 s wall
+(11.9 k cycles/s, 4 Verilator threads). Every intermediate tensor checked at sequencer breakpoints
+(conv1/conv2/x0, layer-0 LN/Q/attention/adds/FFN, encoder output + rowfac, decoder position 0 through
+layer 0 and the LM-head input at position 3) is bit-exact (`E2EDebugSpec` + `tests/e2e/compare_dumps.py`).
+
+Bugs found and fixed at chip level (all now covered by unit tests): fused GELU in the x0 add not
+applied; KV transposer stalls; firtool dropping byte masks on the KV memory (decision #13); KV key
+index using the rowfac row instead of the tensor row.
+Full-context (3000-frame) runs of the default and long sets: see the table below once complete.
