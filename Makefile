@@ -62,8 +62,9 @@ e2e-modal:                  ## same sets on Modal, one container per clip (needs
 	modal run tests/e2e/modal/modal_e2e.py --set long_full --threads 4
 	$(UV) python tests/e2e/run_e2e.py --set long --frames full --compare-only
 
-report:                     ## markdown table of the e2e results
+report:                     ## markdown table of the e2e results + analytic cycle model at full context
 	$(UV) python tests/e2e/report.py default_full long_full
+	$(UV) python tests/e2e/cycle_model.py 3000 6
 
 all: weights-check test e2e
 

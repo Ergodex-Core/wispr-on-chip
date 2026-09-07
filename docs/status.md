@@ -51,8 +51,21 @@ Reproduce: `uv run python golden/run_golden.py --set testclean_200,varied --fram
 `uv run python golden/wer.py --hyp out/golden_r16_phi16_saNone_sf0_full`.
 Unit tests: `uv run pytest -q golden/tests` (18 tests: every op vs float, tile-order invariance,
 masked-key independence, im2col vs torch conv).
-Variants (int8 residual, int8 GELU LUT, SmoothQuant) and the variable-context rule: measurements are
-appended below when the batch finishes (`/tmp/golden_batch.sh`).
+Variants (same golden model, one switch changed, full 30 s context; WER on rtl_20 / varied):
+
+| Variant | flag | rtl_20 | varied | verdict |
+|---|---|---|---|---|
+| frozen numerics (int16 residual, Φ-LUT GELU) | — | **7.58 %** | **10.8 %** | shipped |
+| int8 residual stream | `--residual-bits 8` | 98.0 % | 98.4 % | unusable (outlier channels), decision #5 |
+| int8 GELU output LUT | `--gelu-mode lut8` | 21.2 % | 35.2 % | rejected, decision #6 |
+| SmoothQuant α = 0.5 | `--smooth-alpha 0.5` | 99.5 % | 99.6 % | folding not validated; not needed, not pursued |
+
+Variable encoder context (`--frames var --pad-frames P --min-frames M`, frozen numerics), WER on rtl_20 / varied:
+P = 512, M = 0 → 178.8 % / 84.8 %; P = 512, M = 1024 → 174.7 % / 82.8 %; P = 256, M = 1024 → 174.7 % / 74.8 %;
+P = 512, M = 1536 → 5.1 % / 76.0 %; full 3000 frames → 7.6 % / 10.8 %. Whisper-tiny repeats itself whenever the
+encoder context is shorter than 30 s (the fp32 model does the same), so the accuracy configuration is the full
+window (decision #12). Reproduce: `uv run python golden/run_golden.py --set rtl_20,varied --frames var --pad-frames 512 --min-frames 1024`
+then `golden/wer.py --hyp out/golden_r16_phi16_saNone_sf0_var_p512_m1024`.
 
 ## Phase 2 — MatmulEngine + WeightStore (2026-09-07) — PASS
 

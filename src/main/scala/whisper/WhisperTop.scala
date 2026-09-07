@@ -64,9 +64,11 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   seq.io.breakPc := breakPc
   seq.io.resume := resume
   val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, ((framesIn + 127.U) >> 7) << 7)
+  val engBusyCycles = RegInit(0.U(32.W))           // cumulative engine-busy cycles (utilisation, reg 7)
+  when(eng.io.busy) { engBusyCycles := engBusyCycles + 1.U }
   io.regRdData := MuxLookup(io.regRdAddr, 0.U)(Seq(
     0.U -> Cat(seq.io.paused, doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
-    4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> eng.io.cycles, 10.U -> eng.io.satCount))
+    4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> engBusyCycles, 10.U -> eng.io.satCount))
   io.done := doneR
   io.busy := seq.io.busy
   when(seq.io.busy) { doneR := false.B }

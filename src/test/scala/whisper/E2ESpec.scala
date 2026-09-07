@@ -54,10 +54,14 @@ class E2ESpec extends AnyFlatSpec with WhisperSim {
         dut.io.tokens.ready.poke(true.B)
         for (_ <- 0 until 300) { if (dut.io.tokens.valid.peek().litToBoolean) toks += dut.io.tokens.bits.id.peek().litValue.toInt; dut.clock.step() }
         val secs = (System.nanoTime() - t0) / 1e9
-        dut.io.regRdAddr.poke(7.U)
-        info(f"$clip: ${toks.size} tokens, $cycles cycles, $secs%.1f s (${cycles / secs}%.0f cycles/s)")
+        dut.io.regRdAddr.poke(7.U); dut.clock.step()
+        val engCycles = dut.io.regRdData.peek().litValue                // engine busy cycles (utilisation)
+        dut.io.regRdAddr.poke(10.U); dut.clock.step()
+        val satCount = dut.io.regRdData.peek().litValue                 // requant saturations
+        info(f"$clip: ${toks.size} tokens, $cycles cycles, $secs%.1f s (${cycles / secs}%.0f cycles/s), engine busy $engCycles, saturations $satCount")
         val pw = new java.io.PrintWriter(new File(cd, "rtl_tokens.txt")); pw.println(toks.mkString(" ")); pw.close()
-        val ps = new java.io.PrintWriter(new File(cd, "rtl_stats.json")); ps.println(s"""{"cycles": $cycles, "seconds": $secs}"""); ps.close()
+        val ps = new java.io.PrintWriter(new File(cd, "rtl_stats.json"))
+        ps.println(s"""{"cycles": $cycles, "seconds": $secs, "engine_cycles": $engCycles, "sat_count": $satCount}"""); ps.close()
       }
     }
   }
