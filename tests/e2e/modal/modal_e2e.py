@@ -15,7 +15,8 @@ from pathlib import Path
 
 import modal
 
-REPO = Path(__file__).resolve().parents[3]
+_here = Path(__file__).resolve()
+REPO = _here.parents[3] if len(_here.parents) > 3 and (_here.parents[3] / "build.sbt").exists() else Path("/repo")
 APP_NAME = "whisper-si-e2e"
 
 image = (
