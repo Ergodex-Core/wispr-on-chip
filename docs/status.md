@@ -110,3 +110,26 @@ Bugs found and fixed at chip level (all now covered by unit tests): fused GELU i
 applied; KV transposer stalls; firtool dropping byte masks on the KV memory (decision #13); KV key
 index using the rowfac row instead of the tensor row.
 Full-context (3000-frame) runs of the default and long sets: see the table below once complete.
+
+## Phase 5 — ROM-literal proof and hardening (2026-09-07)
+
+* `RomLiteralLayerSpec` (`make test`): the six weight tensors of encoder layer 0 elaborated as literal
+  `VecInit` ROMs (`romLiteralMaxBits = 8 Mbit`) and re-run bit-exact on the real-activation cases:
+
+  | tensor | bank size | elaboration + Verilator build | result |
+  |---|---|---|---|
+  | enc.0.attn.q.w (384×384) | 1.18 Mbit | 21 s | bit-exact |
+  | enc.0.fc1.w (384×1536) | 4.72 Mbit | 171 s | bit-exact |
+  | enc.0.fc2.w (1536×384) | 4.72 Mbit | 167 s | bit-exact |
+
+  Practical ceiling for the literal path on this machine: a 4.7 Mbit bank costs ~3 min of build; the
+  whole model (302 Mbit) as literals would take ~3 h of Verilator build and is not attempted — the ASIC
+  flow only needs the emission to be correct, which the above proves. RomInit stays the default for
+  full-chip simulation.
+* Assertions added (all active in every Verilator run): engine output sink never stalls; `MatmulCmd`,
+  `VecCmd`, `AttnCmd` and the token stream are irrevocable Decoupled handshakes; command rows/tiles in
+  range; KV-cache read/write addresses in range; activation-bank read/write addresses in range and no
+  same-bank port conflicts; emitted token ids < 51865. A saturation counter for the requant stage is
+  exposed at register 10. (Verilator is 2-state, so the "no X" requirement is checked by construction:
+  registers are reset-initialised and memory randomisation is disabled; outputs are additionally
+  range-checked as above.)
