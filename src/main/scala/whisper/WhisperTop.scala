@@ -24,6 +24,11 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
     val done = Output(Bool())
     val busy = Output(Bool())
     val wsLoad = Flipped(Valid(new Bundle { val space = UInt(2.W); val addr = UInt(24.W); val slice = UInt(6.W); val data = UInt(32.W) }))
+    // debug read of activation banks / rowfac tables (tests only; idle-time use)
+    val dbg = new Bundle {
+      val bank = Input(UInt(3.W)); val addr = Input(UInt(20.W)); val en = Input(Bool())
+      val data = Output(UInt(256.W)); val rowfac = Output(UInt(16.W))
+    }
   })
   import gen.ChipMap._
 
@@ -121,8 +126,9 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
     val vuAHit = vu.io.rdA.en && vu.io.rdA.bank === i.U
     val vuBHit = vu.io.rdB.en && vu.io.rdB.bank === i.U
     assert(PopCount(Seq(engHit, vuAHit, vuBHit)) <= 1.U, "activation bank read conflict")
-    b.io.rd.en := engHit || vuAHit || vuBHit
-    b.io.rd.addr := Mux(engHit, eng.io.act.addr, Mux(vuAHit, vu.io.rdA.addr, vu.io.rdB.addr))(b.addrBits - 1, 0)
+    val dbgHit = io.dbg.en && io.dbg.bank === i.U && !seq.io.busy
+    b.io.rd.en := engHit || vuAHit || vuBHit || dbgHit
+    b.io.rd.addr := Mux(engHit, eng.io.act.addr, Mux(vuAHit, vu.io.rdA.addr, Mux(vuBHit, vu.io.rdB.addr, io.dbg.addr)))(b.addrBits - 1, 0)
     val engW = eo.valid && eo.bits.sink === 0.U && eo.bits.bank === i.U
     val vuW = vu.io.wr.valid && vu.io.wr.bits.bank === i.U
     val attW = att.io.wr.valid && att.io.wr.bits.bank === i.U
@@ -135,6 +141,8 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
       Mux(vuW, Cat(0.U(256.W), vu.io.wr.bits.data), Mux(attW, Cat(0.U(256.W), att.io.wr.bits.data), melWrite.bits.data)))
   }
   val bankRd = VecInit(banks.map(_.io.rd.data))
+  val dbgBankQ = RegNext(io.dbg.bank)
+  io.dbg.data := bankRd(dbgBankQ)
   eng.io.act.data := Mux(actSrcQ === 1.U, att.io.pRd.data, bankRd(engBankQ))
   att.io.pRd.addr := eng.io.act.addr; att.io.pRd.en := eng.io.act.en && eng.io.act.src === 1.U
   vu.io.rdA.data := bankRd(vuABankQ)
@@ -142,13 +150,15 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   // rowfac tables
   val rfBankQ = RegNext(eng.io.rowfac.bank)
   for ((t, i) <- rowfac.zipWithIndex) {
-    t.io.rd.en := eng.io.rowfac.en && eng.io.rowfac.bank === i.U
-    t.io.rd.addr := eng.io.rowfac.addr(t.addrBits - 1, 0)
+    val dbgHit = io.dbg.en && io.dbg.bank === i.U && !seq.io.busy
+    t.io.rd.en := (eng.io.rowfac.en && eng.io.rowfac.bank === i.U) || dbgHit
+    t.io.rd.addr := Mux(dbgHit, io.dbg.addr(t.addrBits - 1, 0), eng.io.rowfac.addr(t.addrBits - 1, 0))
     t.io.wr.valid := vu.io.rowfacWr.valid && vu.io.rowfacWr.bits.bank === i.U
     t.io.wr.bits.addr := vu.io.rowfacWr.bits.addr(t.addrBits - 1, 0)
     t.io.wr.bits.data := vu.io.rowfacWr.bits.data
   }
   eng.io.rowfac.data := VecInit(rowfac.map(_.io.rd.data))(rfBankQ)
+  io.dbg.rowfac := VecInit(rowfac.map(_.io.rd.data))(dbgBankQ)
 
   // ---------------- weight / kv / param ports
   val wSrcQ = RegNext(eng.io.w.src)

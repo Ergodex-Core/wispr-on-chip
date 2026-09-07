@@ -74,3 +74,13 @@ left open, is recorded here.
     lowers a disabled read to X). Every consumer registers read data on that cycle; the RomLiteral
     backend mirrors the timing with `RegEnable`. Memory randomisation is disabled in simulation
     (`-disable-mem-randomization`), otherwise firtool's init loop overwrites `$readmemh` contents.
+
+12. **2026-09-07 — RTL accuracy runs use the full 30 s window (`n_frames = 3000`); the variable-frame
+    path stays supported but is not the accuracy configuration.** Measured with the int golden on the
+    short RTL set (rtl_20) / varied set: context = speech + 5.12 s → WER 179 % / 85 %; ≥ 10.24 s →
+    175 % / 83 %; ≥ 15.36 s → 5.1 % / 76 %; full 30 s → 7.6 % / 10.8 %. Whisper-tiny hallucinates
+    repetitions whenever the encoder context is shorter than it was trained on, independent of our
+    numerics (the fp32 model behaves the same). The hardware keeps `n_frames ≤ 3000` variable (every
+    op is sized from it, the sequencer substitutes it), so short clips *can* pay less, but the WER gate
+    and the e2e token comparison are run at 3000 frames. Cost: every clip costs the full encoder
+    (see status.md cycle table).
