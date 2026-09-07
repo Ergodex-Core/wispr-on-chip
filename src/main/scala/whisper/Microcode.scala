@@ -68,10 +68,11 @@ object MicroInstr {
       for ((k, v) <- m) {
         require(els.contains(k), s"unknown $what field '$k' in ${u.name}")
         els(k) match {
-          case vec: Vec[_] =>   // Vec fields are given as name -> packed value? not used
+          case vec: Vec[_] =>
             throw new IllegalArgumentException(s"vector field $k must be given as $k.<index>")
-          case d: Bits => d := v.U(d.getWidth.W)
           case d: Bool => d := (v != 0).B
+          case d: UInt => d := v.U(d.getWidth.W)
+          case d => throw new IllegalArgumentException(s"unsupported field type for $k: $d")
         }
       }
     }

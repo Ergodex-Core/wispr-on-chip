@@ -19,7 +19,7 @@ object Vectors {
   def meta(f: File): Map[String, String] = {
     // tiny JSON reader for flat {"k": v} objects
     val txt = Source.fromFile(f).mkString
-    "\"([A-Za-z_0-9]+)\":\\s*(\"[^\"]*\"|[^,}\\n]+)".r.findAllMatchIn(txt).map { m =>
+    "\"([A-Za-z_0-9]+)\":\\s*(\"[^\"]*\"|\\[[^\\]]*\\]|[^,}\\n]+)".r.findAllMatchIn(txt).map { m =>
       m.group(1) -> m.group(2).trim.stripPrefix("\"").stripSuffix("\"")
     }.toMap
   }

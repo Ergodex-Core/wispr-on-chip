@@ -108,7 +108,7 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
   // ---------------------------------------------------------------- pass-1 issue: reads
   // A read: for int16 rows one word per lane-group; for int8 rows one word per two lane-groups.
   val issueValid = busy && issuing && (state === sP1 || state === sP2 || state === sP3)
-  val laneGroups = Mux(cmd.op === VecOp.EMBED.U, 48.U, lanesWords)   // EMBED: 48 ROM words
+  val laneGroups = Mux(cmd.op === VecOp.EMBED.U && state === sP1, 48.U, lanesWords)   // EMBED pass 1: 48 ROM words
   val lastIssue = idx === laneGroups - 1.U
   io.rdA.bank := cmd.inBank
   io.rdA.addr := rowAddrA + Mux(cmd.inBits16, idx, idx >> 1)
@@ -220,15 +220,15 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
   }
   // ADD output (int16 words)
   val addOut = Cat(lanesOut2.reverse.map(_(15, 0)))
-  // pass-3 output assembly: two 16-lane groups -> one 256-bit int8 word
-  val v3 = RegNext(v2, false.B); val idx3 = RegNext(idx2); val st3 = RegNext(st2); val last3 = RegNext(last2)
+  // pass-3 output assembly: two 16-lane groups -> one 256-bit int8 word (p3Lanes2 is stage-2 data)
   val lowHalf = Reg(UInt(128.W))
-  val p3Word = Cat(Cat(p3Lanes2.reverse.map(_.asUInt)), lowHalf)
-  when(v3 && st3 === sP3 && !idx3(0)) { lowHalf := Cat(p3Lanes2.reverse.map(_.asUInt)) }
+  val p3Half = Cat(p3Lanes2.reverse.map(_.asUInt))
+  val p3Word = Cat(p3Half, lowHalf)
+  when(v2 && st2 === sP3 && !idx2(0)) { lowHalf := p3Half }
 
-  io.wr.valid := (v2 && st2 === sP1 && cmd.op === VecOp.ADD.U) || (v3 && st3 === sP3 && idx3(0))
+  io.wr.valid := (v2 && st2 === sP1 && cmd.op === VecOp.ADD.U) || (v2 && st2 === sP3 && idx2(0))
   io.wr.bits.bank := cmd.outBank
-  io.wr.bits.addr := rowAddrO + Mux(cmd.op === VecOp.ADD.U, idx2, idx3 >> 1)
+  io.wr.bits.addr := rowAddrO + Mux(cmd.op === VecOp.ADD.U, idx2, idx2 >> 1)
   io.wr.bits.data := Mux(cmd.op === VecOp.ADD.U, addOut, p3Word)
   val rfWrite = RegInit(false.B)
   io.rowfacWr.valid := rfWrite

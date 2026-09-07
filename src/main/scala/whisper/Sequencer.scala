@@ -131,7 +131,7 @@ class Sequencer(cfg: WhisperConfig) extends Module {
     }
     is(sWait) {
       waitCycles := Mux(waitCycles === 15.U, 15.U, waitCycles + 1.U)
-      val unitBusy = io.mmBusy || io.vecBusy || io.attBusy || io.kvBusy
+      val unitBusy = io.mmBusy || io.vecBusy || io.attBusy || (io.kvBusy && !flushPending)
       when(waitCycles >= 2.U && !unitBusy) {
         when(flushPending) { kvFlush := true.B; flushPending := false.B; waitCycles := 0.U }
         .otherwise { state := sDispatch; pc := pc + 1.U }

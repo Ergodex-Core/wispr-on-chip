@@ -25,8 +25,6 @@ class AttentionSpec extends AnyFlatSpec with WhisperSim {
     val perHead = 2 * (keysMax / 32) * 4
     info(s"$name: queries=$nq keys=$nk keysMax=$keysMax causal=${m("causal")}")
     simulate(new AttentionTestbench(cfg), subdirectory = Some(name)) { dut =>
-      val kvc = new KVCache(cfg) // for region constants only (not elaborated here)
-      val kBase = if (keysMax == 448) 0 else 0     // computed below without elaborating: use the same formulas
       val encKeys = KVRegion.encKeys(cfg); val decKeys = KVRegion.decKeys(cfg); val H = cfg.nHead
       val phEnc = KVRegion.wordsPerHeadK(encKeys); val phDec = KVRegion.wordsPerHeadK(decKeys)
       val encSelfK = 0; val encSelfV = encSelfK + H * phEnc; val decSelfK = encSelfV + H * phEnc; val decSelfV = decSelfK + 4 * H * phDec

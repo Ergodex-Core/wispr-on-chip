@@ -44,12 +44,11 @@ class Attention(cfg: WhisperConfig) extends Module {
   val mx = Reg(Vec(QB, SInt(32.W)))
   val lSum = Reg(Vec(QB, UInt(28.W)))
   val started = Reg(Vec(QB, Bool()))
-  val alphaR = Reg(Vec(QB, UInt(16.W)))
   val rescale = Reg(Vec(QB, Bool()))
   val expRom = VecInit((Luts.Exp :+ 0).map(_.U(16.W)))
   def expLut(d: UInt): UInt = {   // d in [0, 4095]
     val i = d(11, 4); val f = d(3, 0)
-    val hi = expRom(i); val lo = expRom(i + 1.U)
+    val hi = expRom(i); val lo = expRom(i +& 1.U)
     hi - (((hi - lo) * f + 8.U) >> 4)
   }
   def rsrU(x: UInt, s: UInt): UInt = Mux(s === 0.U, x, (x + (1.U << (s - 1.U))) >> s)
@@ -127,7 +126,7 @@ class Attention(cfg: WhisperConfig) extends Module {
   // max tree over valid entries
   val masked = VecInit((0 until 64).map(jj => Mux(keyValid(jj), srow(jj), (-(BigInt(1) << 31)).S(32.W))))
   val mt = masked.reduceTree((a, b) => Mux(a > b, a, b))
-  val mnew = Reg(SInt(32.W)); val alpha = Reg(UInt(16.W)); val grew = Reg(Bool())
+  val mnew = Reg(SInt(32.W)); val alpha = Reg(UInt(17.W)); val grew = Reg(Bool())
   val pSum = Reg(UInt(28.W))
   val hiWord = Reg(UInt(128.W)); val loWord = Reg(UInt(128.W))
   // exp lanes: 16 keys per cycle (smStep 4..7 -> lane group 0..3)
@@ -174,8 +173,11 @@ class Attention(cfg: WhisperConfig) extends Module {
     val prod = o * Cat(0.U(1.W), rl(40, 0)).asSInt              // 36 x 42 -> 78 bits
     Sat.sint((prod + (BigInt(1) << 32).S) >> 33, 16)
   })
-  val outWordLo = RegNext(Cat(outLanes.slice(0, 16).reverse.map(_.asUInt)))
-  val outWordHi = Cat(outLanes.slice(16, 32).reverse.map(_.asUInt))
+  val outRegs = Reg(Vec(4, UInt(256.W)))                          // d 0..15, 16..31, 32..47, 48..63
+  when(oRdFv) {
+    val lo = Cat(outLanes.slice(0, 16).reverse.map(_.asUInt)); val hi = Cat(outLanes.slice(16, 32).reverse.map(_.asUInt))
+    when(!oRdFhalf) { outRegs(0) := lo; outRegs(1) := hi } .otherwise { outRegs(2) := lo; outRegs(3) := hi }
+  }
   val wrV = RegInit(false.B); val wrAddr = Reg(UInt(20.W)); val wrData = Reg(UInt(256.W))
   wrV := false.B
   io.wr.valid := wrV; io.wr.bits.bank := cmd.outBank; io.wr.bits.addr := wrAddr; io.wr.bits.data := wrData
@@ -201,7 +203,7 @@ class Attention(cfg: WhisperConfig) extends Module {
           val da = rsrU((mn - mx(sm)).asUInt * mqH, sqH)
           val daC = Mux(da > 4095.U, 4095.U, da(11, 0))
           val al = Mux(g, expLut(daC), 32768.U)
-          alpha := al(15, 0)     // 32768 -> 0 in 16 bits; handled: alpha == 0 means "1.0" (no rescale)
+          alpha := al
           rescale(sm) := g
           when(anyValid) { mx(sm) := mn; started(sm) := true.B
             lSum(sm) := Mux(g, ((lSum(sm) * al) + (1.U << 14)) >> 15, lSum(sm)) }
@@ -236,12 +238,11 @@ class Attention(cfg: WhisperConfig) extends Module {
         fStep := 1.U
       }
       when(fStep === 1.U) { when(div.io.out.valid) { rl := div.io.out.bits; fStep := 2.U } .otherwise { fStep := 1.U } }
-      // fStep 2,3: O reads issued; data at 3,4 -> outLanes ; write 2 words each
-      when(fStep === 4.U) { wrV := true.B; wrAddr := cmd.outBase + (q0 + fm) * cmd.outStride + (h << 2); wrData := Cat(outWordHi, outWordLo) }
-      when(fStep === 5.U) { wrV := true.B; wrAddr := cmd.outBase + (q0 + fm) * cmd.outStride + (h << 2) + 1.U; wrData := Cat(outWordHi, outWordLo) }
-      when(fStep === 6.U) { wrV := true.B; wrAddr := cmd.outBase + (q0 + fm) * cmd.outStride + (h << 2) + 2.U; wrData := Cat(outWordHi, outWordLo) }
-      when(fStep === 7.U) { wrV := true.B; wrAddr := cmd.outBase + (q0 + fm) * cmd.outStride + (h << 2) + 3.U; wrData := Cat(outWordHi, outWordLo) }
-      when(fStep === 8.U) {
+      // fStep 2,3: O reads issued; data at 3,4 -> outRegs(0,1) valid from 4, outRegs(2,3) from 5
+      for (w <- 0 until 4) {
+        when(fStep === (5 + w).U) { wrV := true.B; wrAddr := cmd.outBase + (q0 + fm) * cmd.outStride + (h << 2) + w.U; wrData := outRegs(w) }
+      }
+      when(fStep === 9.U) {
         fStep := 0.U
         when(fm === qRows - 1.U) { state := sNextQB } .otherwise { fm := fm + 1.U }
       }

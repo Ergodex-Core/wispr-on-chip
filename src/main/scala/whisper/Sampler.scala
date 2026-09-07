@@ -34,7 +34,7 @@ class Sampler(cfg: WhisperConfig) extends Module {
   // lowest-index max within the beat
   def better(a: (SInt, UInt), b: (SInt, UInt)): (SInt, UInt) = { val take = b._1 > a._1; (Mux(take, b._1, a._1), Mux(take, b._2, a._2)) }
   val (bv, bi) = (0 until 32).map(i => (vals(i), i.U(5.W))).reduceLeft(better)
-  val cand = Cat(nt, bi)
+  val cand = Cat(nt(10, 0), bi)
   val done = RegInit(false.B); done := false.B
   when(io.start) { have := false.B; best := minV; bestIdx := 0.U }
   when(io.in.fire) {

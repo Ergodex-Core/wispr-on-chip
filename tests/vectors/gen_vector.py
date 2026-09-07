@@ -33,7 +33,7 @@ def emit(case, meta, a, a16, y, y16, b=None, b16=None, rowfac=None):
     if rowfac is not None:
         (d / "rowfac_exp.txt").write_text("\n".join(str(int(x)) for x in rowfac) + "\n")
     meta.update(rows=int(a.shape[0]), cols=int(y.shape[1]), a_bits16=a16, y_bits16=y16, b_bits16=bool(b16))
-    json.dump(meta, open(d / "meta.json", "w"), indent=1)
+    json.dump(meta, open(d / "meta.json", "w"))
     print(f"{case:24s} rows={meta['rows']} cols={meta['cols']}")
 
 

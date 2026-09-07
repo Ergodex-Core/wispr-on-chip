@@ -41,7 +41,7 @@ def emit(case, meta, q8, k8, v8, out16, keys_max):
     write_hex(d / "v.hex", vw)
     write_hex(d / "y.hex", act16_words(out16))
     meta.update(n_queries=int(q8.shape[0]), keys_max=keys_max, kv_words_per_head=int(len(kw) // N_HEAD // 64))
-    json.dump(meta, open(d / "meta.json", "w"), indent=1)
+    json.dump(meta, open(d / "meta.json", "w"))
     print(f"{case:24s} queries={meta['n_queries']} keys={meta['n_keys']} causal={meta['causal']}")
 
 
