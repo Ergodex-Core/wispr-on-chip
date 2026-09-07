@@ -25,7 +25,7 @@ class KVCmd extends Bundle {
   val flush    = Bool()         // K: flush the transposer (end of job)
 }
 
-class KVCache(cfg: WhisperConfig) extends Module {
+class KVCache(cfg: WhisperConfig, debugPort: Boolean = false) extends Module {
   val encKeys = KVRegion.encKeys(cfg); val decKeys = KVRegion.decKeys(cfg)
   val H = cfg.nHead
   val perHeadEnc = KVRegion.wordsPerHeadK(encKeys)   // 384 words
@@ -45,7 +45,9 @@ class KVCache(cfg: WhisperConfig) extends Module {
     val cmd = Input(new KVCmd)                              // static during a job
     val flush = Input(Bool())                                // pulse after the last K beat of a job
     val busy = Output(Bool())
-    val dbgWr = Flipped(Valid(new Bundle { val addr = UInt(20.W); val data = UInt(cfg.weightWordBits.W) }))  // tests only
+    // tests only (debugPort): a masked write port whose mask comes from IO (a constant all-true mask would make
+    // firtool drop the masks of every port of this memory)
+    val dbgWr = if (debugPort) Some(Flipped(Valid(new Bundle { val addr = UInt(20.W); val data = UInt(cfg.weightWordBits.W); val mask = UInt(256.W) }))) else None
   })
   val mem = SyncReadMem(words, Vec(256, UInt(8.W)))
   io.rd.data := mem.read(io.rd.addr(addrBits - 1, 0), io.rd.en).asUInt
@@ -93,7 +95,7 @@ class KVCache(cfg: WhisperConfig) extends Module {
   io.in.ready := true.B
   assert(!(newGroup && flushBusy), "KV transposer: new key group while the other buffer is still flushing")
   when(kFlushing) {
-    mem.write(kWord(addrBits - 1, 0), kData, kMask)
+    mem.write(kWord(addrBits - 1, 0), kData, kMask.toSeq)
     kG := kG + 1.U
     when(kG === 3.U) { kFlushing := false.B; tValid(fBuf).foreach(_ := false.B) }
   }
@@ -105,8 +107,10 @@ class KVCache(cfg: WhisperConfig) extends Module {
     for (d <- 0 until 32) tBuf(b)(j(4, 0))(d) := io.in.bits.data(d)(7, 0)
     tValid(b)(j(4, 0)) := true.B
   }
-  when(io.in.fire && !io.cmd.isK) { mem.write(vWord(addrBits - 1, 0), vData, vMask) }
-  when(io.dbgWr.valid) {
-    mem.write(io.dbgWr.bits.addr(addrBits - 1, 0), VecInit(Seq.tabulate(256)(b => io.dbgWr.bits.data(8 * b + 7, 8 * b))))
+  when(io.in.fire && !io.cmd.isK) { mem.write(vWord(addrBits - 1, 0), vData, vMask.toSeq) }
+  io.dbgWr.foreach { d =>
+    when(d.valid) {
+      mem.write(d.bits.addr(addrBits - 1, 0), VecInit(Seq.tabulate(256)(b => d.bits.data(8 * b + 7, 8 * b))), d.bits.mask.asBools)
+    }
   }
 }

@@ -10,13 +10,14 @@ class AttentionTestbench(cfg: WhisperConfig, actWords: Int = 1 << 14) extends Mo
     val busy = Output(Bool())
     val load = Flipped(Valid(new Bundle { val addr = UInt(log2Ceil(actWords).W); val data = UInt(256.W) }))   // bank 0
     val kvLoad = Flipped(Valid(new Bundle { val addr = UInt(20.W); val data = UInt(2048.W) }))
+    val kvLoadMask = Input(UInt(256.W))
     val read = new Bundle { val addr = Input(UInt(log2Ceil(actWords).W)); val en = Input(Bool()); val data = Output(UInt(256.W)) }
     val cycles = Output(UInt(32.W))
     val engCycles = Output(UInt(32.W))
   })
   val eng = Module(new MatmulEngine(cfg))
   val att = Module(new Attention(cfg))
-  val kv = Module(new KVCache(cfg))
+  val kv = Module(new KVCache(cfg, debugPort = true))
   val bankQ = Module(new ActBank(actWords))
   val bankO = Module(new ActBank(actWords))
   att.io.cmd <> io.cmd
@@ -39,7 +40,8 @@ class AttentionTestbench(cfg: WhisperConfig, actWords: Int = 1 << 14) extends Mo
   // KV writes: none from the engine here; test loads
   kv.io.in.valid := false.B; kv.io.in.bits := DontCare
   kv.io.cmd := 0.U.asTypeOf(new KVCmd); kv.io.flush := false.B
-  kv.io.dbgWr.valid := io.kvLoad.valid; kv.io.dbgWr.bits.addr := io.kvLoad.bits.addr; kv.io.dbgWr.bits.data := io.kvLoad.bits.data
+  kv.io.dbgWr.get.valid := io.kvLoad.valid; kv.io.dbgWr.get.bits.addr := io.kvLoad.bits.addr; kv.io.dbgWr.get.bits.data := io.kvLoad.bits.data
+  kv.io.dbgWr.get.bits.mask := io.kvLoadMask
   // bank Q load, bank O written by attention
   bankQ.io.wr.valid := io.load.valid; bankQ.io.wr.bits.addr := io.load.bits.addr; bankQ.io.wr.bits.wide := false.B
   bankQ.io.wr.bits.data := Cat(0.U(256.W), io.load.bits.data)

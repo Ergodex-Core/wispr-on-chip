@@ -183,5 +183,4 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   ws.io.load.valid := io.wsLoad.valid
   ws.io.load.bits.space := io.wsLoad.bits.space; ws.io.load.bits.addr := io.wsLoad.bits.addr
   ws.io.load.bits.slice := io.wsLoad.bits.slice; ws.io.load.bits.data := io.wsLoad.bits.data
-  kv.io.dbgWr.valid := false.B; kv.io.dbgWr.bits := DontCare
 }

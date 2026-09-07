@@ -30,6 +30,7 @@ class AttentionSpec extends AnyFlatSpec with WhisperSim {
       val encSelfK = 0; val encSelfV = encSelfK + H * phEnc; val decSelfK = encSelfV + H * phEnc; val decSelfV = decSelfK + 4 * H * phDec
       val (kb, vb) = if (keysMax == decKeys) (decSelfK, decSelfV) else (encSelfK, encSelfV)
       dut.io.cmd.valid.poke(false.B); dut.io.load.valid.poke(false.B); dut.io.kvLoad.valid.poke(false.B); dut.io.read.en.poke(false.B)
+      dut.io.kvLoadMask.poke(((BigInt(1) << 256) - 1).U)
       dut.clock.step(2)
       for (i <- 0 until q.length / 8) {
         dut.io.load.valid.poke(true.B); dut.io.load.bits.addr.poke(i.U); dut.io.load.bits.data.poke(pack(q, 8 * i, 8)); dut.clock.step()
