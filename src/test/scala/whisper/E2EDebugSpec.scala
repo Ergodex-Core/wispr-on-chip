@@ -49,7 +49,7 @@ class E2EDebugSpec extends AnyFlatSpec with WhisperSim {
         dut.io.dbg.en.poke(false.B)
         out.close()
       }
-      reg(8, breaks.headOption.getOrElse(0x3ff))
+      reg(8, BigInt(breaks.headOption.getOrElse(0x3ff)))
       reg(0, 1)
       var cycles = 0L
       var bi = 0
@@ -62,7 +62,7 @@ class E2EDebugSpec extends AnyFlatSpec with WhisperSim {
           val pc = breaks(bi)
           info(s"paused at pc $pc after $cycles cycles"); dump(s"pc$pc")
           bi += 1
-          reg(8, if (bi < breaks.size) breaks(bi) else 0x3ff)
+          reg(8, BigInt(if (bi < breaks.size) breaks(bi) else 0x3ff))
           reg(9, 1)
         }
         if ((st & 2) != 0) running = false
