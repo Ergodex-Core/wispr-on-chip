@@ -57,7 +57,7 @@ class KVCache(cfg: WhisperConfig, debugPort: Boolean = false) extends Module {
   io.busy := false.B
 
   // ---- V: beat (key j, nTile nd) -> head h = nd/2, dTile = nd%2 ; word = base + h*perHead + (dTile*KT + j/32)*4 + (j%32)/8 ; bytes (j%8)*32..+31
-  val j = io.in.bits.row + io.cmd.keyOff
+  val j = io.in.bits.trow + io.cmd.keyOff
   val nd = io.in.bits.nTile
   val h = nd >> 1
   val dTile = nd(0)

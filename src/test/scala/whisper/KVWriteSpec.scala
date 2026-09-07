@@ -57,17 +57,17 @@ class KVWriteSpec extends AnyFlatSpec with WhisperSim {
       dut.io.actLoad.valid.poke(false.B)
       for (i <- rf.indices) { dut.io.rowfacLoad.valid.poke(true.B); dut.io.rowfacLoad.bits.addr.poke(i.U); dut.io.rowfacLoad.bits.data.poke(rf(i).U); dut.clock.step() }
       dut.io.rowfacLoad.valid.poke(false.B)
-      def run(tensor: String, isK: Boolean, base: Int, s1: Int): Unit = {
+      def run(tensor: String, isK: Boolean, base: Int, s1: Int, rows: Int = M, rowOff: Int = 0, keyOff: Int = 0): Unit = {
         val wT = WeightTables.byName(tensor + ".w"); val multT = WeightTables.byName(tensor + ".mult")
         val biasT = WeightTables.byName(tensor + (if (WeightTables.byName.contains(tensor + ".bias")) ".bias" else ".mult"))
         val c = dut.io.cmd.bits
         c.elements.values.foreach { case u: UInt => u.poke(0.U); case b: Bool => b.poke(false.B) }
-        c.rows.poke(M.U); c.kTiles.poke(12.U); c.nTiles.poke(12.U); c.actStride.poke(12.U)
+        c.rows.poke(rows.U); c.kTiles.poke(12.U); c.nTiles.poke(12.U); c.actStride.poke(12.U); c.rowOff.poke(rowOff.U)
         c.wBase.poke(wT.base.U); c.wStrideN.poke(48.U); c.wStrideK.poke(4.U); c.wStrideG.poke(1.U)
         c.outMode.poke(0.U); c.outSink.poke(3.U); c.outStride.poke(12.U)
         c.s1.poke(s1.U)
         c.multBase.poke(multT.base.U); c.biasBase.poke(biasT.base.U); c.hasBias.poke(WeightTables.byName.contains(tensor + ".bias").B); c.dynamic.poke(true.B)
-        dut.io.kvCmd.isK.poke(isK.B); dut.io.kvCmd.base.poke(base.U); dut.io.kvCmd.keysMax.poke(keysMax.U); dut.io.kvCmd.keyOff.poke(0.U); dut.io.kvCmd.flush.poke(false.B)
+        dut.io.kvCmd.isK.poke(isK.B); dut.io.kvCmd.base.poke(base.U); dut.io.kvCmd.keysMax.poke(keysMax.U); dut.io.kvCmd.keyOff.poke(keyOff.U); dut.io.kvCmd.flush.poke(false.B)
         dut.io.cmd.valid.poke(true.B); dut.clock.step(); dut.io.cmd.valid.poke(false.B)
         var n = 0
         while (dut.io.busy.peek().litToBoolean) { dut.clock.step(); n += 1 }
@@ -101,6 +101,32 @@ class KVWriteSpec extends AnyFlatSpec with WhisperSim {
       }
       check("K", kBase, kExp)
       check("V", vBase, vExp)
+      // single key written at an offset (decoder-style): row 41 of the activations -> key slot 300 of a fresh region
+      val row = 41; val keyOffT = 300; val key = keyOffT + row   // key = keyOff + (rowOff + m)
+      val kBase2 = 2 * H * phEnc; val vBase2 = 3 * H * phEnc   // decSelfK / decSelfV regions (keysMax stays 1536 here)
+      run("enc.0.attn.k", true, kBase2, s1of("enc.0.attn.k"), rows = 1, rowOff = row, keyOff = keyOffT)
+      run("enc.0.attn.v", false, vBase2, s1of("enc.0.attn.v"), rows = 1, rowOff = row, keyOff = keyOffT)
+      def byteOf(words: Array[Long], word: Int, b: Int): Int = ((words(word * 64 + b / 4) >> (8 * (b % 4))) & 0xff).toInt
+      var bad = 0
+      for (h <- 0 until H; dTile <- 0 until 2; g <- 0 until 4; r <- 0 until 8) {
+        // K^T: word (nt=key/32, kt=dTile, g) ; byte r*32 + key%32 holds K[key][dTile*32 + g*8 + r]
+        val wExp = h * perHead + (((row / 32) * 2 + dTile) * 4 + g)
+        val wGot = h * perHead + (((key / 32) * 2 + dTile) * 4 + g)
+        val exp = byteOf(kExp, wExp, r * 32 + row % 32)
+        dut.io.kvRead.addr.poke((kBase2 + wGot).U); dut.io.kvRead.en.poke(true.B); dut.clock.step()
+        val got = ((dut.io.kvRead.data.peek().litValue >> (8 * (r * 32 + key % 32))) & 0xff).toInt
+        if (got != exp) { bad += 1; if (bad <= 4) info(s"K single key h=$h dTile=$dTile g=$g r=$r: got $got exp $exp") }
+      }
+      for (h <- 0 until H; dTile <- 0 until 2; c <- 0 until 32) {
+        // V: word (nt=dTile, kt=key/32, g=(key%32)/8) ; byte (key%8)*32 + c holds V[key][dTile*32 + c]
+        val wExp = h * perHead + ((dTile * (keysMax / 32) + row / 32) * 4 + (row % 32) / 8)
+        val wGot = h * perHead + ((dTile * (keysMax / 32) + key / 32) * 4 + (key % 32) / 8)
+        val exp = byteOf(vExp, wExp, (row % 8) * 32 + c)
+        dut.io.kvRead.addr.poke((vBase2 + wGot).U); dut.io.kvRead.en.poke(true.B); dut.clock.step()
+        val got = ((dut.io.kvRead.data.peek().litValue >> (8 * ((key % 8) * 32 + c))) & 0xff).toInt
+        if (got != exp) { bad += 1; if (bad <= 4) info(s"V single key h=$h dTile=$dTile c=$c: got $got exp $exp") }
+      }
+      assert(bad == 0, s"single-key write: $bad mismatching bytes")
     }
   }
 }

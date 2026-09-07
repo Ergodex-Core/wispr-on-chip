@@ -54,7 +54,8 @@ class MatmulOut(cfg: WhisperConfig) extends Bundle {
   val mode   = UInt(2.W)
   val bank   = UInt(3.W)
   val addr   = UInt(20.W)      // 256-bit word address (int8: 1 word, int16: 2 words starting here)
-  val row    = UInt(13.W)      // logical row (rowBase + m)
+  val row    = UInt(13.W)      // logical row (rowBase + rowOff + m): rowfac index
+  val trow   = UInt(13.W)      // tensor row (rowOff + m): KV key index relative to keyOff
   val nTile  = UInt(12.W)
   val tag    = UInt(2.W)
   val data   = Vec(32, SInt(32.W))   // int8/int16 packed in data(i) low bits; raw/wide: full int32
@@ -347,6 +348,7 @@ class MatmulEngine(cfg: WhisperConfig) extends Module {
   io.out.bits.bank := cmd.outBank
   io.out.bits.addr := cmd.outBase + (Mux(cmd.outLocal, 0.U, cmd.rowOff) + tagD.m) * cmd.outStride + Mux(cmd.outMode === MatmulMode.Int16.U, tagD.nTile << 1, tagD.nTile)
   io.out.bits.row := cmd.rowBase + cmd.rowOff + tagD.m
+  io.out.bits.trow := cmd.rowOff + tagD.m
   io.out.bits.nTile := tagD.nTile
   io.out.bits.tag := cmd.outTag
   io.out.bits.data := Mux(cmd.outMode === MatmulMode.Raw.U, rawD, yD)
