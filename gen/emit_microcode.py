@@ -196,7 +196,7 @@ def decoder():
     op("BR_PROMPT", imm=0, name="skip LM head while feeding the prompt")   # target patched below
     br = len(prog) - 1
     ln("dec.ln", XD, AD8, "Const"); prog[-1]["vec"]["rows"] = 1
-    matmul("dec.lm", (AD8[0], AD8[1], 12), ("wide", "sampler", 0, 0, 1621), rows=1, dyn_bank=AD8[0]); prog[-1]["mm"]["rowBase"] = AD8[1] // 12
+    matmul("dec.lm", (AD8[0], AD8[1], 12), ("wide", "sampler", 0, 0, 0), rows=1, dyn_bank=AD8[0]); prog[-1]["mm"]["rowBase"] = AD8[1] // 12
     op("SAMPLE", name="tok = argmax (emit; halt on eot / limit)")
     op("NEXTPOS", imm=labels["dec_loop"], name="pos++ ; loop")
     prog[br]["imm"] = len(prog)
