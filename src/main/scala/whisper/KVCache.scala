@@ -86,13 +86,14 @@ class KVCache(cfg: WhisperConfig) extends Module {
   val newGroup = io.in.valid && io.cmd.isK && tAny(cur) && ((nd =/= tNd(cur)) || ((j >> 5) =/= tKeyGroup(cur)))
   val startFlush = io.cmd.isK && ((newGroup) || (io.flush && tAny(cur)))
   io.in.ready := true.B
-  assert(!(startFlush && kFlushing), "KV transposer: flush requested while the other buffer is still flushing")
-  when(startFlush) { kFlushing := true.B; kG := 0.U; fBuf := cur; cur := ~cur }
+  val flushBusy = kFlushing && kG =/= 3.U      // a new flush may start on the last word of the previous one
+  assert(!(startFlush && flushBusy), "KV transposer: flush requested while the other buffer is still flushing")
   when(kFlushing) {
     mem.write(kWord(addrBits - 1, 0), kData, kMask)
     kG := kG + 1.U
     when(kG === 3.U) { kFlushing := false.B; tValid(fBuf).foreach(_ := false.B) }
   }
+  when(startFlush) { kFlushing := true.B; kG := 0.U; fBuf := cur; cur := ~cur }
   io.busy := kFlushing || (io.cmd.isK && (tAny(0) || tAny(1)))
   when(io.in.fire && io.cmd.isK) {
     val b = Mux(newGroup, ~cur, cur)          // a new group goes to the other buffer (this cycle's flush takes `cur`)
