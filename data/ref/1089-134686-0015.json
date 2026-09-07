@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.12118371725082397,
+ "duration_s": 5.815,
+ "language": "en",
+ "n_samples": 93040,
+ "no_speech_prob": 0.004366595763713121,
+ "ref_text": "BUT THE DUSK DEEPENING IN THE SCHOOLROOM COVERED OVER HIS THOUGHTS THE BELL RANG",
+ "text": "but the dusk deepening in the school room covered over his thoughts. The bell rang.",
+ "tokens": [
+  457,
+  264,
+  14284,
+  74,
+  2452,
+  4559,
+  294,
+  264,
+  1395,
+  1808,
+  5343,
+  670,
+  702,
+  4598,
+  13,
+  440,
+  4549,
+  32434,
+  13
+ ],
+ "uid": "1089-134686-0015"
+}

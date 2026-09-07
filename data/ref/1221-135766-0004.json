@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.07539825780051095,
+ "duration_s": 7.44,
+ "language": "en",
+ "n_samples": 119040,
+ "no_speech_prob": 0.018289169296622276,
+ "ref_text": "THIS OUTWARD MUTABILITY INDICATED AND DID NOT MORE THAN FAIRLY EXPRESS THE VARIOUS PROPERTIES OF HER INNER LIFE",
+ "text": "This outward mutability indicated and did not more than fairly express the various properties of her inner life.",
+ "tokens": [
+  639,
+  26914,
+  5839,
+  2310,
+  16176,
+  293,
+  630,
+  406,
+  544,
+  813,
+  6457,
+  5109,
+  264,
+  3683,
+  7221,
+  295,
+  720,
+  7284,
+  993,
+  13
+ ],
+ "uid": "1221-135766-0004"
+}

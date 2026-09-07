@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.10802444957551502,
+ "duration_s": 5.415,
+ "language": "en",
+ "n_samples": 86640,
+ "no_speech_prob": 0.006795032881200314,
+ "ref_text": "FOR A FULL HOUR HE HAD PACED UP AND DOWN WAITING BUT HE COULD WAIT NO LONGER",
+ "text": "for a full hour he had paced up and down waiting, but he could wait no longer.",
+ "tokens": [
+  337,
+  257,
+  1577,
+  1773,
+  415,
+  632,
+  280,
+  3839,
+  493,
+  293,
+  760,
+  3806,
+  11,
+  457,
+  415,
+  727,
+  1699,
+  572,
+  2854,
+  13
+ ],
+ "uid": "1089-134691-0001"
+}

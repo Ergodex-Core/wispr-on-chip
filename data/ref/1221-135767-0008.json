@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.25756025314331055,
+ "duration_s": 3.095,
+ "language": "en",
+ "n_samples": 49520,
+ "no_speech_prob": 0.0498308464884758,
+ "ref_text": "COME THEREFORE AND LET US FLING MUD AT THEM",
+ "text": "Come there for and let us fling mud at them.",
+ "tokens": [
+  2492,
+  456,
+  337,
+  293,
+  718,
+  505,
+  932,
+  278,
+  8933,
+  412,
+  552,
+  13
+ ],
+ "uid": "1221-135767-0008"
+}

@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.16658693093519944,
+ "duration_s": 5.1750625,
+ "language": "en",
+ "n_samples": 82801,
+ "no_speech_prob": 0.010949385352432728,
+ "ref_text": "PRIDE AFTER SATISFACTION UPLIFTED HIM LIKE LONG SLOW WAVES",
+ "text": "Pride after satisfaction uplifted him like long, slow waves.",
+ "tokens": [
+  30319,
+  934,
+  18715,
+  45407,
+  292,
+  796,
+  411,
+  938,
+  11,
+  2964,
+  9417,
+  13
+ ],
+ "uid": "1089-134691-0004"
+}

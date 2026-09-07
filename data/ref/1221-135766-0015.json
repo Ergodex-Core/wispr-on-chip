@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.08185866204175082,
+ "duration_s": 2.63,
+ "language": "en",
+ "n_samples": 42080,
+ "no_speech_prob": 0.026592152193188667,
+ "ref_text": "IF SPOKEN TO SHE WOULD NOT SPEAK AGAIN",
+ "text": "If spoken to, she would not speak again.",
+ "tokens": [
+  759,
+  10759,
+  281,
+  11,
+  750,
+  576,
+  406,
+  1710,
+  797,
+  13
+ ],
+ "uid": "1221-135766-0015"
+}

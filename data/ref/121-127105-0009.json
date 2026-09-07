@@ -1,0 +1,20 @@
+{
+ "avg_logprob": -0.09495014614529079,
+ "duration_s": 2.29,
+ "language": "en",
+ "n_samples": 36640,
+ "no_speech_prob": 0.05950167402625084,
+ "ref_text": "SHE HAS BEEN DEAD THESE TWENTY YEARS",
+ "text": "She has been dead these 20 years.",
+ "tokens": [
+  1240,
+  575,
+  668,
+  3116,
+  613,
+  945,
+  924,
+  13
+ ],
+ "uid": "121-127105-0009"
+}

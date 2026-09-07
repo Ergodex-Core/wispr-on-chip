@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.1051080652645656,
+ "duration_s": 4.67,
+ "language": "en",
+ "n_samples": 74720,
+ "no_speech_prob": 0.029073243960738182,
+ "ref_text": "ON FRIDAY CONFESSION WILL BE HEARD ALL THE AFTERNOON AFTER BEADS",
+ "text": "On Friday, confession will be heard all the afternoon after beads.",
+ "tokens": [
+  1282,
+  6984,
+  11,
+  29154,
+  486,
+  312,
+  2198,
+  439,
+  264,
+  6499,
+  934,
+  20369,
+  13
+ ],
+ "uid": "1089-134686-0029"
+}

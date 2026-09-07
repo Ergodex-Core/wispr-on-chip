@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.29818610044626087,
+ "duration_s": 4.275,
+ "language": "en",
+ "n_samples": 68400,
+ "no_speech_prob": 0.007632895838469267,
+ "ref_text": "A COLD LUCID INDIFFERENCE REIGNED IN HIS SOUL",
+ "text": "A cold lucid indifference rained in his soul.",
+ "tokens": [
+  316,
+  3554,
+  21296,
+  327,
+  1016,
+  351,
+  5158,
+  47533,
+  294,
+  702,
+  5133,
+  13
+ ],
+ "uid": "1089-134686-0007"
+}

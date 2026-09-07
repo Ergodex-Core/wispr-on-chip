@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.20781795978546141,
+ "duration_s": 2.925,
+ "language": "en",
+ "n_samples": 46800,
+ "no_speech_prob": 0.009989235550165176,
+ "ref_text": "THUS IN CHAUCER'S DREAM",
+ "text": "Thus, in Chaucer's dream.",
+ "tokens": [
+  13827,
+  11,
+  294,
+  761,
+  7113,
+  260,
+  311,
+  3055,
+  13
+ ],
+ "uid": "1188-133604-0035"
+}

@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.4192255565098354,
+ "duration_s": 5.925,
+ "language": "en",
+ "n_samples": 94800,
+ "no_speech_prob": 0.03870198503136635,
+ "ref_text": "HARANGUE THE TIRESOME PRODUCT OF A TIRELESS TONGUE",
+ "text": "Herang. The tires and product of a tire list tongue.",
+ "tokens": [
+  3204,
+  656,
+  13,
+  440,
+  13885,
+  293,
+  1674,
+  295,
+  257,
+  11756,
+  1329,
+  10601,
+  13
+ ],
+ "uid": "121-121726-0001"
+}

@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.17287451880318777,
+ "duration_s": 5.0,
+ "language": "en",
+ "n_samples": 80000,
+ "no_speech_prob": 0.0918080061674118,
+ "ref_text": "I SAY YOU DO KNOW WHAT THIS MEANS AND YOU MUST TELL US",
+ "text": "I say you do know what this means and you must tell us",
+ "tokens": [
+  286,
+  584,
+  291,
+  360,
+  458,
+  437,
+  341,
+  1355,
+  293,
+  291,
+  1633,
+  980,
+  505
+ ],
+ "uid": "varied/en_5s_m_babble10db"
+}

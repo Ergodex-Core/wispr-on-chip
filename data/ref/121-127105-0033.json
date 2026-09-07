@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.07795194536447525,
+ "duration_s": 2.355,
+ "language": "en",
+ "n_samples": 37680,
+ "no_speech_prob": 0.02191346511244774,
+ "ref_text": "IT WAS THE BEAUTY OF IT",
+ "text": "It was the beauty of it.",
+ "tokens": [
+  467,
+  390,
+  264,
+  6643,
+  295,
+  309,
+  13
+ ],
+ "uid": "121-127105-0033"
+}

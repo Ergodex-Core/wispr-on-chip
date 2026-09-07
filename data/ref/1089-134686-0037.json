@@ -1,0 +1,30 @@
+{
+ "avg_logprob": -0.1884152387317858,
+ "duration_s": 5.21,
+ "language": "en",
+ "n_samples": 83360,
+ "no_speech_prob": 0.006533310282975435,
+ "ref_text": "IN THE SILENCE THEIR DARK FIRE KINDLED THE DUSK INTO A TAWNY GLOW",
+ "text": "In the silence, their dark fire kindled the dusk into a tony glow.",
+ "tokens": [
+  682,
+  264,
+  12239,
+  11,
+  641,
+  2877,
+  2610,
+  733,
+  1493,
+  264,
+  14284,
+  74,
+  666,
+  257,
+  256,
+  2526,
+  17513,
+  13
+ ],
+ "uid": "1089-134686-0037"
+}

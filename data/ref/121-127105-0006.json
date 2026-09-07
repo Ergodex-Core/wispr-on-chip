@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.3219085875011626,
+ "duration_s": 4.725,
+ "language": "en",
+ "n_samples": 75600,
+ "no_speech_prob": 0.0036798729561269283,
+ "ref_text": "THE OTHERS RESENTED POSTPONEMENT BUT IT WAS JUST HIS SCRUPLES THAT CHARMED ME",
+ "text": "The others resented postponement, but it was just as group was the charm to me.",
+ "tokens": [
+  440,
+  2357,
+  725,
+  6003,
+  28973,
+  266,
+  1712,
+  11,
+  457,
+  309,
+  390,
+  445,
+  382,
+  1594,
+  390,
+  264,
+  18904,
+  281,
+  385,
+  13
+ ],
+ "uid": "121-127105-0006"
+}

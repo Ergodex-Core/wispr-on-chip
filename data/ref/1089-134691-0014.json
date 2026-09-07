@@ -1,0 +1,26 @@
+{
+ "avg_logprob": -0.19725465774536133,
+ "duration_s": 4.755,
+ "language": "en",
+ "n_samples": 76080,
+ "no_speech_prob": 0.010011468082666397,
+ "ref_text": "THE PHRASE AND THE DAY AND THE SCENE HARMONIZED IN A CHORD",
+ "text": "The phrase and the day and the scene harmonized in a chord.",
+ "tokens": [
+  440,
+  9535,
+  293,
+  264,
+  786,
+  293,
+  264,
+  4145,
+  14750,
+  1602,
+  294,
+  257,
+  14137,
+  13
+ ],
+ "uid": "1089-134691-0014"
+}

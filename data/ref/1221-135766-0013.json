@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.12800248769613412,
+ "duration_s": 3.645,
+ "language": "en",
+ "n_samples": 58320,
+ "no_speech_prob": 0.01962144486606121,
+ "ref_text": "PEARL WAS A BORN OUTCAST OF THE INFANTILE WORLD",
+ "text": "Pearl was a born outcast of the infantile world.",
+ "tokens": [
+  24639,
+  390,
+  257,
+  4232,
+  484,
+  3734,
+  295,
+  264,
+  16757,
+  794,
+  1002,
+  13
+ ],
+ "uid": "1221-135766-0013"
+}

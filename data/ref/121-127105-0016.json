@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.09767250716686249,
+ "duration_s": 2.03,
+ "language": "en",
+ "n_samples": 32480,
+ "no_speech_prob": 0.008012873120605946,
+ "ref_text": "PROBABLY NOT TILL THE SECOND POST",
+ "text": "Probably not till the second post.",
+ "tokens": [
+  9210,
+  406,
+  4288,
+  264,
+  1150,
+  2183,
+  13
+ ],
+ "uid": "121-127105-0016"
+}

@@ -1,0 +1,20 @@
+{
+ "avg_logprob": -0.44414345423380536,
+ "duration_s": 3.25,
+ "language": "en",
+ "n_samples": 52000,
+ "no_speech_prob": 0.026219135150313377,
+ "ref_text": "A GREAT SAINT SAINT FRANCIS XAVIER",
+ "text": "a great saint, saint Francis Xavier.",
+ "tokens": [
+  257,
+  869,
+  28374,
+  11,
+  28374,
+  19648,
+  44653,
+  13
+ ],
+ "uid": "1089-134686-0036"
+}

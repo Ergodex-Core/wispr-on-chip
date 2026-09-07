@@ -1,0 +1,28 @@
+{
+ "avg_logprob": -0.3607296382679659,
+ "duration_s": 3.54,
+ "language": "en",
+ "n_samples": 56640,
+ "no_speech_prob": 0.0077157896012067795,
+ "ref_text": "THEN YOU CAN ASK HIM QUESTIONS ON THE CATECHISM DEDALUS",
+ "text": "Then you can ask him questions on the cataclysm deadelist.",
+ "tokens": [
+  1396,
+  291,
+  393,
+  1029,
+  796,
+  1651,
+  322,
+  264,
+  3857,
+  326,
+  356,
+  10817,
+  3116,
+  338,
+  468,
+  13
+ ],
+ "uid": "1089-134686-0016"
+}

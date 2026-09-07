@@ -1,0 +1,33 @@
+{
+ "avg_logprob": -0.08750631592490456,
+ "duration_s": 7.97,
+ "language": "en",
+ "n_samples": 127520,
+ "no_speech_prob": 0.0032007312402129173,
+ "ref_text": "IN BOTH THESE HIGH MYTHICAL SUBJECTS THE SURROUNDING NATURE THOUGH SUFFERING IS STILL DIGNIFIED AND BEAUTIFUL",
+ "text": "In both these high mythical subjects, the surrounding nature, those suffering, is still dignified and beautiful.",
+ "tokens": [
+  682,
+  1293,
+  613,
+  1090,
+  40843,
+  13066,
+  11,
+  264,
+  11498,
+  3687,
+  11,
+  729,
+  7755,
+  11,
+  307,
+  920,
+  15308,
+  2587,
+  293,
+  2238,
+  13
+ ],
+ "uid": "1188-133604-0036"
+}

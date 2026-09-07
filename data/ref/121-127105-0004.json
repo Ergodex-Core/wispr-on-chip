@@ -1,0 +1,17 @@
+{
+ "avg_logprob": -0.3371550639470418,
+ "duration_s": 2.11,
+ "language": "en",
+ "n_samples": 33760,
+ "no_speech_prob": 0.17991939187049866,
+ "ref_text": "THE STORY'S WRITTEN",
+ "text": "The story's written.",
+ "tokens": [
+  440,
+  1657,
+  311,
+  3720,
+  13
+ ],
+ "uid": "121-127105-0004"
+}

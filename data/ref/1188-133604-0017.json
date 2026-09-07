@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.10054131746292114,
+ "duration_s": 4.615,
+ "language": "en",
+ "n_samples": 73840,
+ "no_speech_prob": 0.008109170943498611,
+ "ref_text": "THAT A STYLE IS RESTRAINED OR SEVERE DOES NOT MEAN THAT IT IS ALSO ERRONEOUS",
+ "text": "That a style is restrained or severe does not mean that it is also erroneous.",
+ "tokens": [
+  663,
+  257,
+  3758,
+  307,
+  25508,
+  2001,
+  420,
+  8922,
+  775,
+  406,
+  914,
+  300,
+  309,
+  307,
+  611,
+  1189,
+  26446,
+  563,
+  13
+ ],
+ "uid": "1188-133604-0017"
+}

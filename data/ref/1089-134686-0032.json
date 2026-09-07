@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.1788060324532645,
+ "duration_s": 4.09,
+ "language": "en",
+ "n_samples": 65440,
+ "no_speech_prob": 0.011877869255840778,
+ "ref_text": "HE IS CALLED AS YOU KNOW THE APOSTLE OF THE INDIES",
+ "text": "He is called as you know the apostle of the Indies.",
+ "tokens": [
+  634,
+  307,
+  1219,
+  382,
+  291,
+  458,
+  264,
+  50244,
+  295,
+  264,
+  2333,
+  530,
+  13
+ ],
+ "uid": "1089-134686-0032"
+}

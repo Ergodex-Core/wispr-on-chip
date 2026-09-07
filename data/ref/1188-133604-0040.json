@@ -1,0 +1,23 @@
+{
+ "avg_logprob": -0.14692360162734985,
+ "duration_s": 3.23,
+ "language": "en",
+ "n_samples": 51680,
+ "no_speech_prob": 0.008745520375669003,
+ "ref_text": "THE CRAMPNESS AND THE POVERTY ARE ALL INTENDED",
+ "text": "The crampness and the poverty are all intended.",
+ "tokens": [
+  440,
+  941,
+  1215,
+  1287,
+  293,
+  264,
+  10958,
+  366,
+  439,
+  10226,
+  13
+ ],
+ "uid": "1188-133604-0040"
+}

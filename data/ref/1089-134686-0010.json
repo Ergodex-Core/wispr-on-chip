@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.2105764283074273,
+ "duration_s": 4.405,
+ "language": "en",
+ "n_samples": 70480,
+ "no_speech_prob": 0.0349428728222847,
+ "ref_text": "WELL NOW ENNIS I DECLARE YOU HAVE A HEAD AND SO HAS MY STICK",
+ "text": "Well now, in this I declare you have a head and so has my stick.",
+ "tokens": [
+  1042,
+  586,
+  11,
+  294,
+  341,
+  286,
+  19710,
+  291,
+  362,
+  257,
+  1378,
+  293,
+  370,
+  575,
+  452,
+  2897,
+  13
+ ],
+ "uid": "1089-134686-0010"
+}

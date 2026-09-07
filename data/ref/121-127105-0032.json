@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.09271672138800988,
+ "duration_s": 3.17,
+ "language": "en",
+ "n_samples": 50720,
+ "no_speech_prob": 0.01615840755403042,
+ "ref_text": "YES BUT THAT'S JUST THE BEAUTY OF HER PASSION",
+ "text": "Yes, but that's just a beauty of her passion.",
+ "tokens": [
+  1079,
+  11,
+  457,
+  300,
+  311,
+  445,
+  257,
+  6643,
+  295,
+  720,
+  5418,
+  13
+ ],
+ "uid": "121-127105-0032"
+}

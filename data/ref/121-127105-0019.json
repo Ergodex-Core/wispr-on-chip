@@ -1,0 +1,27 @@
+{
+ "avg_logprob": -0.09991984814405441,
+ "duration_s": 3.525,
+ "language": "en",
+ "n_samples": 56400,
+ "no_speech_prob": 0.008297464810311794,
+ "ref_text": "MISSUS GRIFFIN HOWEVER EXPRESSED THE NEED FOR A LITTLE MORE LIGHT",
+ "text": "This is Griffin, however, expressed the need for a little more light.",
+ "tokens": [
+  639,
+  307,
+  39188,
+  11,
+  4461,
+  11,
+  12675,
+  264,
+  643,
+  337,
+  257,
+  707,
+  544,
+  1442,
+  13
+ ],
+ "uid": "121-127105-0019"
+}

@@ -1,0 +1,23 @@
+{
+ "avg_logprob": -0.09417011340459187,
+ "duration_s": 2.85,
+ "language": "en",
+ "n_samples": 45600,
+ "no_speech_prob": 0.015023798681795597,
+ "ref_text": "SHE SENT ME THE PAGES IN QUESTION BEFORE SHE DIED",
+ "text": "She sent me the pages and questioned before she died.",
+ "tokens": [
+  1240,
+  2279,
+  385,
+  264,
+  7183,
+  293,
+  28146,
+  949,
+  750,
+  4539,
+  13
+ ],
+ "uid": "121-127105-0010"
+}

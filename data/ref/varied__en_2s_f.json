@@ -1,0 +1,18 @@
+{
+ "avg_logprob": -0.15654894283839635,
+ "duration_s": 2.0,
+ "language": "en",
+ "n_samples": 32000,
+ "no_speech_prob": 0.06563306599855423,
+ "ref_text": "WON'T YOU TELL DOUGLAS",
+ "text": "Won't you tell Douglas?",
+ "tokens": [
+  14710,
+  380,
+  291,
+  980,
+  23010,
+  30
+ ],
+ "uid": "varied/en_2s_f"
+}

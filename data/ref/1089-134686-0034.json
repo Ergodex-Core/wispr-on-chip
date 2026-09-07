@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.15818259451124403,
+ "duration_s": 5.81,
+ "language": "en",
+ "n_samples": 92960,
+ "no_speech_prob": 0.0036715809255838394,
+ "ref_text": "THE RECTOR PAUSED AND THEN SHAKING HIS CLASPED HANDS BEFORE HIM WENT ON",
+ "text": "The rector paused and then shaking his clasp to hands before him went on.",
+ "tokens": [
+  440,
+  319,
+  1672,
+  46860,
+  293,
+  550,
+  15415,
+  702,
+  596,
+  9375,
+  281,
+  2377,
+  949,
+  796,
+  1437,
+  322,
+  13
+ ],
+ "uid": "1089-134686-0034"
+}

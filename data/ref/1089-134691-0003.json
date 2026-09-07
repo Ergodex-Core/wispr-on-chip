@@ -1,0 +1,15 @@
+{
+ "avg_logprob": -0.4597989618778229,
+ "duration_s": 2.175,
+ "language": "en",
+ "n_samples": 34800,
+ "no_speech_prob": 0.12260822206735611,
+ "ref_text": "THE UNIVERSITY",
+ "text": "the university.",
+ "tokens": [
+  264,
+  5454,
+  13
+ ],
+ "uid": "1089-134691-0003"
+}

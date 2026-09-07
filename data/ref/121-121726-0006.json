@@ -1,0 +1,23 @@
+{
+ "avg_logprob": -0.1380695402622223,
+ "duration_s": 3.895,
+ "language": "en",
+ "n_samples": 62320,
+ "no_speech_prob": 0.015981413424015045,
+ "ref_text": "HEREDITY THE CAUSE OF ALL OUR FAULTS",
+ "text": "Heredity, the cause of all our faults.",
+ "tokens": [
+  3204,
+  292,
+  507,
+  11,
+  264,
+  3082,
+  295,
+  439,
+  527,
+  36090,
+  13
+ ],
+ "uid": "121-121726-0006"
+}

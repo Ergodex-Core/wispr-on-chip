@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.048229643276759555,
+ "duration_s": 5.895,
+ "language": "en",
+ "n_samples": 94320,
+ "no_speech_prob": 0.0005854337941855192,
+ "ref_text": "THE PRIDE OF THAT DIM IMAGE BROUGHT BACK TO HIS MIND THE DIGNITY OF THE OFFICE HE HAD REFUSED",
+ "text": "The pride of that dim image brought back to his mind that dignity of the office he had refused.",
+ "tokens": [
+  440,
+  10936,
+  295,
+  300,
+  5013,
+  3256,
+  3038,
+  646,
+  281,
+  702,
+  1575,
+  300,
+  19672,
+  295,
+  264,
+  3398,
+  415,
+  632,
+  14654,
+  13
+ ],
+ "uid": "1089-134691-0006"
+}

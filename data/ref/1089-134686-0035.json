@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.04306511716409163,
+ "duration_s": 3.445,
+ "language": "en",
+ "n_samples": 55120,
+ "no_speech_prob": 0.012028034776449203,
+ "ref_text": "HE HAD THE FAITH IN HIM THAT MOVES MOUNTAINS",
+ "text": "He had the faith in him that moves mountains.",
+ "tokens": [
+  634,
+  632,
+  264,
+  4522,
+  294,
+  796,
+  300,
+  6067,
+  10233,
+  13
+ ],
+ "uid": "1089-134686-0035"
+}

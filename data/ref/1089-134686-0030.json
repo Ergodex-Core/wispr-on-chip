@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.13334891200065613,
+ "duration_s": 2.715,
+ "language": "en",
+ "n_samples": 43440,
+ "no_speech_prob": 0.016722233965992928,
+ "ref_text": "BEWARE OF MAKING THAT MISTAKE",
+ "text": "Beware of making that mistake.",
+ "tokens": [
+  879,
+  3039,
+  295,
+  1455,
+  300,
+  6146,
+  13
+ ],
+ "uid": "1089-134686-0030"
+}

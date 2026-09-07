@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.09581148028373718,
+ "duration_s": 3.02,
+ "language": "en",
+ "n_samples": 48320,
+ "no_speech_prob": 0.0222762618213892,
+ "ref_text": "IT MUST REMEMBER BE ONE OR THE OTHER",
+ "text": "It must remember be one or the other.",
+ "tokens": [
+  467,
+  1633,
+  1604,
+  312,
+  472,
+  420,
+  264,
+  661,
+  13
+ ],
+ "uid": "1188-133604-0013"
+}

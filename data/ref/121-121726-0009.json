@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.10325360960430569,
+ "duration_s": 7.26,
+ "language": "en",
+ "n_samples": 116160,
+ "no_speech_prob": 0.011413437314331532,
+ "ref_text": "HOTEL A PLACE WHERE A GUEST OFTEN GIVES UP GOOD DOLLARS FOR POOR QUARTERS",
+ "text": "How tell? A place where a guest often gives up good dollars for poor quarters.",
+ "tokens": [
+  1012,
+  980,
+  30,
+  316,
+  1081,
+  689,
+  257,
+  8341,
+  2049,
+  2709,
+  493,
+  665,
+  3808,
+  337,
+  4716,
+  20612,
+  13
+ ],
+ "uid": "121-121726-0009"
+}

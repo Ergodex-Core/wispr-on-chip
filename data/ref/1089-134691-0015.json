@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.26533451676368713,
+ "duration_s": 3.395,
+ "language": "en",
+ "n_samples": 54320,
+ "no_speech_prob": 0.02091030776500702,
+ "ref_text": "WORDS WAS IT THEIR COLOURS",
+ "text": "Words. Was it their colors?",
+ "tokens": [
+  32857,
+  13,
+  3027,
+  309,
+  641,
+  4577,
+  30
+ ],
+ "uid": "1089-134691-0015"
+}

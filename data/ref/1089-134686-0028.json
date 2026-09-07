@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.09282772881644112,
+ "duration_s": 7.83,
+ "language": "en",
+ "n_samples": 125280,
+ "no_speech_prob": 0.0031473722774535418,
+ "ref_text": "THE RETREAT WILL BEGIN ON WEDNESDAY AFTERNOON IN HONOUR OF SAINT FRANCIS XAVIER WHOSE FEAST DAY IS SATURDAY",
+ "text": "The retreat will begin on Wednesday afternoon in honor of St. Francis Xavier whose feast day is Saturday.",
+ "tokens": [
+  440,
+  15505,
+  486,
+  1841,
+  322,
+  10579,
+  6499,
+  294,
+  5968,
+  295,
+  745,
+  13,
+  19648,
+  44653,
+  6104,
+  23707,
+  786,
+  307,
+  8803,
+  13
+ ],
+ "uid": "1089-134686-0028"
+}

@@ -1,0 +1,30 @@
+{
+ "avg_logprob": -0.20355922297427528,
+ "duration_s": 5.635,
+ "language": "en",
+ "n_samples": 90160,
+ "no_speech_prob": 0.004042921122163534,
+ "ref_text": "HE STOOD STILL IN DEFERENCE TO THEIR CALLS AND PARRIED THEIR BANTER WITH EASY WORDS",
+ "text": "He stood still in difference to their calls and parried their banter with easy words.",
+ "tokens": [
+  634,
+  9371,
+  920,
+  294,
+  2649,
+  281,
+  641,
+  5498,
+  293,
+  971,
+  2428,
+  641,
+  5643,
+  391,
+  365,
+  1858,
+  2283,
+  13
+ ],
+ "uid": "1089-134691-0022"
+}

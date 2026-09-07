@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.24577279388904572,
+ "duration_s": 2.66,
+ "language": "en",
+ "n_samples": 42560,
+ "no_speech_prob": 0.012090024538338184,
+ "ref_text": "THE SCENE IS ABSOLUTELY ARCADIAN",
+ "text": "The scene is absolutely Arcadian.",
+ "tokens": [
+  440,
+  4145,
+  307,
+  3122,
+  21727,
+  42985,
+  13
+ ],
+ "uid": "1188-133604-0042"
+}

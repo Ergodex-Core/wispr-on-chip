@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.13962088181422308,
+ "duration_s": 2.96,
+ "language": "en",
+ "n_samples": 47360,
+ "no_speech_prob": 0.00406199786812067,
+ "ref_text": "HE QUITTED THE FIRE AND DROPPED BACK INTO HIS CHAIR",
+ "text": "He quitted the fire and dropped back into his chair.",
+ "tokens": [
+  634,
+  421,
+  3944,
+  264,
+  2610,
+  293,
+  8119,
+  646,
+  666,
+  702,
+  6090,
+  13
+ ],
+ "uid": "121-127105-0015"
+}

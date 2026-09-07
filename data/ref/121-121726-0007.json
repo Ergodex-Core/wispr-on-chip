@@ -1,0 +1,28 @@
+{
+ "avg_logprob": -0.16652978167814367,
+ "duration_s": 6.73,
+ "language": "en",
+ "n_samples": 107680,
+ "no_speech_prob": 0.035810597240924835,
+ "ref_text": "HORSE SENSE A DEGREE OF WISDOM THAT KEEPS ONE FROM BETTING ON THE RACES",
+ "text": "Horse sense. A degree of wisdom that keeps one from betting on the races.",
+ "tokens": [
+  33208,
+  2020,
+  13,
+  316,
+  4314,
+  295,
+  10712,
+  300,
+  5965,
+  472,
+  490,
+  34246,
+  322,
+  264,
+  15484,
+  13
+ ],
+ "uid": "121-121726-0007"
+}

@@ -1,0 +1,30 @@
+{
+ "avg_logprob": -0.20267876825834574,
+ "duration_s": 4.01,
+ "language": "en",
+ "n_samples": 64160,
+ "no_speech_prob": 0.012606136500835419,
+ "ref_text": "THE RECTOR DID NOT ASK FOR A CATECHISM TO HEAR THE LESSON FROM",
+ "text": "The rector did not ask for a catacysm to hear the lesson from.",
+ "tokens": [
+  440,
+  319,
+  1672,
+  630,
+  406,
+  1029,
+  337,
+  257,
+  3857,
+  326,
+  749,
+  76,
+  281,
+  1568,
+  264,
+  6898,
+  490,
+  13
+ ],
+ "uid": "1089-134686-0026"
+}

@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.17538741501894864,
+ "duration_s": 3.705,
+ "language": "en",
+ "n_samples": 59280,
+ "no_speech_prob": 0.01096471305936575,
+ "ref_text": "ONLY THERE ARE TWO SORTS OF CLOUD AND FIRE",
+ "text": "Only there are two sorts of cloud and fire.",
+ "tokens": [
+  5686,
+  456,
+  366,
+  732,
+  7527,
+  295,
+  4588,
+  293,
+  2610,
+  13
+ ],
+ "uid": "1188-133604-0029"
+}

@@ -1,0 +1,27 @@
+{
+ "avg_logprob": -0.15542566776275635,
+ "duration_s": 5.36,
+ "language": "en",
+ "n_samples": 85760,
+ "no_speech_prob": 0.0018814863869920373,
+ "ref_text": "WHOSE FEET ARE AS THE FEET OF HARTS AND UNDERNEATH THE EVERLASTING ARMS",
+ "text": "who is feet are as the feet of hearts and underneath the everlasting arms.",
+ "tokens": [
+  567,
+  307,
+  3521,
+  366,
+  382,
+  264,
+  3521,
+  295,
+  8852,
+  293,
+  7223,
+  264,
+  43710,
+  5812,
+  13
+ ],
+ "uid": "1089-134691-0005"
+}

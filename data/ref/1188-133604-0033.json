@@ -1,0 +1,30 @@
+{
+ "avg_logprob": -0.08878379746487267,
+ "duration_s": 6.625,
+ "language": "en",
+ "n_samples": 106000,
+ "no_speech_prob": 0.0028472826816141605,
+ "ref_text": "EVERY PLANT IN THE GRASS IS SET FORMALLY GROWS PERFECTLY AND MAY BE REALIZED COMPLETELY",
+ "text": "Every plant in the grass is set formally, grows perfectly, and may be realized completely.",
+ "tokens": [
+  2048,
+  3709,
+  294,
+  264,
+  8054,
+  307,
+  992,
+  25983,
+  11,
+  13156,
+  6239,
+  11,
+  293,
+  815,
+  312,
+  5334,
+  2584,
+  13
+ ],
+ "uid": "1188-133604-0033"
+}

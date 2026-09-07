@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.08632807840000499,
+ "duration_s": 3.44,
+ "language": "en",
+ "n_samples": 55040,
+ "no_speech_prob": 0.013217668049037457,
+ "ref_text": "SOON THE WHOLE BRIDGE WAS TREMBLING AND RESOUNDING",
+ "text": "Soon the whole bridge was trembling and resounding.",
+ "tokens": [
+  17610,
+  264,
+  1379,
+  7283,
+  390,
+  47354,
+  293,
+  725,
+  24625,
+  13
+ ],
+ "uid": "1089-134691-0007"
+}

@@ -1,0 +1,30 @@
+{
+ "avg_logprob": -0.11840746277257015,
+ "duration_s": 4.885,
+ "language": "en",
+ "n_samples": 78160,
+ "no_speech_prob": 0.006450658198446035,
+ "ref_text": "SEE THAT YOUR LIVES BE IN NOTHING WORSE THAN A BOY'S CLIMBING FOR HIS ENTANGLED KITE",
+ "text": "See that your lies be in nothing worse than a boys climbing for his entangled kite.",
+ "tokens": [
+  3008,
+  300,
+  428,
+  9134,
+  312,
+  294,
+  1825,
+  5324,
+  813,
+  257,
+  6347,
+  14780,
+  337,
+  702,
+  948,
+  39101,
+  38867,
+  13
+ ],
+ "uid": "1188-133604-0043"
+}

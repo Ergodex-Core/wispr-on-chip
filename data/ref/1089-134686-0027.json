@@ -1,0 +1,23 @@
+{
+ "avg_logprob": -0.17610140641530356,
+ "duration_s": 2.71,
+ "language": "en",
+ "n_samples": 43360,
+ "no_speech_prob": 0.010583490133285522,
+ "ref_text": "HE CLASPED HIS HANDS ON THE DESK AND SAID",
+ "text": "He clashed his hands on the desk and said,",
+ "tokens": [
+  634,
+  596,
+  12219,
+  702,
+  2377,
+  322,
+  264,
+  10026,
+  293,
+  848,
+  11
+ ],
+ "uid": "1089-134686-0027"
+}

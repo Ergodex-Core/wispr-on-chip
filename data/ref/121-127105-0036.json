@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.1598304169518607,
+ "duration_s": 4.15,
+ "language": "en",
+ "n_samples": 66400,
+ "no_speech_prob": 0.0065247248858213425,
+ "ref_text": "BUT WAS THAT ALL HER REWARD ONE OF THE LADIES ASKED",
+ "text": "But was that all her reward? One of the ladies asked.",
+ "tokens": [
+  583,
+  390,
+  300,
+  439,
+  720,
+  7782,
+  30,
+  1485,
+  295,
+  264,
+  9974,
+  2351,
+  13
+ ],
+ "uid": "121-127105-0036"
+}

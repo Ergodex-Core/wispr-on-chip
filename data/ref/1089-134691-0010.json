@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.95426776192405,
+ "duration_s": 3.195,
+ "language": "en",
+ "n_samples": 51120,
+ "no_speech_prob": 0.050451457500457764,
+ "ref_text": "BROTHER MAC ARDLE BROTHER KEOGH",
+ "text": "Brother Maccarval, Brother Keeoff.",
+ "tokens": [
+  8904,
+  5707,
+  6166,
+  3337,
+  11,
+  8904,
+  591,
+  1653,
+  4506,
+  13
+ ],
+ "uid": "1089-134691-0010"
+}

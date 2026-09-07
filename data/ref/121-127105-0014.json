@@ -1,0 +1,16 @@
+{
+ "avg_logprob": -0.35640528202056887,
+ "duration_s": 2.255,
+ "language": "en",
+ "n_samples": 36080,
+ "no_speech_prob": 0.1196286678314209,
+ "ref_text": "YOU ARE ACUTE",
+ "text": "You are acute.",
+ "tokens": [
+  509,
+  366,
+  24390,
+  13
+ ],
+ "uid": "121-127105-0014"
+}
