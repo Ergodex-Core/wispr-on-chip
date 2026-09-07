@@ -16,7 +16,7 @@ class E2ESpec extends AnyFlatSpec with WhisperSim {
 
   it should s"transcribe ${clips.size} clips from $dir" in {
     val cfg = WhisperConfig()
-    simulate(new WhisperTop(cfg), subdirectory = Some("e2e")) { dut =>
+    simulate(new WhisperTop(cfg), subdirectory = Some("e2e_" + dir.getName)) { dut =>
       dut.io.mel.valid.poke(false.B); dut.io.tokens.ready.poke(true.B); dut.io.regWr.valid.poke(false.B)
       dut.io.wsLoad.valid.poke(false.B); dut.io.regRdAddr.poke(0.U)
       dut.clock.step(4)
