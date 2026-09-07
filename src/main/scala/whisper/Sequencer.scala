@@ -30,13 +30,13 @@ class Sequencer(cfg: WhisperConfig) extends Module {
   })
   val paused = RegInit(false.B)
   val brkDone = RegInit(false.B)        // the breakpoint at the current pc has been taken already
-  val pcQ = RegNext(pc)
-  val brkHit = pc === io.breakPc && !(brkDone && pc === pcQ)   // effective immediately when pc changes
   io.paused := paused
   val rom = VecInit(prog.map(MicroInstr.fromUOp))
   val pc = RegInit(0.U(10.W))
   val busy = RegInit(false.B)
   val ins = rom(pc)
+  val pcQ = RegNext(pc)
+  val brkHit = pc === io.breakPc && !(brkDone && pc === pcQ)   // effective immediately when pc changes
   val nCtx = io.nFrames >> 1
   val pos = Reg(UInt(13.W)); val tok = Reg(UInt(16.W)); val genCount = Reg(UInt(16.W))
   val chunkBase = Reg(UInt(13.W)); val chunkRows = Reg(UInt(13.W)); val chunkTotal = Reg(UInt(13.W)); val chunkSize = Reg(UInt(13.W))
