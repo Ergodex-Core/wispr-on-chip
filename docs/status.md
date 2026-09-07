@@ -32,3 +32,43 @@ Next-phase risks: int8 residual stream is expected to miss the WER gate because 
 channels (int16 fallback is planned as a parameter from the start); calibration uses dev-clean, not
 test-clean, so static scales may be exceeded on the varied/noisy clips (saturation counters will be
 reported).
+
+## Phase 1 — golden int model and numerics freeze (2026-09-07) — PASS (gate met)
+
+Frozen numerics: `docs/numerics.md`; tiling: `docs/tiling.md`; constants in `weights/MANIFEST.json`
+(`params`). Weights: 247 tensors, 86.6 MB of hex, committed; `make weights-check` → OK.
+
+| Model (full 30 s context) | Set | n | WER | token identity vs fp32 | text WER vs fp32 |
+|---|---|---|---|---|---|
+| fp32 CPU reference | testclean_200 | 200 | 5.54 % | — | — |
+| int golden (r16 / phi16 / no smooth) | testclean_200 | 200 | **5.52 %** | 61 % | 1.6 % |
+| fp32 | varied | 10 | 10.8 % | | |
+| int golden | varied | 10 | 10.8 % | 60 % | 3.6 % |
+| fp32 / int | rtl_20 | 20 | 8.08 % / 7.58 % | 65 % | 3.5 % |
+
+Gate: int WER ≤ fp32 + 0.5 → 5.52 ≤ 6.04 ✓.  
+Reproduce: `uv run python golden/run_golden.py --set testclean_200,varied --frames full` then
+`uv run python golden/wer.py --hyp out/golden_r16_phi16_saNone_sf0_full`.
+Unit tests: `uv run pytest -q golden/tests` (18 tests: every op vs float, tile-order invariance,
+masked-key independence, im2col vs torch conv).
+Variants (int8 residual, int8 GELU LUT, SmoothQuant) and the variable-context rule: measurements are
+appended below when the batch finishes (`/tmp/golden_batch.sh`).
+
+## Phase 2 — MatmulEngine + WeightStore (2026-09-07) — PASS
+
+* `WeightStoreEquivalenceSpec`: 13/13 — RomLiteral, RomInit ($readmemh) and Sram (after loading)
+  return identical data for every address on real tensors of all three kinds, and the flat address
+  decoder is checked on one encoder layer. `sbt "testOnly whisper.WeightStoreEquivalenceSpec"`.
+* `MatmulEngineSpec`: 19/19 bit-exact (`uv run python tests/vectors/gen_matmul.py` then
+  `sbt "testOnly whisper.MatmulEngineSpec"`): 10 random cases (int8/int16/raw/wide, dynamic/static,
+  unsigned activations, M = 1..1500) + real tensors with real activations for every distinct shape
+  (conv1 im2col 288→384, conv2 stride-2 im2col 1152→384, q/k/o 384→384, fc1 384→1536, fc2 1536→384,
+  cross-K, LM head 384→51872 wide).
+
+| Job | cycles | MAC utilisation |
+|---|---|---|
+| 1500×384×384 int8 dynamic (random) | 216,586 | **99.7 %** (gate ≥ 90 %) |
+| real fc1 128×384×1536 | 76,042 | 97.0 % |
+| real conv2 128×1152×384 (im2col) | 57,034 | 97.0 % |
+| M = 1 LM head 384×51872 (wide) | 97,270 | 20.0 % (weight-port bound, 4 cycles/tile) |
+| M = 1 384×1536 int16 | 2,890 | 19.9 % |

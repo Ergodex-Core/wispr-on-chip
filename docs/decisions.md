@@ -29,3 +29,48 @@ left open, is recorded here.
    reference and hypothesis (the standard LibriSpeech reporting convention for Whisper); non-English
    uses `BasicTextNormalizer`. Deterministic references use single-threaded torch per worker process
    so `make refs-check` is byte-identical across runs.
+
+5. **2026-09-07 — Residual stream is int16; residual-feeding matmul outputs are int16.** Calibration on
+   128 dev-clean utterances shows encoder residual max-abs 274 (layer 3) with a channel median of 5.8,
+   and decoder residual max 118: an int8 static residual would leave typical values 0–2 LSBs. The
+   residual width is a `QConfig`/`WhisperConfig` parameter; the int8 variant is still evaluated by the
+   golden model for the record (see status.md), but the frozen datapath uses int16 for the residual and
+   for the out-proj / fc2 outputs that are added into it (`s2 = 20` requant path).
+
+6. **2026-09-07 — GELU is computed as x·Φ(x) on int16 with a 256-entry Φ LUT (`phi16`), not as an
+   int8→int8 table.** fc1 outputs reach max-abs 326 (enc.3) / 73 (dec.1) while their channel medians
+   are 14 / 1: an int8 per-tensor static input to a 256-entry GELU table would give the nonlinearity
+   2–4 levels for typical values. `phi16` keeps fc1's output in int16, interpolates Φ linearly from a
+   256-entry Q15 table (max error 1.2e-4), then quantises the result per token dynamically for fc2.
+   The prompt's `lut8` form remains implemented and selectable (`QConfig.gelu_mode = "lut8"`) and is
+   reported in status.md. conv1's GELU output must be int8 static (im2col rows mix frames), so it uses
+   `phi16` followed by a static int8 requant; conv2's GELU is fused into the pos-emb add.
+
+7. **2026-09-07 — Q/K use per-head static output scales, V per-tensor; scores use a per-head
+   multiplier.** Per-token dynamic scales on K or V cannot factor out of the softmax / P·V sums, so K
+   and V are static. Q is static per head (its output is a matmul output). Attention output is int16
+   `O/l·2^7` in units of `S_v/128`, then per-token dynamic quantisation feeds the out-projection.
+
+8. **2026-09-07 — Weight ROM word = 2048 bits (one 8-row tile group); a 32×32 tile loads in 4 cycles.**
+   With a 32-byte/cycle weight port the decoder (M = 1) would run at 1/32 utilisation (≈1 M cycles per
+   token). A 2048-bit word gives 4 cycles per tile (25 % utilisation at M = 1, ≈130 k cycles/token) and
+   ≥ 99 % at M ≥ 64. The committed hex files keep the prompt's one-32-bit-word-per-line format; the
+   `$readmemh` image (one memory word per line) is derived from them at elaboration into
+   `target/readmemh/` after the sha256 check, so nothing but the committed files is ever loaded.
+
+9. **2026-09-07 — Array organisation: 4 pipeline stages of 8 combinational MAC rows; activations
+   broadcast along rows, partial sums flow down.** A per-row-skewed systolic array needs either a
+   2048-bit × 32-stage weight-load chain or a 32-cycle tile switch; grouping 8 rows per stage matches the
+   ROM word to one stage, keeps the 4-cycle tile switch, and cuts latency to 5 cycles
+   (`WhisperConfig.rowsPerStage`, 1 = fully systolic).
+
+10. **2026-09-07 — Reference stop rule and context.** The int model stops at `<|eot|>` or 224 generated
+    tokens, like the reference. Whisper needs trailing (silent) context to emit `<|eot|>`: with the
+    context truncated to the speech length the model repeats the phrase until the limit, and even
+    5 s of padding is not always enough for a 2 s clip. The variable-context rule used for RTL runs is
+    chosen from the measurements in status.md (`n_frames_for` in `golden/whisper_int.py`).
+
+11. **2026-09-07 — `SyncReadMem` read data is valid exactly one cycle after an enabled read** (firtool
+    lowers a disabled read to X). Every consumer registers read data on that cycle; the RomLiteral
+    backend mirrors the timing with `RegEnable`. Memory randomisation is disabled in simulation
+    (`-disable-mem-randomization`), otherwise firtool's init loop overwrites `$readmemh` contents.

@@ -60,20 +60,25 @@ def dyn_quant_rows(x16):
 
 # ----------------------------------------------------------------------------------------------
 # Matmul-edge requantisation (engine side).
-#   t   = sat32( rsr(acc * M[n], s1) )
-#   y8  = sat8( rsr( t * rowfac[m] + B[n], s2 ) )          s2 == REQ_S2 for int8 outputs
-REQ_S2 = 24
+#   t   = sat40( rsr(acc * M[n], s1) )
+#   y   = sat_w( rsr( t * rowfac[m] + (B[n] << (s2 - 16)), s2 ) )     s2 = 24 (int8 out) / 20 (int16 out)
+#   B[n] = round(bias / s_out * 2^16)  (int32)
+REQ_S2_BY_BITS = {8: 24, 16: 20}
+REQ_B_FRAC = 16
+REQ_T_BITS = 40
 
 
-def requant_int8(acc, mult, bias, s1: int, rowfac):
+def requant(acc, mult, bias, s1: int, rowfac, out_bits: int):
     """acc [M,N] int32, mult/bias [N] int32, rowfac [M] uint16 (all ones for static inputs)."""
     acc = check_range(acc, 32, "acc")
     mult = check_range(mult, 32, "mult")
     bias = check_range(bias, 32, "bias")
-    t = sat32(rsr(acc * mult[None, :], s1))
+    s2 = REQ_S2_BY_BITS[out_bits]
+    t = sat(rsr(acc * mult[None, :], s1), REQ_T_BITS)
     rf = np.asarray(rowfac, dtype=I64)
-    u = t * rf[:, None] + bias[None, :]
-    return sat8(rsr(u, REQ_S2)).astype(np.int8)
+    u = t * rf[:, None] + (bias[None, :] << I64(s2 - REQ_B_FRAC))
+    y = sat(rsr(u, s2), out_bits)
+    return y.astype(np.int8 if out_bits == 8 else np.int16)
 
 
 def requant_wide(acc, mult, s1: int):
