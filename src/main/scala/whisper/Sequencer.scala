@@ -30,6 +30,8 @@ class Sequencer(cfg: WhisperConfig) extends Module {
   })
   val paused = RegInit(false.B)
   val brkDone = RegInit(false.B)        // the breakpoint at the current pc has been taken already
+  val pcQ = RegNext(pc)
+  val brkHit = pc === io.breakPc && !(brkDone && pc === pcQ)   // effective immediately when pc changes
   io.paused := paused
   val rom = VecInit(prog.map(MicroInstr.fromUOp))
   val pc = RegInit(0.U(10.W))
@@ -58,7 +60,7 @@ class Sequencer(cfg: WhisperConfig) extends Module {
   mm.frames := Mux(ins.framesSel === 1.U, io.nFrames, ins.mm.frames)
   mm.rowOff := rowOff(ins.rowOffSel)
   io.mm.bits := mm
-  io.mm.valid := busy && state === sDispatch && ins.opc === UOpc.MATMUL.U && !paused && !(pc === io.breakPc && !brkDone)
+  io.mm.valid := busy && state === sDispatch && ins.opc === UOpc.MATMUL.U && !paused && !brkHit
   // ---- vector
   val vc = WireDefault(ins.vec)
   vc.rows := rows(ins.rowsSel, ins.vec.rows)
@@ -66,14 +68,14 @@ class Sequencer(cfg: WhisperConfig) extends Module {
   vc.bBase := ins.vec.bBase + Mux(ins.bBasePos, pos * ins.vec.bStride, 0.U)
   vc.tok := Mux(ins.tokSel, tok, ins.vec.tok)
   io.vec.bits := vc
-  io.vec.valid := busy && state === sDispatch && ins.opc === UOpc.VEC.U && !paused && !(pc === io.breakPc && !brkDone)
+  io.vec.valid := busy && state === sDispatch && ins.opc === UOpc.VEC.U && !paused && !brkHit
   // ---- attention
   val ac = WireDefault(ins.att)
   ac.nQueries := Mux(ins.nQSel === 2.U, nCtx, ins.att.nQueries)
   ac.nKeys := MuxLookup(ins.nKeysSel, ins.att.nKeys)(Seq(KeysSel.NCtx.U -> nCtx, KeysSel.PosPlus1.U -> (pos + 1.U)))
   ac.qPos0 := Mux(ins.qPos0Sel === BaseSel.Pos.U, pos, 0.U)
   io.att.bits := ac
-  io.att.valid := busy && state === sDispatch && ins.opc === UOpc.ATTN.U && !paused && !(pc === io.breakPc && !brkDone)
+  io.att.valid := busy && state === sDispatch && ins.opc === UOpc.ATTN.U && !paused && !brkHit
   // ---- kv context (registered on KVSET)
   val kvReg = Reg(new KVCmd)
   io.kvCmd := kvReg
@@ -94,9 +96,9 @@ class Sequencer(cfg: WhisperConfig) extends Module {
       when(io.start) { busy := true.B; pc := 0.U; state := sDispatch; genCount := 0.U; pos := 0.U; tok := promptTok(0) }
     }
     is(sDispatch) {
-      when(pc === io.breakPc && !brkDone && !paused) { paused := true.B }
+      when(brkHit && !paused) { paused := true.B }
       when(paused && io.resume) { paused := false.B; brkDone := true.B }
-      when(!paused && !(pc === io.breakPc && !brkDone)) {
+      when(!paused && !brkHit) {
       switch(ins.opc) {
         is(UOpc.MATMUL.U) { when(io.mm.fire) { state := sWait; flushPending := ins.flushK; waitCycles := 0.U } }
         is(UOpc.VEC.U) { when(io.vec.fire) { state := sWait; waitCycles := 0.U } }
@@ -148,7 +150,6 @@ class Sequencer(cfg: WhisperConfig) extends Module {
       }
     }
   }
-  val pcQ = RegNext(pc)
   when(pc =/= pcQ) { brkDone := false.B }
   // arm the sampler when the LM matmul is dispatched
   when(state === sDispatch && ins.opc === UOpc.MATMUL.U && ins.mm.outSink === 2.U && io.mm.fire) { samplerStart := true.B }
