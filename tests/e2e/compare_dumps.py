@@ -1,11 +1,13 @@
-"""Compare RTL bank dumps (E2EDebugSpec: rtl_banks.txt) with golden per-op dumps (run_golden --dump).
-
-Bank contents after a full run (encoder rows >= 4 are untouched by the decoder scratch rows):
-  bank 7 E8  = enc.out (+ rowfac enc.out.rf)        bank 2 X = enc.3.add2.out
-  bank 1 A8  = enc.3.fc1.in (+rf)                    bank 3 Q8 = enc.3.attn.q
-  bank 5 H16 = enc.3.fc1.out (last FFN chunk, local rows)   bank 6 A8X = enc.3.fc2.in (local)
-  bank 4 T16 = enc.3.fc2.out (local rows)
-Usage: uv run python tests/e2e/compare_dumps.py out/e2e/smoke_var/varied__en_2s_f out/dumps/smoke/varied__en_2s_f.npz
+"""Compare RTL bank dumps taken at sequencer breakpoints (E2EDebugSpec) with golden per-op dumps.
+Usage: uv run python tests/e2e/compare_dumps.py <clip dir> <golden npz>
+Bank contents *before* executing pc (see docs/microcode.txt):
+  pc 4 : bank1 A8 = enc.conv1.gelu (frames)          pc 5 : bank4 T16 = enc.conv2.out (rows)
+  pc 6 : bank2 X = enc.x0                            pc 7 : bank1 A8 = enc.0.attn.in (+rf)
+  pc 8 : bank3 Q8 = enc.0.attn.q                     pc 13: bank4 T16 = enc.0.attn.out
+  pc 15: bank4 T16 = enc.0.attn.o.out ; bank1 A8 = enc.0.attn.o.in (+rf)
+  pc 16: bank2 X = enc.0.add1.out                    pc 17: bank1 A8 = enc.0.fc1.in (+rf)
+  pc 22: bank5 H16 = enc.0.fc1.out ; bank6 A8X = enc.0.fc2.in (+rf) ; bank4 T16 = enc.0.fc2.out ; bank2 X = enc.0.add2.out (first chunk rows)
+  end  : bank7 E8 = enc.out (+rf)
 """
 from __future__ import annotations
 
@@ -17,47 +19,61 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from golden.layout import act8_words, act16_words  # noqa: E402
 
+TABLE = {
+    "pc4": [("enc.conv1.gelu", 1, 12, False, None)],
+    "pc5": [("enc.conv2.out", 4, 24, True, None)],
+    "pc6": [("enc.x0", 2, 24, True, None)],
+    "pc7": [("enc.0.attn.in", 1, 12, False, "enc.0.attn.rf")],
+    "pc8": [("enc.0.attn.q", 3, 12, False, None)],
+    "pc13": [("enc.0.attn.out", 4, 24, True, None)],
+    "pc15": [("enc.0.attn.o.out", 4, 24, True, None), ("enc.0.attn.o.in", 1, 12, False, "enc.0.attn.o.rf")],
+    "pc16": [("enc.0.add1.out", 2, 24, True, None)],
+    "pc17": [("enc.0.fc1.in", 1, 12, False, "enc.0.fc1.rf")],
+    "pc22": [("enc.0.fc1.out", 5, 96, True, None), ("enc.0.fc2.in", 6, 48, False, "enc.0.fc2.rf"), ("enc.0.fc2.out", 4, 24, True, None), ("enc.0.add2.out", 2, 24, True, None)],
+    "end": [("enc.out", 7, 12, False, "enc.out.rf")],
+}
 
-def main():
-    cd = Path(sys.argv[1]); npz = np.load(sys.argv[2])
-    words = {}; rf = {}
-    for line in open(cd / "rtl_banks.txt"):
+
+def load(path):
+    words, rf = {}, {}
+    for line in open(path):
         p = line.split()
         if p[0] == "rf":
             rf[(int(p[1]), int(p[2]))] = int(p[3])
         else:
             words[(int(p[0]), int(p[1]), int(p[2]))] = int(p[3], 16)
-    rows = max(r for (_, r, _) in words) + 1
-    gold_tok = [int(x) for x in (cd / "golden_tokens.txt").read_text().split()]
-    rtl_tok = [int(x) for x in (cd / "rtl_tokens.txt").read_text().split()] if (cd / "rtl_tokens.txt").exists() else []
-    print("golden tokens:", gold_tok[:20]); print("rtl tokens   :", rtl_tok[:20])
-    nctx = npz["enc.out"].shape[0]
-    def bank_words(bank, stride, r):
-        return [words[(bank, r, w)] for w in range(stride)]
-    def cmp(name, bank, stride, arr, bits16, local=False, first_row=4):
-        g = npz[name]
-        n = min(rows, g.shape[0])
-        bad = []
-        for r in range(first_row, n):
-            gw = (act16_words(g[r:r+1]) if bits16 else act8_words(g[r:r+1]))
-            gwords = [int.from_bytes(gw[8*i:8*i+8].tobytes(), "little") for i in range(len(gw)//8)]
-            got = bank_words(bank, stride, r)
-            if got[:len(gwords)] != gwords:
-                bad.append(r)
-        print(f"{name:20s} bank {bank}: rows {first_row}..{n-1}: {'OK' if not bad else f'{len(bad)} rows differ, first {bad[:5]}'}")
-        return bad
-    cmp("enc.out", 7, 12, npz["enc.out"], False)
-    rfb = [r for r in range(4, min(rows, nctx)) if rf.get((7, r)) != int(npz["enc.out.rf"][r])]
-    print(f"{'enc.out.rf':20s} rowfac 7: {'OK' if not rfb else f'{len(rfb)} rows differ, first {rfb[:5]}'}")
-    cmp("enc.3.add2.out", 2, 24, npz["enc.3.add2.out"], True)
-    cmp("enc.3.fc1.in", 1, 12, npz["enc.3.fc1.in"], False)
-    cmp("enc.3.attn.q", 3, 12, npz["enc.3.attn.q"], False)
-    # earlier layers cannot be checked (overwritten); x0 / conv outputs likewise
-    # last FFN chunk (local rows): chunk base = largest multiple of 512 below nctx
-    cb = ((nctx - 1) // 512) * 512
-    for name, bank, stride, b16 in [("enc.3.fc1.out", 5, 96, True), ("enc.3.fc2.in", 6, 48, False), ("enc.3.fc2.out", 4, 24, True)]:
-        g = npz[name][cb:]
-        cmp(name, bank, stride, g, b16, first_row=4)
+    return words, rf
+
+
+def main():
+    cd = Path(sys.argv[1]); npz = np.load(sys.argv[2])
+    for tag, items in TABLE.items():
+        f = cd / f"rtl_banks_{tag}.txt"
+        if not f.exists():
+            continue
+        words, rf = load(f)
+        rows = max(r for (_, r, _) in words) + 1
+        for name, bank, stride, b16, rfname in items:
+            g = npz[name]
+            n = min(rows, g.shape[0])
+            bad = []
+            for r in range(n):
+                gw = act16_words(g[r:r + 1]) if b16 else act8_words(g[r:r + 1])
+                gwords = [int.from_bytes(gw[8 * i:8 * i + 8].tobytes(), "little") for i in range(len(gw) // 8)]
+                got = [words[(bank, r, w)] for w in range(stride)]
+                if got[:len(gwords)] != gwords:
+                    bad.append(r)
+            msg = "OK" if not bad else f"{len(bad)}/{n} rows differ, first {bad[:6]}"
+            print(f"{tag:5s} {name:20s} bank {bank}: {msg}")
+            if bad:
+                r = bad[0]
+                gw = act16_words(g[r:r + 1]) if b16 else act8_words(g[r:r + 1])
+                gwords = [int.from_bytes(gw[8 * i:8 * i + 8].tobytes(), "little") for i in range(len(gw) // 8)]
+                got = [words[(bank, r, w)] for w in range(stride)]
+                print(f"        row {r} word0 got {got[0]:064x}\n        row {r} word0 exp {gwords[0]:064x}")
+            if rfname:
+                rfb = [r for r in range(n) if rf.get((bank, r)) != int(npz[rfname][r])]
+                print(f"{tag:5s} {rfname:20s} rowfac {bank}: {'OK' if not rfb else f'{len(rfb)} rows differ, first {rfb[:6]} got {[rf.get((bank, r)) for r in rfb[:3]]} exp {[int(npz[rfname][r]) for r in rfb[:3]]}'}")
 
 
 if __name__ == "__main__":

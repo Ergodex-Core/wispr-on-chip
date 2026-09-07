@@ -48,6 +48,7 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   val melWr = RegInit(false.B)               // a frame is being written (3 words)
   val melWord = Reg(UInt(2.W)); val melData = Reg(UInt(640.W))
   val startPulse = RegInit(false.B); startPulse := false.B
+  val breakPc = RegInit(0x3ff.U(10.W)); val resume = RegInit(false.B); resume := false.B
   val doneR = RegInit(false.B)
   val tokCount = RegInit(0.U(16.W))
   when(io.regWr.valid) {
@@ -56,11 +57,15 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
       is(1.U) { regs.langToken := io.regWr.bits.data(15, 0) }
       is(2.U) { regs.nFrames := io.regWr.bits.data(12, 0) }
       is(3.U) { framesIn := 0.U }              // reset the frame counter before streaming a new clip
+      is(8.U) { breakPc := io.regWr.bits.data(9, 0) }
+      is(9.U) { resume := true.B }
     }
   }
+  seq.io.breakPc := breakPc
+  seq.io.resume := resume
   val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, ((framesIn + 127.U) >> 7) << 7)
   io.regRdData := MuxLookup(io.regRdAddr, 0.U)(Seq(
-    0.U -> Cat(doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
+    0.U -> Cat(seq.io.paused, doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
     4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> eng.io.cycles))
   io.done := doneR
   io.busy := seq.io.busy
@@ -99,7 +104,7 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   samp.io.start := seq.io.samplerStart
   seq.io.samplerDone := samp.io.done; seq.io.samplerToken := samp.io.token; seq.io.samplerIsEot := samp.io.isEot
   // tokens out
-  val tokQ = Module(new Queue(UInt(16.W), 16))
+  val tokQ = Module(new Queue(UInt(16.W), 256))
   tokQ.io.enq <> seq.io.tokOut
   io.tokens.valid := tokQ.io.deq.valid
   io.tokens.bits.id := tokQ.io.deq.bits
@@ -126,7 +131,7 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
     val vuAHit = vu.io.rdA.en && vu.io.rdA.bank === i.U
     val vuBHit = vu.io.rdB.en && vu.io.rdB.bank === i.U
     assert(PopCount(Seq(engHit, vuAHit, vuBHit)) <= 1.U, "activation bank read conflict")
-    val dbgHit = io.dbg.en && io.dbg.bank === i.U && !seq.io.busy
+    val dbgHit = io.dbg.en && io.dbg.bank === i.U && (!seq.io.busy || seq.io.paused)
     b.io.rd.en := engHit || vuAHit || vuBHit || dbgHit
     b.io.rd.addr := Mux(engHit, eng.io.act.addr, Mux(vuAHit, vu.io.rdA.addr, Mux(vuBHit, vu.io.rdB.addr, io.dbg.addr)))(b.addrBits - 1, 0)
     val engW = eo.valid && eo.bits.sink === 0.U && eo.bits.bank === i.U
@@ -150,7 +155,7 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   // rowfac tables
   val rfBankQ = RegNext(eng.io.rowfac.bank)
   for ((t, i) <- rowfac.zipWithIndex) {
-    val dbgHit = io.dbg.en && io.dbg.bank === i.U && !seq.io.busy
+    val dbgHit = io.dbg.en && io.dbg.bank === i.U && (!seq.io.busy || seq.io.paused)
     t.io.rd.en := (eng.io.rowfac.en && eng.io.rowfac.bank === i.U) || dbgHit
     t.io.rd.addr := Mux(dbgHit, io.dbg.addr(t.addrBits - 1, 0), eng.io.rowfac.addr(t.addrBits - 1, 0))
     t.io.wr.valid := vu.io.rowfacWr.valid && vu.io.rowfacWr.bits.bank === i.U
