@@ -54,6 +54,17 @@ e2e-long:                   ## long e2e set (29 s clip + 20-utterance RTL set)
 e2e-smoke:                  ## one 2 s clip
 	$(UV) python tests/e2e/run_e2e.py --set smoke --frames full
 
+e2e-modal:                  ## same sets on Modal, one container per clip (needs `modal token set`)
+	$(UV) python tests/e2e/run_e2e.py --set default --frames full --prepare-only
+	modal run tests/e2e/modal/modal_e2e.py --set default_full --threads 4
+	$(UV) python tests/e2e/run_e2e.py --set default --frames full --compare-only
+	$(UV) python tests/e2e/run_e2e.py --set long --frames full --prepare-only
+	modal run tests/e2e/modal/modal_e2e.py --set long_full --threads 4
+	$(UV) python tests/e2e/run_e2e.py --set long --frames full --compare-only
+
+report:                     ## markdown table of the e2e results
+	$(UV) python tests/e2e/report.py default_full long_full
+
 all: weights-check test e2e
 
 clean:

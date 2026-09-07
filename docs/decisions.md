@@ -91,3 +91,12 @@ left open, is recorded here.
     data-dependent-mask ports in the chip, and its test-only load port takes its mask from IO
     (`KVCache(debugPort = true)`). Found by `KVWriteSpec` (engine → cache path), which the unit tests
     of Phase 3 did not cover because they loaded the cache directly.
+
+14. **2026-09-07 — FastSim and where the e2e sets run.** The `FastSim` requirement is implemented in the
+    harness, not the RTL: tokens accumulate in a 256-deep on-chip queue and the host only polls `done`
+    every 4096 cycles (`E2E_POLL`), so no compute is skipped or altered. Verilator throughput of the full
+    chip is ~12–13 k cycles/s on 4 threads (this container) and a 30 s-context clip costs ~42 M cycles,
+    i.e. ~55 min per clip; the default set (13 clips) and the long set (21 clips) are therefore run as
+    one container per clip on Modal (`tests/e2e/modal/modal_e2e.py`, `make e2e-modal`) with the
+    identical image (Debian, Verilator 5.006, sbt 1.10.7, committed weights). Locally, `make e2e`
+    still runs the same sets serially.
