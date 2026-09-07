@@ -67,37 +67,38 @@ class KVCache(cfg: WhisperConfig) extends Module {
     vData(b) := io.in.bits.data(c)(7, 0)
     vMask(b) := (r.U === j(2, 0))
   }
-  // ---- K: transposer collects up to 32 consecutive keys of one nTile, emits 4 words (g = 0..3)
-  val tBuf = Reg(Vec(32, Vec(32, UInt(8.W))))     // [keyInGroup][d]
-  val tValid = RegInit(VecInit(Seq.fill(32)(false.B)))
-  val tNd = Reg(UInt(12.W)); val tKeyGroup = Reg(UInt(13.W))   // key/32 of the buffered group
-  val tAny = tValid.asUInt.orR
-  val kFlushing = RegInit(false.B); val kG = Reg(UInt(2.W))
-  val doFlushNow = Wire(Bool())
-  // K word for group g: base + h*perHead + (keyGroup*2 + dTile)*4 + g ; byte (r*32 + c) = K[key=keyGroup*32+c][d = dTile*32 + g*8 + r]
-  val kh = tNd >> 1; val kdTile = tNd(0)
-  val kWord = io.cmd.base + kh * perHead + (((tKeyGroup << 1) + kdTile) << 2) + kG
+  // ---- K: double-buffered transposer. Each buffer collects up to 32 consecutive keys of one nTile;
+  // when a new group starts, the full buffer is flushed (4 words, 4 cycles) while the other collects.
+  val tBuf = Reg(Vec(2, Vec(32, Vec(32, UInt(8.W)))))     // [buf][keyInGroup][d]
+  val tValid = RegInit(VecInit(Seq.fill(2)(VecInit(Seq.fill(32)(false.B)))))
+  val tNd = Reg(Vec(2, UInt(12.W))); val tKeyGroup = Reg(Vec(2, UInt(13.W)))
+  val cur = RegInit(0.U(1.W))
+  val tAny = VecInit(tValid.map(_.asUInt.orR))
+  val kFlushing = RegInit(false.B); val kG = Reg(UInt(2.W)); val fBuf = Reg(UInt(1.W))
+  val kh = tNd(fBuf) >> 1; val kdTile = tNd(fBuf)(0)
+  val kWord = io.cmd.base + kh * perHead + (((tKeyGroup(fBuf) << 1) + kdTile) << 2) + kG
   val kData = Wire(Vec(256, UInt(8.W))); val kMask = Wire(Vec(256, Bool()))
   for (b <- 0 until 256) {
     val r = b / 32; val c = b % 32
-    kData(b) := VecInit(Seq.tabulate(4)(g => tBuf(c)(g * 8 + r)))(kG)
-    kMask(b) := tValid(c)
+    kData(b) := VecInit(Seq.tabulate(4)(g => tBuf(fBuf)(c)(g * 8 + r)))(kG)
+    kMask(b) := tValid(fBuf)(c)
   }
-  val newGroup = io.in.valid && io.cmd.isK && (!tAny || (nd =/= tNd) || ((j >> 5) =/= tKeyGroup))
-  // a beat that starts a new group while the buffer holds data forces a flush first (stall the beat)
-  io.in.ready := !(io.cmd.isK && kFlushing) && !(newGroup && tAny)
-  doFlushNow := (io.cmd.isK && ((newGroup && tAny) || io.flush) && tAny && !kFlushing)
-  when(doFlushNow) { kFlushing := true.B; kG := 0.U }
+  val newGroup = io.in.valid && io.cmd.isK && tAny(cur) && ((nd =/= tNd(cur)) || ((j >> 5) =/= tKeyGroup(cur)))
+  val startFlush = io.cmd.isK && ((newGroup) || (io.flush && tAny(cur)))
+  io.in.ready := true.B
+  assert(!(startFlush && kFlushing), "KV transposer: flush requested while the other buffer is still flushing")
+  when(startFlush) { kFlushing := true.B; kG := 0.U; fBuf := cur; cur := ~cur }
   when(kFlushing) {
     mem.write(kWord(addrBits - 1, 0), kData, kMask)
     kG := kG + 1.U
-    when(kG === 3.U) { kFlushing := false.B; tValid.foreach(_ := false.B) }
+    when(kG === 3.U) { kFlushing := false.B; tValid(fBuf).foreach(_ := false.B) }
   }
-  io.busy := kFlushing || (io.cmd.isK && tAny)
+  io.busy := kFlushing || (io.cmd.isK && (tAny(0) || tAny(1)))
   when(io.in.fire && io.cmd.isK) {
-    when(!tAny) { tNd := nd; tKeyGroup := j >> 5 }
-    for (d <- 0 until 32) tBuf(j(4, 0))(d) := io.in.bits.data(d)(7, 0)
-    tValid(j(4, 0)) := true.B
+    val b = Mux(newGroup, ~cur, cur)          // a new group goes to the other buffer (this cycle's flush takes `cur`)
+    when(newGroup || !tAny(cur)) { tNd(b) := nd; tKeyGroup(b) := j >> 5 }
+    for (d <- 0 until 32) tBuf(b)(j(4, 0))(d) := io.in.bits.data(d)(7, 0)
+    tValid(b)(j(4, 0)) := true.B
   }
   when(io.in.fire && !io.cmd.isK) { mem.write(vWord(addrBits - 1, 0), vData, vMask) }
   when(io.dbgWr.valid) {
