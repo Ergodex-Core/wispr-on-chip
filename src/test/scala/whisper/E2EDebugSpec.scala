@@ -60,7 +60,9 @@ class E2EDebugSpec extends AnyFlatSpec with WhisperSim {
         val st = status()
         if ((st & 4) != 0) {              // paused at breakpoint
           val pc = breaks(bi)
-          info(s"paused at pc $pc after $cycles cycles"); dump(s"pc$pc")
+          dut.io.regRdAddr.poke(6.U)
+          val pos = dut.io.regRdData.peek().litValue.toInt
+          info(s"paused at pc $pc (pos $pos) after $cycles cycles"); dump(s"pc${pc}_pos$pos")
           bi += 1
           reg(8, BigInt(if (bi < breaks.size) breaks(bi) else 0x3ff))
           reg(9, 1)
