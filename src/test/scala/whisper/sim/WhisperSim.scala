@@ -19,7 +19,7 @@ object VerilatorSettings {
   )
   def verilator: CompilationSettings = {
     val base = CompilationSettings().copy(
-      disabledWarnings = Seq("WIDTHEXPAND", "WIDTHTRUNC", "UNOPTFLAT"),
+      disabledWarnings = Seq("WIDTH", "UNOPTFLAT"),
       disableFatalExitOnWarnings = true,
     )
     val par: Option[CompilationSettings.Parallelism.Type] =
