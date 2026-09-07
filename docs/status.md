@@ -72,3 +72,25 @@ appended below when the batch finishes (`/tmp/golden_batch.sh`).
 | real conv2 128×1152×384 (im2col) | 57,034 | 97.0 % |
 | M = 1 LM head 384×51872 (wide) | 97,270 | 20.0 % (weight-port bound, 4 cycles/tile) |
 | M = 1 384×1536 int16 | 2,890 | 19.9 % |
+
+## Phase 3 — VectorUnit + Attention (2026-09-07) — PASS
+
+All vectors come from the golden model on a real clip (`varied/en_2s_f`, 256 frames); every case is
+bit-exact against the golden dumps. `uv run python tests/vectors/gen_vector.py && uv run python
+tests/vectors/gen_attention.py && sbt "testOnly whisper.VectorUnitSpec whisper.AttentionSpec"` → 12/12.
+
+| Case | What | cycles |
+|---|---|---|
+| ln_enc0 | LayerNorm (enc.0.ln1) on 40 residual rows → int8 + rowfac | 123 / row |
+| dynq_attn_enc0 | dynamic quant of attention output | 85 / row |
+| gelu_dynq_enc0 | fused Φ-LUT GELU + dynamic quant, 1536 wide | 229 / row |
+| gelu_static8_conv1 | GELU16 + static int8 requant (conv1) | 59 / row |
+| add_resid_enc0 / add_pos_enc / add_embed_dec | scaled adds (bank+bank, bank+ROM pos-emb, per-token embedding mult) | 30–33 / row |
+| embed | embedding row extracted from the LM-head ROM tiles | 83 / row |
+| enc0_full | encoder layer-0 self-attention, 128 q × 128 k, 6 heads | 62,052 |
+| enc0_ragged | 100 q × 70 k (partial tiles, masked keys) | 48,948 |
+| dec0_self_pos41 | decoder self-attention, causal, 42-key history | 864 |
+| dec0_cross_pos41 | decoder cross-attention, 1 q × 128 k | 1,542 |
+
+Bugs found by these tests and fixed: pipelined divider produced one extra quotient bit (attention
+output exactly 2×); vector-unit pass-3 half-word misalignment; array valid-chain reset alignment.
