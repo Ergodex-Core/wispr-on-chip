@@ -42,7 +42,33 @@ it. Saturation is counted in the golden model (`fixedpoint.SAT`) and by the chip
 
 ### 2.2 Eval prompts (`make eval`, `golden/eval_golden.py`)
 
-_(pending: the verification run of this configuration is still in flight)_
+Seven prompts from `data/prompts.json` (`eval` set), integer golden model against the model's own fp32
+forward. Five chat prompts are generated greedily for 12 new tokens by both models and compared token by
+token; the two text prompts are scored teacher-forced over a 96-token window.
+
+Chat generations — 3 of 5 token-identical:
+
+* `capital` — both `Paris` (1 token, identical)
+* `sum` — both `43` (1 token, identical)
+* `zh_greet` — both `你好，我是MiniCPM系列模型，由面壁智能和` (12 tokens, identical)
+* `haiku` — fp32 `Still water,  \nA breath of blue,  \nPeace in`, int `Still water,  \nA breath of snow,  \nLake is` (first 7 of 12)
+* `code_rev` — both open the same Python block `def reverse_string(s):` and the same docstring; fp32 then continues `\n    Returns`, int `Return the` (first 9 of 12)
+
+Teacher-forced text prompts — 177/184 = 96.2 % top-1:
+
+| prompt | positions | top-1 agreement | rank of the fp32 argmax under the int logits |
+|---|---|---|---|
+| prose_eval | 89 | 83 (93.3 %) | mean 1.07, max 2 |
+| code_eval | 95 | 94 (98.9 %) | mean 1.01, max 2 |
+
+Both chat divergences happen at open-ended positions (the third line of a haiku, the wording of a
+docstring) and both continuations stay fluent and on task; generation is greedy and autoregressive, so one
+differing token fixes everything after it — "first 7 of 12" is one disagreement, not five.
+
+These 184 positions are the eval subset of the 722 in §2.1 (which adds the calibration texts). Agreement is
+higher here (96.2 % vs 94.60 %) purely because it is the easier subset — the same reason the first,
+narrower sweep over exactly these 184 positions misjudged smoothing (§2.1). Configuration decisions use the
+722; this section is the end-to-end sanity check.
 
 ## 3. Fixed-point op tests (`make golden-test`)
 
@@ -158,7 +184,7 @@ every RTL assertion (irrevocable handshakes, no sink stalls, address ranges, tok
 |---|---|---|
 | Ops | 22 fixed-point ops vs float | pass |
 | Golden vs fp32 | 722 teacher-forced positions (sweep) | 94.60 % top-1, mean rank 1.058, no saturation |
-| Golden vs fp32 | eval prompts, greedy generations | _(pending: the verification run of this configuration is still in flight)_ |
+| Golden vs fp32 | eval prompts (184 positions, 5 greedy generations) | 96.2 % top-1; 3/5 generations token-identical, the other two agree to 7 and 9 of 12 tokens |
 | Matmul engine | 12 random shapes + 10 real tensors (layers 0/20/41, LM head) | 22/22 bit-exact |
 | Vector unit | 14 cases, every op, layers 0/20/41, final norm | 14/14 bit-exact |
 | Attention | 5 cases (prefill, chunk, ragged, decode ×2) | 5/5 bit-exact |
@@ -170,7 +196,7 @@ every RTL assertion (irrevocable handshakes, no sink stalls, address ranges, tok
 | **Whole chip on Verilator** | **the generated program over real layers, prefill + sampling + decode** | ****2/2 bit-exact: every residual row and every emitted token (§5)**** |
 | Whole chip | elaboration of the 42-layer configuration to SystemVerilog | 82 modules, 9.9 MB of SystemVerilog in 39 s (Sequencer with the 848-instruction program: 5.2 MB) |
 
-Clean run of this configuration after the requantisation: `make golden-test` 22/22, `make test-rtl` 64/64 in 36 min, `make test-layer` 2/2 in 9 min, `make elab` in 47 s, `make weights-check` OK.
+Clean run of this configuration after the requantisation: `make golden-test` 22/22, `make test-rtl` 64/64 in 36 min, `make test-layer` 2/2 in 9 min, `make elab` in 47 s, `make weights-check` OK, `make eval` 96.2 % / 3-of-5 in 12 min.
 
 ## 8. Analytic cycle model (`tests/cycle_model.py`)
 Built only from the unit measurements above (engine `KT·NT·(M+4)+10`, the per-row vector costs, an

@@ -24,6 +24,7 @@ checked statically against every memory it addresses.
 |---|---|---|
 | Ops | every fixed-point op vs float | 22 pytest cases pass |
 | Golden model vs fp32 MiniCPM5-2B | 722 teacher-forced positions | 94.60 % top-1 agreement, fp32 choice at mean rank 1.058 |
+| Golden model vs fp32 MiniCPM5-2B | 5 greedy generations of 12 tokens (eval prompts) | 3/5 token-identical, the other two agree to 7 and 9 tokens |
 | Matmul engine | 12 random shapes + 10 real tensors (q/k/v/o/gate/up/down of layers 0/20/41, LM head slice) | 22/22 bit-exact, 90.9 % utilisation at M = 40, 98.4 % at 256 rows |
 | Vector unit | RMSNorm, dynamic quant, SiLU gate, residual add, embedding, RoPE (q, k, k→KV), 14 cases | 14/14 bit-exact incl. row factors |
 | Attention (GQA, online softmax) | prefill 128, chunk at qPos0 64, ragged 100×70, decode at 40 and 127 | 5/5 bit-exact |
@@ -146,8 +147,9 @@ a wider weight port or a second engine — since the vector unit and attention a
 2. Weights are generated, not committed (decision #2).
 3. 32-bit residual path (decision #3) instead of the base's int16.
 4. Accuracy is 94.6 % top-1 agreement with fp32 over 722 positions, with the fp32 token at mean rank
-   1.058. The remaining gap is inherent to per-token W8A8; per-channel smoothing of the gated hidden into
-   down_proj would need a per-channel multiplier in the vector unit's SILUMUL op.
+   1.058; on the eval prompts 3 of 5 greedy generations are token-identical and the two that diverge do so
+   at open-ended positions. The remaining gap is inherent to per-token W8A8; per-channel smoothing of the
+   gated hidden into down_proj would need a per-channel multiplier in the vector unit's SILUMUL op.
 5. Calibration used 836 tokens of hand-written prompts.
 6. No synthesis or timing.
 
