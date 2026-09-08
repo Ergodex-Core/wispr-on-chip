@@ -2,13 +2,11 @@ package minicpm
 
 import chisel3._
 import chisel3.util._
-import minicpm.generated.Microcode
-
 /** Executes the generated micro-program: one job at a time, substituting runtime quantities.
   * The same program serves prefill (rows = the whole prompt, in chunks) and decoding (one row at the
   * current position): CHUNK_BEGIN sizes the row loop from the phase. */
 class Sequencer(cfg: MiniCPMConfig) extends Module {
-  val prog = Microcode.program
+  val prog = cfg.prog.program
   val io = IO(new Bundle {
     val start = Input(Bool())
     val nTok = Input(UInt(13.W))           // prompt tokens in the token buffer

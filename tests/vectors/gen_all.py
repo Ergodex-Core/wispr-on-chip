@@ -22,7 +22,7 @@ from gen.dump_weights import pack_i32vec, pack_w8  # noqa: E402
 from golden.data import REPO, load_tokenizer, prompts, text_ids  # noqa: E402
 from golden.fixedpoint import dyn_quant_rows, matmul_i8, requant, requant_wide, rowfac_pack  # noqa: E402
 from golden.layout import act8_words, act16_words, act32_words, raw32_words, write_hex  # noqa: E402
-from golden.quant import HEAD_DIM, KV_DIM, LM_SLICE, N_HEAD, N_KV_HEAD, QConfig, build  # noqa: E402
+from golden.quant import HEAD_DIM, KV_DIM, LM_SLICE, N_HEAD, N_KV_HEAD, build, manifest_config  # noqa: E402
 from golden.minicpm_int import IntMiniCPM, attention, dynq, embed_rows, rmsnorm, rope, scaled_add, silu_gate  # noqa: E402
 
 OUT = REPO / "out" / "vectors"
@@ -254,8 +254,9 @@ def main():
     a = ap.parse_args()
     units = a.only.split(",")
     t0 = time.time()
-    qm = build(QConfig())
-    print(f"quantised model built in {time.time() - t0:.0f} s")
+    cfg = manifest_config()
+    qm = build(cfg)
+    print(f"quantised model built in {time.time() - t0:.0f} s ({cfg.tag()})")
     tok = load_tokenizer()
     ids = text_ids(tok, prompts("calib")[0]["text"], 128)
     m = IntMiniCPM(qm, dump=True, dump_layers=DUMP_LAYERS)

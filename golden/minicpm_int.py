@@ -184,6 +184,7 @@ def attention(at: AttnQ, q8, k8, v8, n_keys: int, causal_offset: int | None = No
                 dump(f"{tag}.h{h}.t{t}.s", s)
                 dump(f"{tag}.h{h}.t{t}.p", p)
         assert started.all(), "query with no valid key"
+        assert l.max() < (1 << 28) and np.abs(O).max() < (1 << 35), "attention accumulators exceed the RTL widths"
         rl = ((I64(1) << I64(ATT_RECIP_SHIFT)) + (l >> I64(1))) // l
         out[:, hs] = sat16(rsr(O * rl[:, None], ATT_OUT_SHIFT))
         if dump is not None:
@@ -194,12 +195,16 @@ def attention(at: AttnQ, q8, k8, v8, n_keys: int, causal_offset: int | None = No
 
 # ---------------------------------------------------------------------------------------------- model
 class IntMiniCPM:
-    def __init__(self, qm: QModel, dump: bool = False, dump_layers=None, max_ctx: int | None = None):
+    def __init__(self, qm: QModel, dump: bool = False, dump_layers=None, max_ctx: int | None = None,
+                 n_layers: int | None = None, lm_cols: int | None = None):
+        """n_layers / lm_cols run a prefix of the model and a prefix of the vocabulary: the configuration the
+        layer-level Verilator test mirrors (docs/decisions.md #12). Constants stay those of the full model."""
         self.qm = qm
         self.cfg = qm.cfg
         self.dump = Dumper(dump, dump_layers)
         self.rb = qm.cfg.residual_bits
-        self.n_layers = qm.cfg.n_layers
+        self.n_layers = qm.cfg.n_layers if n_layers is None else n_layers
+        self.lm_cols = lm_cols
         self.max_ctx = max_ctx or qm.tables["rope"].shape[0]
         self.reset_cache()
 
@@ -272,6 +277,8 @@ class IntMiniCPM:
         a8, rf = dynq(y16)
         d(f"{tag}norm_f.out", y16); d(f"{tag}lm.in", a8); d(f"{tag}lm.rf", rf)
         t = self._lin("lm", a8)
+        if self.lm_cols is not None:
+            t = t[:, :self.lm_cols]
         d(f"{tag}logits", t)
         return t
 

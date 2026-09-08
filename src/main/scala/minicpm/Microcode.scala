@@ -11,6 +11,20 @@ object UOpc {
   val CHUNK_BEGIN = 4; val CHUNK_NEXT = 5; val JUMP = 6; val SAMPLE = 7; val HALT = 8
 }
 object RowsSel { val Const = 0; val Chunk = 1 }
+
+/** A generated micro-program together with the chip parameters it was emitted for (gen/emit_microcode.py
+  * checks every instruction against these before emitting). `MiniCPMConfig.forProgram` builds the matching
+  * configuration, and `MiniCPMTop` re-checks the agreement at elaboration. */
+trait MicroProgram {
+  def nLayers: Int
+  def kvLayers: Int
+  def maxCtx: Int
+  def chunkRows: Int
+  def vocabTiles: Int
+  def bankWords: Seq[Int]
+  def eosIds: Seq[Int]
+  def program: Seq[UOp]
+}
 object BaseSel { val Zero = 0; val Chunk = 1; val Last = 2 }      // rowOff / posBase / keyOff / qPos0
 object KeysSel { val Const = 0; val ChunkEnd = 1 }
 

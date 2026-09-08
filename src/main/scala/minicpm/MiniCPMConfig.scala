@@ -1,6 +1,6 @@
 package minicpm
 
-import minicpm.generated.WeightTables
+import minicpm.generated.{Microcode, WeightTables}
 
 sealed trait WeightBackend
 case object RomLiteral extends WeightBackend   // VecInit constant ROM (ASIC flow, small banks)
@@ -29,6 +29,7 @@ case class MiniCPMConfig(
     maxCtx: Int = 2048,                   // positions: KV cache keys per layer, RoPE table rows, token buffer
     kvLayers: Int = 42,                   // layers with a KV region (tests instantiate 1)
     chunkRows: Int = 512,                 // prefill rows per chunk (sizes the chunk-local banks)
+    prog: MicroProgram = Microcode,       // the generated micro-program the sequencer runs
     accRows: Int = 1536,                  // accumulator rows per matmul job
     repoRoot: String = MiniCPMConfig.defaultRepoRoot,
 ) {
@@ -53,6 +54,11 @@ case class MiniCPMConfig(
 
 object MiniCPMConfig {
   def defaultRepoRoot: String = sys.env.getOrElse("MINICPM_SI_ROOT", new java.io.File(".").getCanonicalPath)
+
+  /** The configuration a generated program was emitted for (the layer-level test uses a small one). */
+  def forProgram(p: MicroProgram, tensors: Option[Seq[String]] = None, backend: WeightBackend = RomInit): MiniCPMConfig =
+    MiniCPMConfig(weightBackend = backend, weightTensors = tensors, nLayers = p.nLayers, kvLayers = p.kvLayers,
+                  maxCtx = p.maxCtx, chunkRows = p.chunkRows, prog = p)
 }
 
 /** Activation bank map (256-bit words). Mirrors gen/chipmap.py; the generated microcode carries the same

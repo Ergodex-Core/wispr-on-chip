@@ -2,7 +2,6 @@ package minicpm
 
 import chisel3._
 import chisel3.util._
-import minicpm.generated.Microcode
 
 /** MiniCPM5-2B accelerator top. Streams: prompt token ids in (appended to the on-chip token buffer),
   * generated token ids out. Control: start / max_new; status: busy, done, token count.
@@ -26,10 +25,11 @@ class MiniCPMTop(cfg: MiniCPMConfig) extends Module {
       val data = Output(UInt(256.W)); val rowfac = Output(UInt(RowFac.bits.W))
     }
   })
+  val mp = cfg.prog
   val bankWords = ChipMap.bankWords(cfg)
-  require(Microcode.bankWords == bankWords, s"generated microcode was emitted for banks ${Microcode.bankWords}, config has $bankWords")
-  require(Microcode.maxCtx == cfg.maxCtx && Microcode.chunkRows == cfg.chunkRows && Microcode.nLayers == cfg.nLayers && Microcode.kvLayers == cfg.kvLayers,
-    "generated microcode does not match the config (maxCtx / chunkRows / nLayers / kvLayers)")
+  require(mp.bankWords == bankWords, s"micro-program ${mp.getClass.getSimpleName} was emitted for banks ${mp.bankWords}, config has $bankWords")
+  require(mp.maxCtx == cfg.maxCtx && mp.chunkRows == cfg.chunkRows && mp.nLayers == cfg.nLayers && mp.kvLayers == cfg.kvLayers,
+    "the micro-program does not match the config (maxCtx / chunkRows / nLayers / kvLayers)")
 
   val seq = Module(new Sequencer(cfg))
   val eng = Module(new MatmulEngine(cfg))
@@ -37,7 +37,7 @@ class MiniCPMTop(cfg: MiniCPMConfig) extends Module {
   val att = Module(new Attention(cfg))
   val kv = Module(new KVCache(cfg))
   val ws = Module(new WeightStore(cfg))
-  val samp = Module(new Sampler(cfg, Microcode.eosIds))
+  val samp = Module(new Sampler(cfg, mp.eosIds))
   val banks = bankWords.map(w => Module(new ActBank(w)))
   val rowfac = Seq.fill(8)(Module(new RowFacTable(cfg.maxCtx)))
   val tokMem = SyncReadMem(cfg.maxCtx, UInt(18.W))

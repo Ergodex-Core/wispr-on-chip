@@ -13,20 +13,25 @@ FFN 6144 (SiLU gate), vocab 130560, RMSNorm eps 1e-6, RoPE theta 5·10⁶, no bi
 * Tensors are `[rows, features]`; matmul weights are `W[K, N]` (K = reduction, N = output channel).
 * Every static scale `S` is a float chosen at generation time from `weights/calib_stats.json`; it never
   appears in the datapath, only the derived integer multipliers/shifts do. Static int16 scales are
-  `max_calib·2/32767`, static int32 scales `max_calib·2/(2^31−1)`, static int8 scales `max_calib/127`.
+  `max_calib·m/32767`, static int32 scales `max_calib·m/(2^31−1)` with the margin `m = 1.5`
+  (`QConfig.margin_int16`, decision #13), static int8 scales `max_calib/127`.
+* **SmoothQuant folding** (`QConfig.smooth_alpha = 0.5`): before quantisation, the per-input-channel factor
+  `s_k = max|X_k|^α / max_n|W[n,k]|^(1−α)` is divided into the producing RMSNorm gain and multiplied into
+  the consuming weight columns (norm1 → q/k/v, norm2 → gate/up, norm_f → LM head). This is exact in real
+  arithmetic and invisible to the datapath: it only changes the constants in `G[k]` and `w8[k,n]`.
 
 ## Activations
 | Tensor | Format | Scale |
 |---|---|---|
-| residual stream `x` (per layer input, after attention, after MLP) | **int32 static** (`cfg.residual_bits`) | `max_calib·2/(2^31−1)` per residual point |
+| residual stream `x` (per layer input, after attention, after MLP) | **int32 static** (`cfg.residual_bits`) | `max_calib·m/(2^31−1)` per residual point |
 | embedding rows | int8 per token | `s_emb[tok] = max|row|/127` |
 | RMSNorm out | int16, scale `2^-F` per norm (`F = floor(log2(32767/max_calib_channel))`), transient (row buffer) | |
 | matmul inputs | int8 per-token dynamic (below) | real = `a8 · (m16<<b) · S_in / 127` |
-| Q, K projections | int16 static per head (`max_head·2/32767`) | rotated and requantised by RoPE |
+| Q, K projections | int16 static per head (`max_head·m/32767`) | rotated and requantised by RoPE |
 | Q, K after RoPE | int8 static per head (`max_head/127`) | |
 | V | int8 static per tensor (`max_calib/127`) | |
 | attention out | int16 `= rsr(O·rl, 33)` = `O/l·128`, scale `S_v/128`, transient → dynamic quant | |
-| o_proj out, down_proj out | **int32 static** `max_calib·2/(2^31−1)` (feed the residual add) | |
+| o_proj out, down_proj out | **int32 static** `max_calib·m/(2^31−1)` (feed the residual add) | |
 | gate, up | int16 static | |
 | gated hidden `h = silu(gate)·up` | **int32 exact product**, scale `S_gate·S_up`, transient → dynamic quant | |
 | LM logits | int32 wide (argmax only) | |

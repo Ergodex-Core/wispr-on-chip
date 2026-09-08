@@ -16,6 +16,11 @@ D, H, HKV, HD, FF, V, LAYERS = 2048, 16, 2, 128, 6144, 130560, 42
 CHUNK = 512
 # vector unit, cycles per row (VectorUnitSpec)
 VU = dict(rmsnorm=691, dynq=295, add=262, embed=139, rope_q=410, rope_k=74, silumul=807)
+# LayerSpec runs, for --validate (measured cycles are recorded in docs/status.md)
+MEASURED = [
+    ("2 layers, ctx 64, chunk 8", 2, 12, 8, 2, 256, 3166208),
+    ("1 layer, ctx 2048, chunk 32", 1, 70, 32, 1, 256, 0),
+]
 
 
 def engine(M, K, N):
@@ -73,11 +78,37 @@ def run(prompt, new):
     return pre, dec
 
 
+def layer_test(layers, prompt, chunk, decode_steps, vocab_tiles):
+    """The sequence LayerSpec runs: embed + layers per chunk, then final norm + LM head + sample per step.
+    One extra final-norm/LM head runs at the end (the step whose token the limit discards)."""
+    lm = VU["rmsnorm"] + engine(1, D, vocab_tiles * 32) + 4 * 4
+    total = 0
+    for c0 in range(0, prompt, chunk):
+        rows = min(chunk, prompt - c0)
+        total += rows * VU["embed"] + 3 * 4
+        for _ in range(layers):
+            total += sum(layer(rows, c0 + rows).values())
+    total += lm
+    for s in range(decode_steps):
+        total += VU["embed"] + 3 * 4
+        for _ in range(layers):
+            total += sum(layer(1, prompt + s + 1).values())
+        total += lm
+    return total
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--prompt", type=int, default=128)
     ap.add_argument("--new", type=int, default=32)
+    ap.add_argument("--validate", action="store_true", help="predict the two LayerSpec runs and compare with the measured cycles")
     a = ap.parse_args()
+    if a.validate:
+        # (name, layers, prompt, chunk, decode steps, vocab tiles, measured cycles from docs/status.md)
+        for name, L, p, c, d, vt, measured in MEASURED:
+            pred = layer_test(L, p, c, d, vt)
+            print(f"{name:28s} predicted {pred:>10,} cycles   measured {measured:>10,}   ratio {pred / measured:.3f}")
+        return
     pre, dec = run(a.prompt, a.new)
     tp, td = sum(pre.values()), sum(dec.values())
     print(f"prefill of {a.prompt} tokens: {tp / 1e6:.1f} M cycles")

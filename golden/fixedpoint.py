@@ -87,6 +87,19 @@ REQ_S2_BY_BITS = {8: 24, 16: 20, 32: 24}
 REQ_B_FRAC = 16
 REQ_T_BITS = 48
 
+# optional saturation statistics (the RTL exposes the same count in register 10)
+SAT = {"count": 0, "total": 0, "on": False}
+
+
+def sat_stats_reset(on: bool = True):
+    SAT.update(count=0, total=0, on=on)
+
+
+def _count_sat(pre, post):
+    if SAT["on"]:
+        SAT["count"] += int(np.count_nonzero(np.asarray(pre) != np.asarray(post)))
+        SAT["total"] += int(np.asarray(post).size)
+
 
 def requant(acc, mult, bias, s1: int, rowfac, out_bits: int):
     """acc [M,N] int32, mult/bias [N] int32, rowfac [M] packed (m16 | b<<16; all ones for static inputs)."""
@@ -101,14 +114,18 @@ def requant(acc, mult, bias, s1: int, rowfac, out_bits: int):
     if out_bits != 32:
         assert not b.any(), "int8/int16 outputs expect int16 input rows (b = 0)"
         u = t * m16 + (bias[None, :] << I64(s2 - REQ_B_FRAC))
-        y = sat(rsr(u, s2), out_bits)
+        r = rsr(u, s2)
+        y = sat(r, out_bits)
+        _count_sat(r, y)
     else:
         assert not bias.any(), "int32 outputs carry no bias"
         u = t * m16                                           # < 2^63
         y = np.empty(u.shape, dtype=I64)
         for i in range(u.shape[0]):                           # per-row shift s2 - b
             y[i] = rsr(u[i], s2 - int(b[i, 0]))
-        y = sat(y, out_bits)
+        ys = sat(y, out_bits)
+        _count_sat(y, ys)
+        y = ys
     return y.astype({8: np.int8, 16: np.int16, 32: np.int32}[out_bits])
 
 
@@ -158,7 +175,10 @@ def scaled_add(a, ma, b, mb, out_bits: int):
     b = np.asarray(b, dtype=I64)
     ma = np.asarray(ma, dtype=I64)
     mb = np.asarray(mb, dtype=I64)
-    return sat(rsr(a * ma + b * mb, SADD_SHIFT), out_bits)
+    r = rsr(a * ma + b * mb, SADD_SHIFT)
+    y = sat(r, out_bits)
+    _count_sat(r, y)
+    return y
 
 
 def mult_for(ratio: float, shift: int, bits: int = 31) -> int:

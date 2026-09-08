@@ -53,11 +53,12 @@ EMB_FRAC = 0             # x0 = e8 * resmult (resmult = round(s_emb / S_x0)); in
 class QConfig:
     residual_bits: int = 32
     margin_int8: float = 1.0           # static int8 scales = max*margin/127
-    margin_int16: float = 2.0          # static int16 scales = max*margin/32767
+    margin_int16: float = 1.5          # static int16/int32 scales = max*margin/32767 (or /2^31-1)
+    smooth_alpha: float | None = 0.5   # SmoothQuant folding into the RMSNorm gains (None = off)
     n_layers: int = N_LAYERS           # < 42 only for smoke tests (truncated model)
 
     def tag(self) -> str:
-        return f"r{self.residual_bits}_m8{self.margin_int8}_m16{self.margin_int16}_L{self.n_layers}"
+        return f"r{self.residual_bits}_m8{self.margin_int8}_m16{self.margin_int16}_sa{self.smooth_alpha}_L{self.n_layers}"
 
 
 @dataclass
@@ -216,6 +217,18 @@ def make_add(name: str, s_a: float, s_b: float, s_out: float, out_bits: int) -> 
     return AddQ(name, mult_for(s_a / s_out, SADD_SHIFT), mult_for(s_b / s_out, SADD_SHIFT), s_a, s_b, s_out, out_bits)
 
 
+def smooth_factors(x_chan_max: np.ndarray, W_list: list[np.ndarray], alpha: float) -> np.ndarray:
+    """SmoothQuant per-input-channel factor s_k = max|X_k|^a / max_n|W[n,k]|^(1-a) (W in torch layout [N, K]).
+
+    The factor is folded into the producing RMSNorm gain (gamma/s) and into the consuming weight columns
+    (W*s), which is exact in real arithmetic and moves quantisation difficulty from the per-token int8
+    activation to the per-output-channel int8 weight. Nothing in the datapath changes."""
+    wmax = np.max([np.abs(np.asarray(W, np.float32)).max(axis=0) for W in W_list], axis=0).astype(np.float64)
+    x = np.maximum(np.asarray(x_chan_max, np.float64), 1e-5)
+    wmax = np.maximum(wmax, 1e-5)
+    return np.clip(x ** alpha / wmax ** (1 - alpha), 1e-2, 1e2)
+
+
 # ------------------------------------------------------------------------------------------------
 class WeightSource:
     """Lazy float32 numpy view of the bf16 safetensors checkpoint."""
@@ -231,6 +244,18 @@ class WeightSource:
 
 def default_stats_path() -> Path:
     return REPO / "weights" / "calib_stats.json"
+
+
+def manifest_config(path: Path | None = None) -> QConfig:
+    """The QConfig the weight images on disk were generated with. Vector generators use this so the golden
+    model can never drift from the weights the RTL loads (fields absent from an older manifest take the
+    value the code had when it was written)."""
+    man = json.load(open(path or REPO / "weights" / "MANIFEST.json"))
+    c = dict(man["config"])
+    c.setdefault("smooth_alpha", None)
+    unknown = set(c) - set(QConfig().__dict__)
+    assert not unknown, f"manifest config has unknown fields {unknown}"
+    return QConfig(**c)
 
 
 def build(cfg: QConfig, sd: WeightSource | None = None, stats: dict | None = None, verbose: bool = False) -> QModel:
@@ -279,16 +304,24 @@ def build(cfg: QConfig, sd: WeightSource | None = None, stats: dict | None = Non
         p, sp = f"L{l}", f"model.layers.{l}"
         s_x = s_res(l)
         # -- attention block
-        qm.norms[f"{p}.norm1"] = make_rms(f"{p}.norm1", sd(f"{sp}.input_layernorm.weight"), s_x, float(np.max(chan[f"norm1.{l}"])))
+        g1 = sd(f"{sp}.input_layernorm.weight")
+        Wq, Wk, Wv = sd(f"{sp}.self_attn.q_proj.weight"), sd(f"{sp}.self_attn.k_proj.weight"), sd(f"{sp}.self_attn.v_proj.weight")
+        xmax1 = np.asarray(chan[f"norm1.{l}"], np.float64)
+        if cfg.smooth_alpha is not None:
+            sm = smooth_factors(xmax1, [Wq, Wk, Wv], cfg.smooth_alpha)
+            g1, xmax1 = g1 / sm.astype(np.float32), xmax1 / sm
+            Wq, Wk, Wv = Wq * sm.astype(np.float32)[None, :], Wk * sm.astype(np.float32)[None, :], Wv * sm.astype(np.float32)[None, :]
+        qm.norms[f"{p}.norm1"] = make_rms(f"{p}.norm1", g1, s_x, float(np.max(xmax1)))
         s_ln1 = 2.0 ** (-qm.norms[f"{p}.norm1"].F)
         max_q = np.asarray(head[f"q.{l}"], np.float64)      # [16] max |q| over pre- and post-RoPE
         max_k = np.asarray(head[f"k.{l}"], np.float64)      # [2]
         s_q8, s_q16 = max_q * m8 / 127.0, max_q * m16 / 32767.0
         s_k8, s_k16 = max_k * m8 / 127.0, max_k * m16 / 32767.0
         s_v = mx[f"v.{l}"] * m8 / 127.0
-        qm.linears[f"{p}.q"] = make_linear(f"{p}.q", sd(f"{sp}.self_attn.q_proj.weight"), None, s_ln1, True, np.repeat(s_q16, HEAD_DIM), 16)
-        qm.linears[f"{p}.k"] = make_linear(f"{p}.k", sd(f"{sp}.self_attn.k_proj.weight"), None, s_ln1, True, np.repeat(s_k16, HEAD_DIM), 16)
-        qm.linears[f"{p}.v"] = make_linear(f"{p}.v", sd(f"{sp}.self_attn.v_proj.weight"), None, s_ln1, True, s_v, 8)
+        qm.linears[f"{p}.q"] = make_linear(f"{p}.q", Wq, None, s_ln1, True, np.repeat(s_q16, HEAD_DIM), 16)
+        qm.linears[f"{p}.k"] = make_linear(f"{p}.k", Wk, None, s_ln1, True, np.repeat(s_k16, HEAD_DIM), 16)
+        qm.linears[f"{p}.v"] = make_linear(f"{p}.v", Wv, None, s_ln1, True, s_v, 8)
+        del Wq, Wk, Wv
         qm.ropes[f"{p}.rope_q"] = make_rope(f"{p}.rope_q", s_q16, s_q8)
         qm.ropes[f"{p}.rope_k"] = make_rope(f"{p}.rope_k", s_k16, s_k8)
         qm.attns[f"{p}.attn"] = make_attn(f"{p}.attn", s_q8, s_k8, s_v)
@@ -297,11 +330,19 @@ def build(cfg: QConfig, sd: WeightSource | None = None, stats: dict | None = Non
         s_mid = mx[f"x_mid.{l}"] * rmargin / rmax
         qm.adds[f"{p}.add1"] = make_add(f"{p}.add1", s_x, s_o, s_mid, rb)
         # -- MLP block
-        qm.norms[f"{p}.norm2"] = make_rms(f"{p}.norm2", sd(f"{sp}.post_attention_layernorm.weight"), s_mid, float(np.max(chan[f"norm2.{l}"])))
+        g2 = sd(f"{sp}.post_attention_layernorm.weight")
+        Wg, Wu = sd(f"{sp}.mlp.gate_proj.weight"), sd(f"{sp}.mlp.up_proj.weight")
+        xmax2 = np.asarray(chan[f"norm2.{l}"], np.float64)
+        if cfg.smooth_alpha is not None:
+            sm = smooth_factors(xmax2, [Wg, Wu], cfg.smooth_alpha)
+            g2, xmax2 = g2 / sm.astype(np.float32), xmax2 / sm
+            Wg, Wu = Wg * sm.astype(np.float32)[None, :], Wu * sm.astype(np.float32)[None, :]
+        qm.norms[f"{p}.norm2"] = make_rms(f"{p}.norm2", g2, s_mid, float(np.max(xmax2)))
         s_ln2 = 2.0 ** (-qm.norms[f"{p}.norm2"].F)
         s_gate, s_up = s16(f"gate.{l}"), s16(f"up.{l}")
-        qm.linears[f"{p}.gate"] = make_linear(f"{p}.gate", sd(f"{sp}.mlp.gate_proj.weight"), None, s_ln2, True, s_gate, 16)
-        qm.linears[f"{p}.up"] = make_linear(f"{p}.up", sd(f"{sp}.mlp.up_proj.weight"), None, s_ln2, True, s_up, 16)
+        qm.linears[f"{p}.gate"] = make_linear(f"{p}.gate", Wg, None, s_ln2, True, s_gate, 16)
+        qm.linears[f"{p}.up"] = make_linear(f"{p}.up", Wu, None, s_ln2, True, s_up, 16)
+        del Wg, Wu
         qm.silus[f"{p}.silu"] = make_silu(f"{p}.silu", s_gate, s_up)
         s_down = s32(f"down.{l}")
         qm.linears[f"{p}.down"] = make_linear(f"{p}.down", sd(f"{sp}.mlp.down_proj.weight"), None, s_gate * s_up, True, s_down, 32)
@@ -311,8 +352,16 @@ def build(cfg: QConfig, sd: WeightSource | None = None, stats: dict | None = Non
 
     # ---------------- final norm + LM head ----------------
     lf = cfg.n_layers
-    qm.norms["norm_f"] = make_rms("norm_f", sd("model.norm.weight"), s_res(lf), float(np.max(chan["norm_f"])))
-    qm.linears["lm"] = make_linear("lm", sd("lm_head.weight"), None, 2.0 ** (-qm.norms["norm_f"].F), True, 1.0, 0)
+    gf = sd("model.norm.weight")
+    Wlm = sd("lm_head.weight")
+    xmaxf = np.asarray(chan["norm_f"], np.float64)
+    if cfg.smooth_alpha is not None:
+        sm = smooth_factors(xmaxf, [Wlm], cfg.smooth_alpha)
+        gf, xmaxf = gf / sm.astype(np.float32), xmaxf / sm
+        Wlm = Wlm * sm.astype(np.float32)[None, :]
+    qm.norms["norm_f"] = make_rms("norm_f", gf, s_res(lf), float(np.max(xmaxf)))
+    qm.linears["lm"] = make_linear("lm", Wlm, None, 2.0 ** (-qm.norms["norm_f"].F), True, 1.0, 0)
+    del Wlm
     qm.tables["rope"] = luts.rope_table(MAX_CTX, HEAD_DIM, ROPE_THETA)
     qm.meta["exp_table"] = luts.exp_table()
     qm.meta["rsqrt_table"] = luts.rsqrt_table()

@@ -51,10 +51,14 @@ case class WeightTensor(name: String, kind: String, width: Int, depth: Int, base
     }
   }
 
-  /** Write the $readmemh form (one memory word per line, width/4 hex digits) and return its path. */
+  /** Write the $readmemh form (one memory word per line, width/4 hex digits) and return its path.
+    * The file name carries the source digest, so regenerated weights never reuse a stale image and an
+    * unchanged tensor is not rewritten (the layer-level tests load ~100 MB of them per run). */
   def writeReadmemh(repoRoot: String, outDir: File): File = {
     outDir.mkdirs()
-    val f = new File(outDir, name + ".mem")
+    val f = new File(outDir, s"$name.${sha256.take(8)}.mem")
+    val expect = depth.toLong * (width / 4 + 1)
+    if (f.exists() && f.length() == expect) return f
     val w = words32(repoRoot)
     val lpw = linesPerWord
     val pw = new PrintWriter(new java.io.BufferedWriter(new java.io.FileWriter(f), 1 << 20))

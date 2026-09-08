@@ -53,11 +53,14 @@ Numbered, dated, one paragraph each. Anything that deviates from the whisper-si 
    848 instructions for 42 layers (docs/microcode.txt); the sampled token is written back into the on-chip
    token buffer that the EMBED op reads.
 
-8. **2026-09-08 — No full-chip Verilator run.** As requested, correctness is established per unit: every
-   op of the datapath is simulated on golden activations of real layers (0, 20, 41) and the LM head, plus
-   random shapes, and compared bit for bit; the whole chip (sequencer + micro-program + units + banks + KV
-   cache) is elaborated to SystemVerilog with layer 0's weights to prove the generated program fits the
-   command bundles. A full run would need 2.5 GB of ROM images and hours per token of Verilator time.
+8. **2026-09-08 — The chip runs on Verilator at layer granularity, not at 42 layers.** Correctness is
+   established per unit (every op of the datapath on golden activations of real layers 0, 20, 41 and the
+   LM head, plus random shapes) *and* on the whole chip running the generated micro-program over real
+   layers (decision #12). A 42-layer run is what is skipped: it would need the full 2.5 GB of ROM images
+   (≈5 GB of `$readmemh` text) and ≈11 M cycles per generated token, and it would add no coverage that the
+   layer-level runs do not already give — the program is the same generated code with a different layer
+   count, and `gen/emit_microcode.py` checks the 42-layer emission statically against every memory it
+   addresses.
 
 9. **2026-09-08 — Accuracy gate.** The integer golden model is compared with the fp32 reference on
    data/prompts.json: teacher-forced next-token top-1 agreement over the eval texts and greedy
@@ -69,6 +72,40 @@ Numbered, dated, one paragraph each. Anything that deviates from the whisper-si 
     `RegEnable`), memory randomisation is disabled in simulation, and every write port of the KV cache
     carries a data-dependent byte mask (the test-only load port takes its mask from IO).
 
-11. **2026-09-08 — Exact int8 matmuls in the golden model use `torch._int_mm`.** Exact int32 accumulation
+12. **2026-09-08 — The micro-program is parameterised, statically checked, and run on the whole chip.**
+    `gen/emit_microcode.py` takes `--layers / --max-ctx / --chunk / --vocab-tiles` and emits a
+    `MicroProgram` object carrying the parameters it was emitted for; `MiniCPMTop` refuses a configuration
+    that disagrees. Every emission is checked instruction by instruction against the activation banks, the
+    KV cache and the weight address spaces for the worst-case prefill chunk and decode position
+    (`check_program`), so the 42-layer program is validated even though it is not simulated. `LayerSpec`
+    then runs two emissions of the same generated code on `MiniCPMTop` under Verilator: (a) 2 layers,
+    maxCtx 64, chunk 8, a 12-token prompt and 2 decode steps — layer indexing, multi-chunk prefill, the
+    token-buffer feedback path; (b) 1 layer, maxCtx 2048, chunk 32, a 70-token prompt — full-scale
+    addressing (16 MB residual bank) and attention over two key tiles in situ. `tests/vectors/gen_layer.py`
+    mirrors exactly that sequence in the golden model, and the residual bank and the emitted token ids must
+    match bit for bit. The LM head is restricted to the first vocabulary slice (8192 columns) so the test
+    loads 81 MB of weight images instead of 2.5 GB; sampled ids therefore stay inside the instantiated
+    embedding slice. `$readmemh` images are cached under `target/readmemh/<name>.<sha8>.mem`, so
+    regenerated weights can never be read from a stale image.
+
+13. **2026-09-08 — Quantisation: SmoothQuant α = 0.5 into the RMSNorm gains and a static margin of 1.5.**
+    Measured as teacher-forced top-1 agreement with the fp32 reference over 722 positions of four texts
+    (`make sweep`, `golden/sweep_quant.py`):
+
+    | configuration | top-1 | mean rank of the fp32 choice | requant saturation |
+    |---|---|---|---|
+    | no smoothing, margin 2.0 (the first frozen set) | 93.35 % | 1.080 | 0 |
+    | smoothing α = 0.5, margin 2.0 | 93.35 % | 1.080 | 0 |
+    | no smoothing, margin 1.5 | 92.80 % | 1.091 | 0 |
+    | **smoothing α = 0.5, margin 1.5** | **94.60 %** | **1.058** | 0 |
+    | smoothing α = 0.5, margin 1.25 | 94.04 % | 1.066 | 0 |
+
+    Neither change helps on its own — smoothing alone is exactly neutral, and tightening the margin alone
+    makes things worse — but together they gain 1.25 points and the best tail (the fp32 token is never
+    below rank 4). That is the expected interaction: the margin only buys precision if the outlier channels
+    it has to cover have been flattened first. No requant or residual-add saturation was observed at
+    margin 1.5 on any of the 722 positions, and the chip counts saturations at run time in register 10.
+
+14. **2026-09-08 — Exact int8 matmuls in the golden model use `torch._int_mm`.** Exact int32 accumulation
     on CPU (14× faster than the float64 path for a 2 B model); the float64 path remains as fallback and both
     are checked equal (test_ops). Prefill of 128 tokens through all 42 layers takes ~1 min.
