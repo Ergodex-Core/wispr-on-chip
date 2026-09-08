@@ -17,6 +17,9 @@ class TopElabSpec extends AnyFlatSpec {
       Array("-disable-all-randomization", "-strip-debug-info", "--lowering-options=disallowLocalVariables,disallowPackedArrays"))
     val sv = new java.io.File(out, "MiniCPMTop.sv")
     assert(sv.exists(), "no SystemVerilog emitted")
-    info(f"elaborated in ${(System.nanoTime() - t0) / 1e9}%.0f s; MiniCPMTop.sv is ${sv.length() / 1e6}%.1f MB")
+    val files = out.listFiles().filter(_.getName.endsWith(".sv"))
+    val seqSv = new java.io.File(out, "Sequencer.sv")
+    info(f"elaborated in ${(System.nanoTime() - t0) / 1e9}%.0f s; ${files.length} modules, ${files.map(_.length()).sum / 1e6}%.1f MB of SystemVerilog " +
+      f"(Sequencer with the ${minicpm.generated.Microcode.program.length}-instruction program: ${seqSv.length() / 1e6}%.1f MB)")
   }
 }

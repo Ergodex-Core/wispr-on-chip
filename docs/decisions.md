@@ -11,7 +11,7 @@ Numbered, dated, one paragraph each. Anything that deviates from the whisper-si 
    `$MINICPM_SI_DATA/minicpm5-2b`, not in the repository.
 
 2. **2026-09-08 — Weight images are binary and not committed.** MiniCPM5-2B is 2.52 G parameters; the int8
-   images are 2.4 GB (whisper-si committed 86.6 MB of hex). `gen/dump_weights.py` writes one little-endian
+   images are 2.5 GB (whisper-si committed 86.6 MB of hex). `gen/dump_weights.py` writes one little-endian
    `.bin` per tensor (the RomInit backend converts only the instantiated tensors to `$readmemh` text at
    elaboration), `weights/MANIFEST.json` with a sha256 per file *is* committed, and `make weights-check`
    regenerates everything in memory and proves it identical. The LM head and the embedding table are stored
@@ -57,7 +57,7 @@ Numbered, dated, one paragraph each. Anything that deviates from the whisper-si 
    op of the datapath is simulated on golden activations of real layers (0, 20, 41) and the LM head, plus
    random shapes, and compared bit for bit; the whole chip (sequencer + micro-program + units + banks + KV
    cache) is elaborated to SystemVerilog with layer 0's weights to prove the generated program fits the
-   command bundles. A full run would need 2.4 GB of ROM images and hours per token of Verilator time.
+   command bundles. A full run would need 2.5 GB of ROM images and hours per token of Verilator time.
 
 9. **2026-09-08 — Accuracy gate.** The integer golden model is compared with the fp32 reference on
    data/prompts.json: teacher-forced next-token top-1 agreement over the eval texts and greedy

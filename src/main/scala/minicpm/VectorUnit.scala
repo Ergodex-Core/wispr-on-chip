@@ -250,7 +250,7 @@ class VectorUnit(cfg: MiniCPMConfig) extends Module {
   io.kvOut.valid := out8 && cmd.outSink === 1.U
   io.kvOut.bits := 0.U.asTypeOf(new MatmulOut(cfg))
   io.kvOut.bits.sink := 3.U; io.kvOut.bits.mode := MatmulMode.Int8.U
-  io.kvOut.bits.trow := row; io.kvOut.bits.row := cmd.rowBase + row; io.kvOut.bits.nTile := idx2 >> 1
+  io.kvOut.bits.trow := cmd.rowOff + row; io.kvOut.bits.row := cmd.rowBase + cmd.rowOff + row; io.kvOut.bits.nTile := idx2 >> 1
   for (i <- 0 until 32) io.kvOut.bits.data(i) := p3Word(8 * i + 7, 8 * i).asSInt.pad(32)
   val rfWrite = RegInit(false.B)
   io.rowfacWr.valid := rfWrite
@@ -319,8 +319,8 @@ class VectorUnit(cfg: MiniCPMConfig) extends Module {
         switch(s1Step) {
           is(0.U) { V := sumX2 + Cat(cmd.epsHi, cmd.epsLo) }
           is(1.U) { // normalise: e = (bl - 29) >> 1 ; m = V >> 2e (V > 0)
-            val bl = (80.U - PriorityEncoder(Reverse(V)))
-            val e = (bl.asSInt - 29.S) >> 1                    // floor, in [-14, 25]
+            val bl = (80.U - PriorityEncoder(Reverse(V)))     // bit length, 1..80 (7 bits)
+            val e = ((bl.zext - 29.S(8.W)) >> 1).asSInt        // floor, in [-14, 25] (8 bits)
             eSigned := e(6, 0).asSInt
             val e2 = (e << 1).asSInt
             mNorm := Mux(e2 >= 0.S, (V >> e2.asUInt)(29, 0), (V << (-e2).asUInt)(29, 0))

@@ -26,7 +26,7 @@ object Vectors {
       m.group(1) -> m.group(2).trim.stripPrefix("\"").stripSuffix("\"")
     }.toMap
   }
-  def list(s: String): Array[Long] = s.split("[\\[\\], ]+").filter(_.nonEmpty).map(_.toLong)
+  def list(s: String): Array[Long] = s.split("[\\[\\],\\s]+").filter(_.nonEmpty).map(_.toLong)
   def pack(words: Array[Long], from: Int, n: Int): BigInt =
     (0 until n).foldLeft(BigInt(0))((acc, i) => acc | (BigInt(words(from + i)) << (32 * i)))
   def bank(m: Map[String, String], key: String): Int = m(key).toInt

@@ -14,7 +14,7 @@ case class MiniCPMConfig(
     cols: Int = 32,                       // systolic array cols (n)
     rowsPerStage: Int = 8,                // MAC rows chained combinationally per pipeline stage
     weightBackend: WeightBackend = RomInit,
-    /** Subset of tensor names to instantiate (None = all 2.4 GB). Unit tests elaborate one layer's tensors. */
+    /** Subset of tensor names to instantiate (None = all 2.5 GB). Unit tests elaborate one layer's tensors. */
     weightTensors: Option[Seq[String]] = None,
     /** Literal ROM banks are refused above this size (elaboration/Verilog blow-up guard). */
     romLiteralMaxBits: Int = 4 * 1024 * 1024,

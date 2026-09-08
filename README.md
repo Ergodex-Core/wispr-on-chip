@@ -21,7 +21,7 @@ deliberately not part of the evaluation (docs/decisions.md #8).
 make setup            # uv env
 make model            # fetch the bf16 checkpoint (5 GB) into $MINICPM_SI_DATA/minicpm5-2b
 make calib            # fp32 activation statistics on data/prompts.json (~8 min CPU)
-make weights          # 2.4 GB of int8 images + MANIFEST.json + generated Scala tables / micro-program
+make weights          # 2.5 GB of int8 images + MANIFEST.json + generated Scala tables / micro-program
 make golden-test      # fixed-point op tests
 make vectors          # RTL unit-test vectors from one golden prefill
 make test-rtl         # Verilator unit tests, every unit bit-exact vs golden

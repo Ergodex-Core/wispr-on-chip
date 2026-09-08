@@ -18,7 +18,7 @@ model:                      ## fetch the bf16 checkpoint + tokenizer into $(MINI
 calib:                      ## activation statistics of the fp32 reference on data/prompts.json -> weights/calib_stats.json
 	$(UV) python golden/calib.py
 
-weights:                    ## regenerate weights/*.bin (2.4 GB) + MANIFEST.json + generated Scala tables and micro-program
+weights:                    ## regenerate weights/*.bin (2.5 GB) + MANIFEST.json + generated Scala tables and micro-program
 	$(UV) python gen/dump_weights.py
 	$(UV) python gen/emit_weights.py
 	$(UV) python gen/emit_luts.py

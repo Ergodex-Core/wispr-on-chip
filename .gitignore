@@ -15,5 +15,5 @@ build/
 *.fst
 .pytest_cache/
 dumps/
-# generated weight images (2.4 GB int8): regenerate with `make weights`; MANIFEST.json is committed
+# generated weight images (2.5 GB int8): regenerate with `make weights`; MANIFEST.json is committed
 weights/*.bin

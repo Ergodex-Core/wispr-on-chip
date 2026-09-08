@@ -121,6 +121,7 @@ class Attention(cfg: MiniCPMConfig) extends Module {
   // ---- softmax pass state
   val sm = Reg(UInt(7.W))          // query index within block
   val smStep = Reg(UInt(4.W))
+  val zeroSecond = RegInit(false.B)  // skipped query: second P word still to be zeroed
   val srow = Reg(Vec(64, SInt(32.W)))
   val j0 = kt << 6
   val keyValid = Wire(Vec(64, Bool()))
@@ -217,13 +218,15 @@ class Attention(cfg: MiniCPMConfig) extends Module {
           when(anyValid) { mx(sm) := mn; started(sm) := true.B
             lSum(sm) := Mux(g, ((lSum(sm) * al) + (1.U << 14)) >> 15, lSum(sm)) }
           pSum := 0.U
-          when(!anyValid) { smStep := 13.U }   // skip this query entirely
+          // no valid key in this tile: P of this query must be zero for the P·V passes (both 64-key halves)
+          when(!anyValid) { pWr := true.B; pWrAddr := sm << 1; pWrHi := 0.U; pWrLo := 0.U; zeroSecond := true.B; smStep := 12.U }
         }
         is(4.U) { hiWord := pHiBytes; loWord := pLoBytes; pSum := pSum + pLaneSum }
         is(5.U) { pWr := true.B; pWrAddr := sm << 1; pWrHi := Cat(pHiBytes, hiWord); pWrLo := Cat(pLoBytes, loWord); pSum := pSum + pLaneSum }
         is(6.U) { hiWord := pHiBytes; loWord := pLoBytes; pSum := pSum + pLaneSum }
         is(7.U) { pWr := true.B; pWrAddr := (sm << 1) + 1.U; pWrHi := Cat(pHiBytes, hiWord); pWrLo := Cat(pLoBytes, loWord); pSum := pSum + pLaneSum }
         is(8.U) { lSum(sm) := lSum(sm) + pSum }
+        is(12.U) { when(zeroSecond) { pWr := true.B; pWrAddr := (sm << 1) + 1.U; pWrHi := 0.U; pWrLo := 0.U; zeroSecond := false.B } }
         is(13.U) {
           smStep := 0.U
           when(sm === qRows - 1.U) { state := sIssuePVhi } .otherwise { sm := sm + 1.U }

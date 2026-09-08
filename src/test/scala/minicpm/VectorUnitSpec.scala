@@ -13,7 +13,7 @@ import java.io.File
 class VectorUnitSpec extends AnyFlatSpec with MiniCPMSim {
   val allCases = Vectors.cases("vector")
   require(allCases.nonEmpty, "run `uv run python tests/vectors/gen_all.py` first")
-  val tensors = Seq("L0.norm1.g", "L41.norm2.g", "norm_f.g", "embed.00", "embed.15", "embed.resmult", "rope")
+  val baseTensors = Seq("L0.norm1.g", "L41.norm2.g", "norm_f.g", "embed.resmult", "rope")
   val bitsCode = Map(8 -> VecBits.I8, 16 -> VecBits.I16, 32 -> VecBits.I32)
   def wordsPerRow(cols: Int, bits: Int): Int = cols / (256 / bits)
 
@@ -27,7 +27,8 @@ class VectorUnitSpec extends AnyFlatSpec with MiniCPMSim {
     val bWords = if (bFile.exists()) Vectors.hex(bFile) else Array.empty[Long]
     val rfExp = Vectors.ints(new File(dir, "rowfac_exp.txt"))
     val toks = Vectors.ints(new File(dir, "toks.txt"))
-    val cfg = MiniCPMConfig(weightBackend = RomInit, weightTensors = Some(tensors))
+    val slices = m.get("slices").map(Vectors.list(_).map(i => f"embed.$i%02d").toSeq).getOrElse(Seq("embed.00"))
+    val cfg = MiniCPMConfig(weightBackend = RomInit, weightTensors = Some(baseTensors ++ slices))
     val aStride = wordsPerRow(cols, aBits); val yStride = wordsPerRow(cols, yBits)
     val bStride = if (bBits > 0) wordsPerRow(cols, bBits) else 0
     val op = m("op")

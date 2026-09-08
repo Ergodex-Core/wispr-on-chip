@@ -167,7 +167,7 @@ def vector_cases(qm, D, ids):
     toks = ids[:R]
     y = embed_rows(e8, rm, toks)
     assert np.array_equal(y, D["x0"][:R])
-    vcase("embed_prompt", dict(op="EMBED", slices=[0]), y, 32, y, 32, toks=toks)
+    vcase("embed_prompt", dict(op="EMBED", slices=sorted({int(t) // 8192 for t in toks})), y, 32, y, 32, toks=toks)
     toks2 = [0, 1, 130072, 130073, 8448, 220, 130559, 8191, 8192, 122880]
     y2 = embed_rows(e8, rm, toks2)
     vcase("embed_special", dict(op="EMBED", slices=sorted({t // 8192 for t in toks2})), y2, 32, y2, 32, toks=toks2)

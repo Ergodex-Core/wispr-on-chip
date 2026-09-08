@@ -1,10 +1,10 @@
 """Emit the quantised model as binary word images under weights/ plus MANIFEST.json (docs/tiling.md).
 
-  uv run python gen/dump_weights.py            # (re)generate weights/*.bin + MANIFEST.json (~2.4 GB)
+  uv run python gen/dump_weights.py            # (re)generate weights/*.bin + MANIFEST.json (~2.5 GB)
   uv run python gen/dump_weights.py --check    # rebuild in memory, verify every file's sha256 + the manifest
 
 Deterministic given the checkpoint + weights/calib_stats.json + the QConfig below. The .bin files are not
-committed (2.4 GB of int8); MANIFEST.json is, so `--check` proves a regenerated set is identical.
+committed (2.5 GB of int8); MANIFEST.json is, so `--check` proves a regenerated set is identical.
 """
 from __future__ import annotations
 
