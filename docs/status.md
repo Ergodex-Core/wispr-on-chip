@@ -122,7 +122,7 @@ the 20-utterance set must be ≤ fp32 WER + 0.5 (8.08 + 0.5 = 8.58 %).**
 |---|---|---|---|---|---|---|
 | smoke (2 s clip, 1024 and 3000 frames) | 1 | 1 | 1/1 | 0 % | 0 % | ✓ |
 | long = rtl_20 (20 test-clean utts) + 29 s clip | 21 | 21 | **21/21** | 6.59 % (all 21) / **7.58 % on rtl_20** | 8.08 % on rtl_20 | ✓ (7.58 ≤ 8.58) |
-| default = 2/5/12 s clips + rtl_default (10 utts) | 13 | DEFAULT_RAN | DEFAULT_IDENT | DEFAULT_WER | 12.75 % on rtl_default | DEFAULT_GATE |
+| default = 2/5/12 s clips + rtl_default (10 utts) | 13 | 13 | **13/13** | 10.24 % (all 13) / **12.75 % on rtl_default** | 12.75 % on rtl_default | ✓ (12.75 ≤ 13.25) |
 
 RTL text vs fp32 CPU text on rtl_20: 3.5 % word difference (the same as golden-vs-fp32 in Phase 1, since
 the tokens are identical). The WER on the tiny 10-utterance rtl_default set is dominated by two
@@ -146,6 +146,7 @@ P·V passes, 31 cycles per query row of finalisation). No constant was fitted on
 | varied/en_2s_f | 3000 | 6 | 42,135,552 | 42,175,157 | 1.001 |
 | 1089-134686-0001 | 3000 | 12 | 43,401,216 | 43,444,109 | 1.001 |
 | 1089-134691-0001 | 3000 | 20 | 45,088,768 | 45,136,045 | 1.001 |
+| varied/en_12s_f | 3000 | 55 | 52,477,952 | 52,538,265 | 1.001 |
 | varied/en_29s_m | 3000 | 89 | 59,731,968 | 59,808,337 | 1.001 |
 
 Breakdown at 3000 frames (model, 6 tokens): encoder layers 37.2 M (88 %), of which attention 23.1 M
@@ -165,7 +166,63 @@ vector-unit phases, during which the engine idles. Requant saturations per run (
 | Modal, 8 vCPU (4 threads, Verilator 5.006) | same | ≈ 3 min | 6.6–8.9 k cycles/s | 85–150 min |
 
 Modal pre-empted 3 of 13 (default) and 4 of 21 (long) containers once each; the function restarts the
-same input automatically, which is why the long set took 2 h 40 min wall instead of ~1.5 h.
+same input automatically, which is why the long set took 2 h 40 min wall and the default set 3 h 20 min
+instead of ~1.5 h. Cycle counts are deterministic: the smoke clip gives 42,135,552 cycles locally and
+on Modal.
+
+### Per-clip results (`make report`)
+
+### e2e set `default_full` — 13/13 clips ran, golden-vs-RTL token identity 13/13, RTL WER vs ground truth 10.24 %
+
+| clip | CPU fp32 text | RTL text | tokens = golden | text = CPU | WER | cycles | sim wall (s) | cycles/s |
+|---|---|---|---|---|---|---|---|---|
+| varied/en_2s_f | Won't you tell Douglas? | Won't you tell Douglas? | yes | yes | 0.0 % | 42,135,552 | 6387 | 6,597 |
+| varied/en_5s_m | The greatness of the ransom priced the son of God indicates this. | The greatness of the ransom priced the son of God indicates this. | yes | yes | 8.3 % | 43,610,112 | 6561 | 6,647 |
+| varied/en_12s_f | It takes me several years to make this magic powder, but at this moment I am pleased to say it is nearly done. You see I am making it for my good wife Margot Lot, who wants to use some of it for a purpose of her own. | It takes me several years to make this magic powder, but at this moment I am pleased to say it is nearly done. You see, I am making it for my good wife Margot a lot, who wants to use some of it for a purpose of her own. | yes | no | 6.4 % | 52,477,952 | 7952 | 6,599 |
+| 1089-134686-0001 | Stuffed into you, his belly, couchled him. | Stuffed into you, his belly, couchled him. | yes | yes | 37.5 % | 43,401,216 | 6535 | 6,641 |
+| 1089-134686-0003 | Hey Bertie, any good in your mind? | Hello Bertie, any good in your mind? | yes | no | 0.0 % | 42,979,328 | 3977 | 10,806 |
+| 1089-134686-0004 | Number 10 Fresh Nelly is waiting on you. Good night husband. | Number 10, Fresh Nelly is waiting on you. Good night husband. | yes | yes | 0.0 % | 44,036,096 | 5041 | 8,736 |
+| 1089-134686-0007 | A cold lucid indifference rained in his soul. | A cold lucid in difference rained in his soul. | yes | no | 37.5 % | 43,188,224 | 6583 | 6,561 |
+| 1089-134686-0010 | Well now, in this I declare you have a head and so has my stick. | Well now, in this I declare you have a head and so has my stick. | yes | yes | 14.3 % | 44,457,984 | 6709 | 6,626 |
+| 1089-134686-0014 | He tried to think how it could be. | He tried to think how it could be. | yes | yes | 0.0 % | 42,766,336 | 6087 | 7,026 |
+| 1089-134686-0015 | but the dusk deepening in the school room covered over his thoughts. The bell rang. | but the dusk deepening in the school room covered over his thoughts. The bell rang. | yes | yes | 14.3 % | 44,879,872 | 6824 | 6,577 |
+| 1089-134686-0016 | Then you can ask him questions on the cataclysm deadelist. | Then you can ask him questions on the cataclysm deadelist. | yes | yes | 20.0 % | 44,244,992 | 6626 | 6,677 |
+| 1089-134686-0026 | The rector did not ask for a catacysm to hear the lesson from. | The rector did not ask for a catacysm to hear the lesson from. | yes | yes | 7.7 % | 44,666,880 | 6705 | 6,662 |
+| 1089-134686-0027 | He clashed his hands on the desk and said, | He clasped his hands on the desk and said, | yes | no | 0.0 % | 43,401,216 | 5700 | 7,615 |
+
+Mean cycles/clip 44,326,597; mean sim wall 6,284 s.
+
+### e2e set `long_full` — 21/21 clips ran, golden-vs-RTL token identity 21/21, RTL WER vs ground truth 6.59 %
+
+| clip | CPU fp32 text | RTL text | tokens = golden | text = CPU | WER | cycles | sim wall (s) | cycles/s |
+|---|---|---|---|---|---|---|---|---|
+| varied/en_29s_m | to the surprise of all, and especially of Lieutenant Procope, the line indicated a bottom at a nearly uniformed depth of from four to five fathoms. And although the sounding was persevered with continuously for more than two hours over a considerable area, the differences of level were insignificant, not corresponding in any degree to what would be expected over the sight of a city that had been terrorist like the seats of an amphitheater. | to the surprise of all, and especially of Lieutenant Procope, the line indicated a bottom at a nearly uniformed depth of from four to five fathoms. And although the sounding was persevered with continuously for more than two hours over a considerable area, the differences of level were insignificant, not corresponding in any degree to what would be expected over the sight of a city that had been terrorist like the seats of an amphitheater. | yes | yes | 4.0 % | 59,731,968 | 9054 | 6,598 |
+| 1089-134686-0001 | Stuffed into you, his belly, couchled him. | Stuffed into you, his belly, couchled him. | yes | yes | 37.5 % | 43,401,216 | 6555 | 6,621 |
+| 1089-134686-0003 | Hey Bertie, any good in your mind? | Hello Bertie, any good in your mind? | yes | no | 0.0 % | 42,979,328 | 6195 | 6,938 |
+| 1089-134686-0004 | Number 10 Fresh Nelly is waiting on you. Good night husband. | Number 10, Fresh Nelly is waiting on you. Good night husband. | yes | yes | 0.0 % | 44,036,096 | 6565 | 6,707 |
+| 1089-134686-0007 | A cold lucid indifference rained in his soul. | A cold lucid in difference rained in his soul. | yes | no | 37.5 % | 43,188,224 | 6242 | 6,919 |
+| 1089-134686-0010 | Well now, in this I declare you have a head and so has my stick. | Well now, in this I declare you have a head and so has my stick. | yes | yes | 14.3 % | 44,457,984 | 6699 | 6,636 |
+| 1089-134686-0014 | He tried to think how it could be. | He tried to think how it could be. | yes | yes | 0.0 % | 42,766,336 | 6379 | 6,705 |
+| 1089-134686-0015 | but the dusk deepening in the school room covered over his thoughts. The bell rang. | but the dusk deepening in the school room covered over his thoughts. The bell rang. | yes | yes | 14.3 % | 44,879,872 | 6727 | 6,671 |
+| 1089-134686-0016 | Then you can ask him questions on the cataclysm deadelist. | Then you can ask him questions on the cataclysm deadelist. | yes | yes | 20.0 % | 44,244,992 | 6704 | 6,600 |
+| 1089-134686-0026 | The rector did not ask for a catacysm to hear the lesson from. | The rector did not ask for a catacysm to hear the lesson from. | yes | yes | 7.7 % | 44,666,880 | 5894 | 7,578 |
+| 1089-134686-0027 | He clashed his hands on the desk and said, | He clasped his hands on the desk and said, | yes | no | 0.0 % | 43,401,216 | 6470 | 6,708 |
+| 1089-134686-0029 | On Friday, confession will be heard all the afternoon after beads. | On Friday, confession will be heard all the afternoon after beads. | yes | yes | 0.0 % | 43,610,112 | 5769 | 7,559 |
+| 1089-134686-0030 | Beware of making that mistake. | Beware of making that mistake. | yes | yes | 0.0 % | 42,344,448 | 5539 | 7,645 |
+| 1089-134686-0032 | He is called as you know the apostle of the Indies. | He has called, as you know, the apostle of the Indies. | yes | no | 9.1 % | 44,036,096 | 5096 | 8,642 |
+| 1089-134686-0033 | A great saint, Saint Francis Xavier. | A great saint, Saint Francis Xavier. | yes | yes | 0.0 % | 42,557,440 | 6385 | 6,665 |
+| 1089-134686-0034 | The rector paused and then shaking his clasp to hands before him went on. | The rector paused and then shaking his clasped hands before him went on. | yes | no | 0.0 % | 44,457,984 | 6673 | 6,662 |
+| 1089-134686-0035 | He had the faith in him that moves mountains. | He had the faith in him that moves mountains. | yes | yes | 0.0 % | 42,979,328 | 6487 | 6,625 |
+| 1089-134686-0036 | a great saint, saint Francis Xavier. | A great saint, saint Francis Xavier. | yes | yes | 0.0 % | 42,557,440 | 5623 | 7,569 |
+| 1089-134686-0037 | In the silence, their dark fire kindled the dusk into a tony glow. | In the silence, their dark fire kindled the dusk into a tony glow. | yes | yes | 7.7 % | 44,666,880 | 6711 | 6,656 |
+| 1089-134691-0000 | He could wait no longer. | He could wait no longer. | yes | yes | 0.0 % | 42,135,552 | 6297 | 6,691 |
+| 1089-134691-0001 | for a full hour he had paced up and down waiting, but he could wait no longer. | for a full hour he had paced up and down waiting, but he could wait no longer. | yes | yes | 0.0 % | 45,088,768 | 6772 | 6,658 |
+
+Mean cycles/clip 44,389,912; mean sim wall 6,421 s.
+
+WER above is per clip against the LibriSpeech/varied ground truth after whisper's English normaliser;
+"text = CPU" compares the RTL text with the fp32 CPU text (differences are the int-vs-fp32 token
+differences already measured for the golden model in Phase 1, since RTL tokens equal golden tokens).
 
 Bugs found and fixed at chip level (all now covered by unit tests): fused GELU in the x0 add not
 applied; KV transposer stalls; firtool dropping byte masks on the KV memory (decision #13); KV key
@@ -175,7 +232,7 @@ with the golden dumps): every intermediate tensor of the encoder (conv1/conv2/x0
 adds/FFN, encoder output + rowfac) and of decoder position 0 through layer 0 plus the LM-head input at
 position 3 is bit-exact.
 
-## Phase 5 — ROM-literal proof and hardening (2026-09-07)
+## Phase 5 — ROM-literal proof and hardening (2026-09-07/08) — PASS
 
 * `RomLiteralLayerSpec` (`make test`): the six weight tensors of encoder layer 0 elaborated as literal
   `VecInit` ROMs (`romLiteralMaxBits = 8 Mbit`) and re-run bit-exact on the real-activation cases:
