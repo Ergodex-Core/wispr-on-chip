@@ -109,3 +109,11 @@ left open, is recorded here.
     PR #1; `FrameCheckSpec` covers the rule). The host rule (`n_frames_for`) already produced multiples of
     128 from the 30 s mel, so no existing run is affected.
 
+16. **2026-09-08 — Reductions are balanced trees; the sampler argmax is pipelined.** ASAP7 logic
+    synthesis (Yosys/ABC, 1 ns target; see `docs/paper`) showed the sampler's lowest-index
+    argmax as a 31-deep serial compare chain (9.5 ns) and serial 16-lane sums / maxima in the vector
+    unit and attention. All are now `reduceTree`s (integer results identical), and the sampler tree is
+    split across two register stages with the sequencer waiting for the sampler's `done` before it
+    samples. `SamplerSpec` (full 1621-beat rows, ties, masks, bubbles) and the smoke e2e (tokens and
+    cycle count unchanged: 10,153,984 at 1024 frames) cover the change; sampler critical path 977 ps.
+
