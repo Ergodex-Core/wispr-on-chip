@@ -43,7 +43,7 @@ vectors:                    ## regenerate RTL unit-test vectors from the golden 
 
 test: vectors               ## python unit tests + scala/verilator unit tests (bit-exact vs golden vectors)
 	$(UV) pytest -q golden/tests
-	$(SBT) "testOnly whisper.WeightStoreEquivalenceSpec whisper.MatmulEngineSpec whisper.VectorUnitSpec whisper.AttentionSpec whisper.KVWriteSpec whisper.FrameCheckSpec whisper.RomLiteralLayerSpec"
+	$(SBT) "testOnly whisper.WeightStoreEquivalenceSpec whisper.MatmulEngineSpec whisper.VectorUnitSpec whisper.AttentionSpec whisper.KVWriteSpec whisper.FrameCheckSpec whisper.SamplerSpec whisper.RomLiteralLayerSpec"
 
 e2e:                        ## default Verilator e2e set (2/5/12 s clips + 10 short test-clean utterances), full 30 s context
 	$(UV) python tests/e2e/run_e2e.py --set default --frames full

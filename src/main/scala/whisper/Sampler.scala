@@ -43,14 +43,14 @@ class Sampler(cfg: WhisperConfig) extends Module {
   // stage 1 -> 2: remaining three levels (8 -> 1)
   val v2 = RegNext(v1, false.B); val nt2 = RegNext(nt1); val last2 = RegNext(last1)
   val (bv2, bi2) = tree(tree(tree(c1v.zip(c1i)))).head
+  // stage 2: registered winner (aligned with v2 / nt2 / last2) -> running max across beats
   val bv = RegNext(bv2); val bi = RegNext(bi2)
-  val v3 = RegNext(v2, false.B); val nt3 = RegNext(nt2); val last3 = RegNext(last2)
-  val cand = Cat(nt3(10, 0), bi)
+  val cand = Cat(nt2(10, 0), bi)
   val done = RegInit(false.B); done := false.B
   when(io.start) { have := false.B; best := minV; bestIdx := 0.U }
-  when(v3) {
+  when(v2) {
     when(!have || bv > best) { best := bv; bestIdx := cand; have := true.B }
-    when(last3) { done := true.B }
+    when(last2) { done := true.B }
   }
   io.token := bestIdx
   io.isEot := bestIdx === Microcode.eot.U
