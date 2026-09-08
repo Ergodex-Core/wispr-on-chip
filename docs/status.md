@@ -251,7 +251,8 @@ position 3 is bit-exact.
   `VecCmd`, `AttnCmd` and the token stream are irrevocable Decoupled handshakes; command rows/tiles in
   range; KV-cache read/write addresses in range; activation-bank read/write addresses in range and no
   same-bank port conflicts; emitted token ids < 51865. A saturation counter for the requant stage is
-  exposed at register 10. (Verilator is 2-state, so the "no X" requirement is checked by construction:
+  exposed at register 10. A start with an invalid frame count (zero, not a multiple of 128, > 3000 or
+  > frames streamed) is refused and flagged in register 0 bit 3 (`FrameCheckSpec`, decision #15). (Verilator is 2-state, so the "no X" requirement is checked by construction:
   registers are reset-initialised and memory randomisation is disabled; outputs are additionally
   range-checked as above.)
 

@@ -100,3 +100,12 @@ left open, is recorded here.
     one container per clip on Modal (`tests/e2e/modal/modal_e2e.py`, `make e2e-modal`) with the
     identical image (Debian, Verilator 5.006, sbt 1.10.7, committed weights). Locally, `make e2e`
     still runs the same sets serially.
+
+15. **2026-09-08 — The chip never fabricates mel rows.** The effective frame count is the value of
+    register 2 if non-zero, else the number of frames streamed; it must be a non-zero multiple of 128,
+    at most 3000, and at most the number of frames streamed. A start that violates this is refused and
+    flagged in register 0 bit 3 (`frameErr`). Previously the auto path rounded the streamed count up to
+    a multiple of 128, which would have read unwritten or stale rows of the mel bank (found in review of
+    PR #1; `FrameCheckSpec` covers the rule). The host rule (`n_frames_for`) already produced multiples of
+    128 from the 30 s mel, so no existing run is affected.
+

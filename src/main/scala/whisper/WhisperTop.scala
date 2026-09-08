@@ -63,11 +63,17 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   }
   seq.io.breakPc := breakPc
   seq.io.resume := resume
-  val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, ((framesIn + 127.U) >> 7) << 7)
+  // Effective frame count. The host either writes it (reg 2; must be a multiple of 128, <= 3000, and
+  // <= the frames streamed) or leaves reg 2 at zero, in which case the streamed count is used as is and
+  // must itself be a multiple of 128. The chip never fabricates rows: a start with a bad count is refused
+  // and flagged in reg 0 bit 3 (frameErr) instead of reading unwritten / stale mel rows.
+  val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, framesIn)
+  val framesOk = nFramesEff =/= 0.U && nFramesEff(6, 0) === 0.U && nFramesEff <= cfg.maxFrames.U && nFramesEff <= framesIn
+  val frameErr = RegInit(false.B)
   val engBusyCycles = RegInit(0.U(32.W))           // cumulative engine-busy cycles (utilisation, reg 7)
   when(eng.io.busy) { engBusyCycles := engBusyCycles + 1.U }
   io.regRdData := MuxLookup(io.regRdAddr, 0.U)(Seq(
-    0.U -> Cat(seq.io.paused, doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
+    0.U -> Cat(frameErr, seq.io.paused, doneR, seq.io.busy), 1.U -> regs.langToken, 2.U -> nFramesEff, 3.U -> framesIn,
     4.U -> tokCount, 5.U -> seq.io.pc, 6.U -> seq.io.pos, 7.U -> engBusyCycles, 10.U -> eng.io.satCount))
   io.done := doneR
   io.busy := seq.io.busy
@@ -87,7 +93,8 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   when(melWr) { melWord := melWord + 1.U; when(melWord === 2.U) { melWr := false.B; framesIn := framesIn + 1.U } }
 
   // ---------------- sequencer wiring
-  seq.io.start := startPulse
+  seq.io.start := startPulse && framesOk
+  when(startPulse) { frameErr := !framesOk }
   seq.io.nFrames := nFramesEff
   seq.io.langToken := regs.langToken
   // engine command arbitration: attention owns the engine while busy

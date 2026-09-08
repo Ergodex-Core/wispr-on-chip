@@ -58,6 +58,8 @@ def prepare(set_name: str, uids: list[str], frames_mode: str, out: Path):
         json.dump(meta, open(d / "meta.json", "w"), indent=1)
         (d / "golden_tokens.txt").write_text(" ".join(map(str, toks)) + "\n")
         lines.append(d.name)
+        for stale in ("rtl_tokens.txt", "rtl_stats.json"):   # never compare against a previous run's output
+            (d / stale).unlink(missing_ok=True)
         print(f"prepared {uid}: n_frames={nf} golden tokens={len(toks)} ({meta['golden_seconds']} s)")
     (out / "clips.txt").write_text("\n".join(lines) + "\n")
 
@@ -114,11 +116,16 @@ def main():
         prepare(set_name, uids, a.frames, out)
     if a.prepare_only:
         return
+    rc = 0
     if not a.compare_only:
         env = dict(os.environ, E2E_DIR=str(out), WHISPER_SIM_THREADS=str(a.threads), PATH="/opt/sbt/bin:" + os.environ["PATH"])
         rc = subprocess.call(["sbt", "-batch", "testOnly whisper.E2ESpec"], cwd=REPO, env=env)
         print("sbt rc", rc)
-    compare(set_name, uids, out)
+    agg = compare(set_name, uids, out)
+    # the harness fails unless every requested clip ran and its tokens are identical to the golden model
+    ok = rc == 0 and agg["ran"] == agg["n"] and agg["identical"] == agg["n"]
+    print("E2E", "PASS" if ok else "FAIL", f"({agg['identical']}/{agg['n']} identical, sbt rc {rc})")
+    sys.exit(0 if ok else 1)
 
 
 if __name__ == "__main__":
