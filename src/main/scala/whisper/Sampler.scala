@@ -30,16 +30,27 @@ class Sampler(cfg: WhisperConfig) extends Module {
   val nt = io.in.bits.nTile
   val mask = suppRom(nt) | Mux(io.first, blankRom(nt), 0.U)
   val minV = (-(BigInt(1) << 31)).S(32.W)
-  val vals = VecInit((0 until 32).map(i => Mux(mask(i), minV, io.in.bits.data(i))))
-  // lowest-index max within the beat
+  // Lowest-index max within the beat as a balanced tree ("take b only if strictly greater" keeps the
+  // left = lower index on ties), pipelined in two register stages so the logic depth per cycle is
+  // 2-3 compare levels (a 31-deep serial chain synthesised to ~9.5 ns on ASAP7).
   def better(a: (SInt, UInt), b: (SInt, UInt)): (SInt, UInt) = { val take = b._1 > a._1; (Mux(take, b._1, a._1), Mux(take, b._2, a._2)) }
-  val (bv, bi) = (0 until 32).map(i => (vals(i), i.U(5.W))).reduceLeft(better)
-  val cand = Cat(nt(10, 0), bi)
+  def tree(xs: Seq[(SInt, UInt)]): Seq[(SInt, UInt)] = xs.grouped(2).map { case Seq(a, b) => better(a, b); case Seq(a) => a }.toSeq
+  // stage 0 -> 1: mask, first two tree levels (32 -> 8)
+  val v1 = RegNext(io.in.fire, false.B); val nt1 = RegNext(nt); val last1 = RegNext(io.in.bits.last)
+  val l0 = (0 until 32).map(i => (Mux(mask(i), minV, io.in.bits.data(i)), i.U(5.W)))
+  val l2 = tree(tree(l0))
+  val c1v = RegNext(VecInit(l2.map(_._1))); val c1i = RegNext(VecInit(l2.map(_._2)))
+  // stage 1 -> 2: remaining three levels (8 -> 1)
+  val v2 = RegNext(v1, false.B); val nt2 = RegNext(nt1); val last2 = RegNext(last1)
+  val (bv2, bi2) = tree(tree(tree(c1v.zip(c1i)))).head
+  val bv = RegNext(bv2); val bi = RegNext(bi2)
+  val v3 = RegNext(v2, false.B); val nt3 = RegNext(nt2); val last3 = RegNext(last2)
+  val cand = Cat(nt3(10, 0), bi)
   val done = RegInit(false.B); done := false.B
   when(io.start) { have := false.B; best := minV; bestIdx := 0.U }
-  when(io.in.fire) {
+  when(v3) {
     when(!have || bv > best) { best := bv; bestIdx := cand; have := true.B }
-    when(io.in.bits.last) { done := true.B }
+    when(last3) { done := true.B }
   }
   io.token := bestIdx
   io.isEot := bestIdx === Microcode.eot.U

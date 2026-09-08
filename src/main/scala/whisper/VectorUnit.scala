@@ -154,8 +154,8 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
   val embOut2 = Reg(Vec(8, SInt(16.W)))
   // --- LN pass 1 stats
   val laneSq = aLanes.map(a => (a * a).asUInt)
-  val sumLanes = aLanes.map(_.pad(32)).reduce(_ +& _)
-  val sumSq = laneSq.map(_.pad(64)).reduce(_ +& _)
+  val sumLanes = VecInit(aLanes.map(_.pad(32))).reduceTree(_ +& _)
+  val sumSq = VecInit(laneSq.map(_.pad(64))).reduceTree(_ +& _)
   when(v1 && st1 === sP1 && cmd.op === VecOp.LN.U) {
     sumX := sumX + sumLanes(31, 0).asSInt
     sumX2 := sumX2 + sumSq(63, 0)
@@ -207,7 +207,7 @@ class VectorUnit(cfg: WhisperConfig) extends Module {
     }.elsewhen(st1 === sP2) { lanesOut2 := lnLanes }
   }
   // maxabs tracking + rowbuf write (stage 2)
-  val absMax2 = lanesOut2.map(x => Mux(x < 0.S, (-x).asUInt, x.asUInt)(16, 0)).reduce((a, b) => Mux(a > b, a, b))
+  val absMax2 = VecInit(lanesOut2.map(x => Mux(x < 0.S, (-x).asUInt, x.asUInt)(16, 0))).reduceTree((a, b) => Mux(a > b, a, b))
   val rbWrite = v2 && ((st2 === sP1 && cmd.op === VecOp.DYNQ.U) || (st2 === sP2 && cmd.op === VecOp.LN.U))
   when(rbWrite) {
     rowBuf.write(idx2, VecInit(lanesOut2.map(_(15, 0).asSInt)))

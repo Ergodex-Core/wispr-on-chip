@@ -83,6 +83,8 @@ class Sequencer(cfg: WhisperConfig) extends Module {
   io.kvFlush := kvFlush
   // ---- sampler / tokens
   val samplerStart = RegInit(false.B); samplerStart := false.B
+  val sampDone = RegInit(false.B)                      // sampler finished the current logits row
+  when(samplerStart) { sampDone := false.B }.elsewhen(io.samplerDone) { sampDone := true.B }
   io.samplerStart := samplerStart
   io.samplerFirst := pos === (Microcode.promptLen - 1).U
   val tokV = RegInit(false.B); val tokBits = Reg(UInt(16.W))
@@ -128,9 +130,11 @@ class Sequencer(cfg: WhisperConfig) extends Module {
         is(UOpc.TOK_PROMPT.U) { tok := promptTok((pos + 1.U)(2, 0)); pc := pc + 1.U }
         is(UOpc.NEXTPOS.U) { pos := pos + 1.U; pc := ins.imm }
         is(UOpc.SAMPLE.U) {
-          // the LM matmul just finished: sampler.done pulsed during the wait -> token ready now
+          // the LM matmul has finished; the sampler pipeline pulses done a few cycles after the last beat
           val t = io.samplerToken
-          when(io.samplerIsEot || genCount === Microcode.sampleLen.U || pos === (cfg.maxTextCtx - 1).U) {
+          when(!sampDone) {
+            // stay here until the sampler has consumed the last logits beat
+          }.elsewhen(io.samplerIsEot || genCount === Microcode.sampleLen.U || pos === (cfg.maxTextCtx - 1).U) {
             busy := false.B; state := sIdle
           }.otherwise {
             tok := t; genCount := genCount + 1.U; tokV := true.B; tokBits := t

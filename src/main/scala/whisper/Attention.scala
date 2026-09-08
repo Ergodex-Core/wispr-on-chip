@@ -140,7 +140,7 @@ class Attention(cfg: WhisperConfig) extends Module {
     val d = Mux(dFull > 4095.U, 4095.U, dFull(11, 0))
     pLanes(i) := Mux(keyValid(jj), expLut(d), 0.U)
   }
-  val pLaneSum = pLanes.map(_.pad(28)).reduce(_ +& _)
+  val pLaneSum = VecInit(pLanes.map(_.pad(28))).reduceTree(_ +& _)
   val pHiBytes = Cat(pLanes.reverse.map(p => p(15, 8)))
   val pLoBytes = Cat(pLanes.reverse.map(p => p(7, 0)))
   val pWr = Wire(Bool()); pWr := false.B
