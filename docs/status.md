@@ -209,7 +209,8 @@ position 3 is bit-exact.
 
 `make all` = `weights-check` + `test` + `e2e`. The three parts were run separately because the serial
 `e2e` target takes ~13 h on this machine (13 clips × ~1 h); the e2e sets were run on Modal with the
-identical image (`make e2e-modal`), the unit tests locally: MAKE_TEST_RESULT
+identical image (`make e2e-modal`), the unit tests locally on the final commit: `make test` → pytest 18 passed (4.7 s); sbt 6 suites, 49 tests
+succeeded, 0 failed, 18 min (2026-09-08 00:21 UTC, `/tmp/make_test_final.log`); `make weights-check` → OK.
 
 Deviations from the prompt, all recorded in `docs/decisions.md`:
 
