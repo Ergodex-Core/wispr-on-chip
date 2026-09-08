@@ -122,7 +122,14 @@ token buffer, real transformer layers over a chunked prefill, final norm, LM hea
 token written back into the token buffer, decode steps, tokens out. Two emissions of the *same* generated
 program (decision #12); the golden mirror `tests/vectors/gen_layer.py` executes the identical sequence.
 
-_(pending: the verification run of this configuration is still in flight)_
+| run | program | what it adds | cycles (rate, engine busy) | tokens | residual bank |
+|---|---|---|---|---|---|
+| A | 48 instructions: 2 layers, maxCtx 64, chunk 8; 12-token prompt (chunks of 8 + 4), 2 decode steps | layer indexing (two KV regions), multi-chunk prefill, the token-buffer feedback path | 3,166,208 (38.9 k cycles/s, 96.0 % busy, 3 requant saturations) | 1313, 7360 — identical | all 14 rows identical |
+| B | 28 instructions: 1 layer, maxCtx 2048, chunk 32; 70-token prompt (chunks 32 + 32 + 6), 1 decode step | full-scale addressing (16 MB residual bank, 20-bit word addresses), attention over two key tiles in situ | 4,534,272 (46.4 k cycles/s, 93.0 % busy, 0 saturations) | 52 — identical | all 71 rows identical |
+
+Elaboration + Verilator build is ~175 s per configuration; the two runs load 94 MB and 47 MB of int8
+weight images. Run A's three requant saturations are reproduced exactly by the golden model (the residual
+is bit-identical), which is the tighter margin of decision #13 being exercised on real data.
 
 What this covers that the unit specs cannot: the sequencer's control flow and chunk loop, the runtime
 substitution of rows / row offsets / key counts / positions, the token-buffer feedback path, engine
@@ -160,16 +167,21 @@ every RTL assertion (irrevocable handshakes, no sink stalls, address ranges, tok
 | Weight backends | RomLiteral / RomInit / Sram on real tensors of every kind | 16/16 identical |
 | Literal ROM path | k and v projections of layer 0 as VecInit ROMs | 2/2 bit-exact |
 | Micro-program | 848 instructions checked against every memory they address | pass |
-| **Whole chip on Verilator** | **the generated program over real layers, prefill + sampling + decode** | **_(pending: the verification run of this configuration is still in flight)_** |
-| Whole chip | elaboration of the 42-layer configuration to SystemVerilog | _(pending: the verification run of this configuration is still in flight)_ |
+| **Whole chip on Verilator** | **the generated program over real layers, prefill + sampling + decode** | ****2/2 bit-exact: every residual row and every emitted token (§5)**** |
+| Whole chip | elaboration of the 42-layer configuration to SystemVerilog | 82 modules, 9.9 MB of SystemVerilog in 39 s (Sequencer with the 848-instruction program: 5.2 MB) |
 
-_(pending: the verification run of this configuration is still in flight)_
+Clean run of this configuration after the requantisation: `make golden-test` 22/22, `make test-rtl` 64/64 in 36 min, `make test-layer` 2/2 in 9 min, `make elab` in 47 s, `make weights-check` OK.
 
 ## 8. Analytic cycle model (`tests/cycle_model.py`)
 Built only from the unit measurements above (engine `KT·NT·(M+4)+10`, the per-row vector costs, an
 attention formula), then **validated against the measured full-chip runs** (`--validate`):
 
-_(pending: the verification run of this configuration is still in flight)_
+| run | predicted | measured | ratio |
+|---|---|---|---|
+| 2 layers, ctx 64, chunk 8, 12 prompt tokens, 2 decode steps | 3,144,081 | 3,166,208 | 0.993 |
+| 1 layer, ctx 2048, chunk 32, 70 prompt tokens, 1 decode step | 4,491,979 | 4,534,272 | 0.991 |
+
+Nothing was fitted to these runs: every formula comes from the unit specs.
 
 At full scale it predicts 282 M cycles for a 128-token prefill (gate/up 48 %, down 24 %, q/k/v/o 18 %,
 attention 2 %) and 11.4 M cycles per decode step (gate/up 45 %, down 23 %, LM head 11.5 %), i.e. the

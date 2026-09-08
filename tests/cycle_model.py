@@ -19,7 +19,7 @@ VU = dict(rmsnorm=691, dynq=295, add=262, embed=139, rope_q=410, rope_k=74, silu
 # LayerSpec runs, for --validate (measured cycles are recorded in docs/status.md)
 MEASURED = [
     ("2 layers, ctx 64, chunk 8", 2, 12, 8, 2, 256, 3166208),
-    ("1 layer, ctx 2048, chunk 32", 1, 70, 32, 1, 256, 0),
+    ("1 layer, ctx 2048, chunk 32", 1, 70, 32, 1, 256, 4534272),
 ]
 
 

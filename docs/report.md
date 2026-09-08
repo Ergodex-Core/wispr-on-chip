@@ -31,11 +31,11 @@ checked statically against every memory it addresses.
 | Sampler | LM-head slice from the engine, random streams with ties and eos | 4/4 |
 | Weight backends | RomLiteral / RomInit / Sram on real tensors of all four kinds | 16/16 identical |
 | Micro-program | every instruction of the 42-layer program vs the memories it addresses | pass |
-| **Whole chip on Verilator** | **the generated program over real layers: prefill, sampling, decode** | **_(pending: the verification run of this configuration is still in flight)_** |
-| Whole chip | elaboration of the 42-layer configuration to SystemVerilog | _(pending: the verification run of this configuration is still in flight)_ |
+| **Whole chip on Verilator** | **the generated program over real layers: prefill, sampling, decode** | **both emissions bit-exact: residual bank and token stream** |
+| Whole chip | elaboration of the 42-layer configuration to SystemVerilog | 82 modules, 9.9 MB, 39 s |
 
 An analytic cycle model built only from unit measurements predicts the measured full-chip runs within
-_(pending: the verification run of this configuration is still in flight)_, and gives 282 M cycles for a 128-token prefill and 11.4 M cycles per generated
+0.9 %, and gives 282 M cycles for a 128-token prefill and 11.4 M cycles per generated
 token (weight-port bound: 2.5 GB of weights through a 256-byte port).
 
 ## 2. Method
@@ -107,7 +107,7 @@ The ladder is the base's, plus a rung the base did not have:
    decode position. The 42-layer program is validated this way without being simulated.
 4. **The whole chip on Verilator** (`make test-layer`): `MiniCPMTop` runs the generated program over real
    layers, and both the residual bank and the emitted token ids must equal the golden mirror's.
-   _(pending: the verification run of this configuration is still in flight)_
+   Two emissions were run: 2 layers / maxCtx 64 / chunk 8 with a 12-token prompt and 2 decode steps (3.17 M cycles), and 1 layer / maxCtx 2048 / chunk 32 with a 70-token prompt (4.53 M cycles, full-scale addressing and attention over two key tiles). Both matched the golden mirror exactly — every residual row and every emitted token.
 5. Elaboration of the 42-layer configuration to SystemVerilog.
 
 Every RTL run carries the base's assertions (irrevocable handshakes, no sink stalls, address ranges, bank
@@ -126,7 +126,12 @@ slot; the int32 requant lost precision with a fixed 8-bit fraction. Details in `
 Engine jobs cost `KT·NT·(M+4)+10` cycles; vector ops 74–807 cycles per row (RMSNorm 691, SiLU gate 807
 over 6144, RoPE-q 410); attention 229 k cycles for 128×128 with 16 heads. The model was built from those
 unit measurements alone and then checked against the full-chip runs (`--validate`):
-_(pending: the verification run of this configuration is still in flight)_
+| run | predicted | measured | ratio |
+|---|---|---|---|
+| 2 layers, ctx 64, chunk 8, 12 prompt tokens, 2 decode steps | 3,144,081 | 3,166,208 | 0.993 |
+| 1 layer, ctx 2048, chunk 32, 70 prompt tokens, 1 decode step | 4,491,979 | 4,534,272 | 0.991 |
+
+Nothing was fitted to these runs: the formulas come from the unit specs alone.
 
 A 128-token prefill is 282 M cycles (gate/up 48 %, down 24 %, q/k/v/o 18 %, attention 2 %). A decode step
 is 11.4 M cycles of which gate/up 45 %, down 23 %, LM head 11.5 %: at M = 1 the array is bound by the
