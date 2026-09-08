@@ -1,0 +1,848 @@
+   0  embed chunks
+   1  embed
+   2  embed next
+   3  L0 chunks
+   4  L0.norm1
+   5  L0.q
+   6  L0.k
+   7  kvset V
+   8  L0.v -> KV
+   9  L0.rope_q
+  10  kvset K
+  11  L0.rope_k -> KV
+  12  L0.attn
+  13  dynq attn out
+  14  L0.o
+  15  L0.add1
+  16  L0.norm2
+  17  L0.gate
+  18  L0.up
+  19  L0.silu
+  20  L0.down
+  21  L0.add2
+  22  L0 next
+  23  L1 chunks
+  24  L1.norm1
+  25  L1.q
+  26  L1.k
+  27  kvset V
+  28  L1.v -> KV
+  29  L1.rope_q
+  30  kvset K
+  31  L1.rope_k -> KV
+  32  L1.attn
+  33  dynq attn out
+  34  L1.o
+  35  L1.add1
+  36  L1.norm2
+  37  L1.gate
+  38  L1.up
+  39  L1.silu
+  40  L1.down
+  41  L1.add2
+  42  L1 next
+  43  L2 chunks
+  44  L2.norm1
+  45  L2.q
+  46  L2.k
+  47  kvset V
+  48  L2.v -> KV
+  49  L2.rope_q
+  50  kvset K
+  51  L2.rope_k -> KV
+  52  L2.attn
+  53  dynq attn out
+  54  L2.o
+  55  L2.add1
+  56  L2.norm2
+  57  L2.gate
+  58  L2.up
+  59  L2.silu
+  60  L2.down
+  61  L2.add2
+  62  L2 next
+  63  L3 chunks
+  64  L3.norm1
+  65  L3.q
+  66  L3.k
+  67  kvset V
+  68  L3.v -> KV
+  69  L3.rope_q
+  70  kvset K
+  71  L3.rope_k -> KV
+  72  L3.attn
+  73  dynq attn out
+  74  L3.o
+  75  L3.add1
+  76  L3.norm2
+  77  L3.gate
+  78  L3.up
+  79  L3.silu
+  80  L3.down
+  81  L3.add2
+  82  L3 next
+  83  L4 chunks
+  84  L4.norm1
+  85  L4.q
+  86  L4.k
+  87  kvset V
+  88  L4.v -> KV
+  89  L4.rope_q
+  90  kvset K
+  91  L4.rope_k -> KV
+  92  L4.attn
+  93  dynq attn out
+  94  L4.o
+  95  L4.add1
+  96  L4.norm2
+  97  L4.gate
+  98  L4.up
+  99  L4.silu
+ 100  L4.down
+ 101  L4.add2
+ 102  L4 next
+ 103  L5 chunks
+ 104  L5.norm1
+ 105  L5.q
+ 106  L5.k
+ 107  kvset V
+ 108  L5.v -> KV
+ 109  L5.rope_q
+ 110  kvset K
+ 111  L5.rope_k -> KV
+ 112  L5.attn
+ 113  dynq attn out
+ 114  L5.o
+ 115  L5.add1
+ 116  L5.norm2
+ 117  L5.gate
+ 118  L5.up
+ 119  L5.silu
+ 120  L5.down
+ 121  L5.add2
+ 122  L5 next
+ 123  L6 chunks
+ 124  L6.norm1
+ 125  L6.q
+ 126  L6.k
+ 127  kvset V
+ 128  L6.v -> KV
+ 129  L6.rope_q
+ 130  kvset K
+ 131  L6.rope_k -> KV
+ 132  L6.attn
+ 133  dynq attn out
+ 134  L6.o
+ 135  L6.add1
+ 136  L6.norm2
+ 137  L6.gate
+ 138  L6.up
+ 139  L6.silu
+ 140  L6.down
+ 141  L6.add2
+ 142  L6 next
+ 143  L7 chunks
+ 144  L7.norm1
+ 145  L7.q
+ 146  L7.k
+ 147  kvset V
+ 148  L7.v -> KV
+ 149  L7.rope_q
+ 150  kvset K
+ 151  L7.rope_k -> KV
+ 152  L7.attn
+ 153  dynq attn out
+ 154  L7.o
+ 155  L7.add1
+ 156  L7.norm2
+ 157  L7.gate
+ 158  L7.up
+ 159  L7.silu
+ 160  L7.down
+ 161  L7.add2
+ 162  L7 next
+ 163  L8 chunks
+ 164  L8.norm1
+ 165  L8.q
+ 166  L8.k
+ 167  kvset V
+ 168  L8.v -> KV
+ 169  L8.rope_q
+ 170  kvset K
+ 171  L8.rope_k -> KV
+ 172  L8.attn
+ 173  dynq attn out
+ 174  L8.o
+ 175  L8.add1
+ 176  L8.norm2
+ 177  L8.gate
+ 178  L8.up
+ 179  L8.silu
+ 180  L8.down
+ 181  L8.add2
+ 182  L8 next
+ 183  L9 chunks
+ 184  L9.norm1
+ 185  L9.q
+ 186  L9.k
+ 187  kvset V
+ 188  L9.v -> KV
+ 189  L9.rope_q
+ 190  kvset K
+ 191  L9.rope_k -> KV
+ 192  L9.attn
+ 193  dynq attn out
+ 194  L9.o
+ 195  L9.add1
+ 196  L9.norm2
+ 197  L9.gate
+ 198  L9.up
+ 199  L9.silu
+ 200  L9.down
+ 201  L9.add2
+ 202  L9 next
+ 203  L10 chunks
+ 204  L10.norm1
+ 205  L10.q
+ 206  L10.k
+ 207  kvset V
+ 208  L10.v -> KV
+ 209  L10.rope_q
+ 210  kvset K
+ 211  L10.rope_k -> KV
+ 212  L10.attn
+ 213  dynq attn out
+ 214  L10.o
+ 215  L10.add1
+ 216  L10.norm2
+ 217  L10.gate
+ 218  L10.up
+ 219  L10.silu
+ 220  L10.down
+ 221  L10.add2
+ 222  L10 next
+ 223  L11 chunks
+ 224  L11.norm1
+ 225  L11.q
+ 226  L11.k
+ 227  kvset V
+ 228  L11.v -> KV
+ 229  L11.rope_q
+ 230  kvset K
+ 231  L11.rope_k -> KV
+ 232  L11.attn
+ 233  dynq attn out
+ 234  L11.o
+ 235  L11.add1
+ 236  L11.norm2
+ 237  L11.gate
+ 238  L11.up
+ 239  L11.silu
+ 240  L11.down
+ 241  L11.add2
+ 242  L11 next
+ 243  L12 chunks
+ 244  L12.norm1
+ 245  L12.q
+ 246  L12.k
+ 247  kvset V
+ 248  L12.v -> KV
+ 249  L12.rope_q
+ 250  kvset K
+ 251  L12.rope_k -> KV
+ 252  L12.attn
+ 253  dynq attn out
+ 254  L12.o
+ 255  L12.add1
+ 256  L12.norm2
+ 257  L12.gate
+ 258  L12.up
+ 259  L12.silu
+ 260  L12.down
+ 261  L12.add2
+ 262  L12 next
+ 263  L13 chunks
+ 264  L13.norm1
+ 265  L13.q
+ 266  L13.k
+ 267  kvset V
+ 268  L13.v -> KV
+ 269  L13.rope_q
+ 270  kvset K
+ 271  L13.rope_k -> KV
+ 272  L13.attn
+ 273  dynq attn out
+ 274  L13.o
+ 275  L13.add1
+ 276  L13.norm2
+ 277  L13.gate
+ 278  L13.up
+ 279  L13.silu
+ 280  L13.down
+ 281  L13.add2
+ 282  L13 next
+ 283  L14 chunks
+ 284  L14.norm1
+ 285  L14.q
+ 286  L14.k
+ 287  kvset V
+ 288  L14.v -> KV
+ 289  L14.rope_q
+ 290  kvset K
+ 291  L14.rope_k -> KV
+ 292  L14.attn
+ 293  dynq attn out
+ 294  L14.o
+ 295  L14.add1
+ 296  L14.norm2
+ 297  L14.gate
+ 298  L14.up
+ 299  L14.silu
+ 300  L14.down
+ 301  L14.add2
+ 302  L14 next
+ 303  L15 chunks
+ 304  L15.norm1
+ 305  L15.q
+ 306  L15.k
+ 307  kvset V
+ 308  L15.v -> KV
+ 309  L15.rope_q
+ 310  kvset K
+ 311  L15.rope_k -> KV
+ 312  L15.attn
+ 313  dynq attn out
+ 314  L15.o
+ 315  L15.add1
+ 316  L15.norm2
+ 317  L15.gate
+ 318  L15.up
+ 319  L15.silu
+ 320  L15.down
+ 321  L15.add2
+ 322  L15 next
+ 323  L16 chunks
+ 324  L16.norm1
+ 325  L16.q
+ 326  L16.k
+ 327  kvset V
+ 328  L16.v -> KV
+ 329  L16.rope_q
+ 330  kvset K
+ 331  L16.rope_k -> KV
+ 332  L16.attn
+ 333  dynq attn out
+ 334  L16.o
+ 335  L16.add1
+ 336  L16.norm2
+ 337  L16.gate
+ 338  L16.up
+ 339  L16.silu
+ 340  L16.down
+ 341  L16.add2
+ 342  L16 next
+ 343  L17 chunks
+ 344  L17.norm1
+ 345  L17.q
+ 346  L17.k
+ 347  kvset V
+ 348  L17.v -> KV
+ 349  L17.rope_q
+ 350  kvset K
+ 351  L17.rope_k -> KV
+ 352  L17.attn
+ 353  dynq attn out
+ 354  L17.o
+ 355  L17.add1
+ 356  L17.norm2
+ 357  L17.gate
+ 358  L17.up
+ 359  L17.silu
+ 360  L17.down
+ 361  L17.add2
+ 362  L17 next
+ 363  L18 chunks
+ 364  L18.norm1
+ 365  L18.q
+ 366  L18.k
+ 367  kvset V
+ 368  L18.v -> KV
+ 369  L18.rope_q
+ 370  kvset K
+ 371  L18.rope_k -> KV
+ 372  L18.attn
+ 373  dynq attn out
+ 374  L18.o
+ 375  L18.add1
+ 376  L18.norm2
+ 377  L18.gate
+ 378  L18.up
+ 379  L18.silu
+ 380  L18.down
+ 381  L18.add2
+ 382  L18 next
+ 383  L19 chunks
+ 384  L19.norm1
+ 385  L19.q
+ 386  L19.k
+ 387  kvset V
+ 388  L19.v -> KV
+ 389  L19.rope_q
+ 390  kvset K
+ 391  L19.rope_k -> KV
+ 392  L19.attn
+ 393  dynq attn out
+ 394  L19.o
+ 395  L19.add1
+ 396  L19.norm2
+ 397  L19.gate
+ 398  L19.up
+ 399  L19.silu
+ 400  L19.down
+ 401  L19.add2
+ 402  L19 next
+ 403  L20 chunks
+ 404  L20.norm1
+ 405  L20.q
+ 406  L20.k
+ 407  kvset V
+ 408  L20.v -> KV
+ 409  L20.rope_q
+ 410  kvset K
+ 411  L20.rope_k -> KV
+ 412  L20.attn
+ 413  dynq attn out
+ 414  L20.o
+ 415  L20.add1
+ 416  L20.norm2
+ 417  L20.gate
+ 418  L20.up
+ 419  L20.silu
+ 420  L20.down
+ 421  L20.add2
+ 422  L20 next
+ 423  L21 chunks
+ 424  L21.norm1
+ 425  L21.q
+ 426  L21.k
+ 427  kvset V
+ 428  L21.v -> KV
+ 429  L21.rope_q
+ 430  kvset K
+ 431  L21.rope_k -> KV
+ 432  L21.attn
+ 433  dynq attn out
+ 434  L21.o
+ 435  L21.add1
+ 436  L21.norm2
+ 437  L21.gate
+ 438  L21.up
+ 439  L21.silu
+ 440  L21.down
+ 441  L21.add2
+ 442  L21 next
+ 443  L22 chunks
+ 444  L22.norm1
+ 445  L22.q
+ 446  L22.k
+ 447  kvset V
+ 448  L22.v -> KV
+ 449  L22.rope_q
+ 450  kvset K
+ 451  L22.rope_k -> KV
+ 452  L22.attn
+ 453  dynq attn out
+ 454  L22.o
+ 455  L22.add1
+ 456  L22.norm2
+ 457  L22.gate
+ 458  L22.up
+ 459  L22.silu
+ 460  L22.down
+ 461  L22.add2
+ 462  L22 next
+ 463  L23 chunks
+ 464  L23.norm1
+ 465  L23.q
+ 466  L23.k
+ 467  kvset V
+ 468  L23.v -> KV
+ 469  L23.rope_q
+ 470  kvset K
+ 471  L23.rope_k -> KV
+ 472  L23.attn
+ 473  dynq attn out
+ 474  L23.o
+ 475  L23.add1
+ 476  L23.norm2
+ 477  L23.gate
+ 478  L23.up
+ 479  L23.silu
+ 480  L23.down
+ 481  L23.add2
+ 482  L23 next
+ 483  L24 chunks
+ 484  L24.norm1
+ 485  L24.q
+ 486  L24.k
+ 487  kvset V
+ 488  L24.v -> KV
+ 489  L24.rope_q
+ 490  kvset K
+ 491  L24.rope_k -> KV
+ 492  L24.attn
+ 493  dynq attn out
+ 494  L24.o
+ 495  L24.add1
+ 496  L24.norm2
+ 497  L24.gate
+ 498  L24.up
+ 499  L24.silu
+ 500  L24.down
+ 501  L24.add2
+ 502  L24 next
+ 503  L25 chunks
+ 504  L25.norm1
+ 505  L25.q
+ 506  L25.k
+ 507  kvset V
+ 508  L25.v -> KV
+ 509  L25.rope_q
+ 510  kvset K
+ 511  L25.rope_k -> KV
+ 512  L25.attn
+ 513  dynq attn out
+ 514  L25.o
+ 515  L25.add1
+ 516  L25.norm2
+ 517  L25.gate
+ 518  L25.up
+ 519  L25.silu
+ 520  L25.down
+ 521  L25.add2
+ 522  L25 next
+ 523  L26 chunks
+ 524  L26.norm1
+ 525  L26.q
+ 526  L26.k
+ 527  kvset V
+ 528  L26.v -> KV
+ 529  L26.rope_q
+ 530  kvset K
+ 531  L26.rope_k -> KV
+ 532  L26.attn
+ 533  dynq attn out
+ 534  L26.o
+ 535  L26.add1
+ 536  L26.norm2
+ 537  L26.gate
+ 538  L26.up
+ 539  L26.silu
+ 540  L26.down
+ 541  L26.add2
+ 542  L26 next
+ 543  L27 chunks
+ 544  L27.norm1
+ 545  L27.q
+ 546  L27.k
+ 547  kvset V
+ 548  L27.v -> KV
+ 549  L27.rope_q
+ 550  kvset K
+ 551  L27.rope_k -> KV
+ 552  L27.attn
+ 553  dynq attn out
+ 554  L27.o
+ 555  L27.add1
+ 556  L27.norm2
+ 557  L27.gate
+ 558  L27.up
+ 559  L27.silu
+ 560  L27.down
+ 561  L27.add2
+ 562  L27 next
+ 563  L28 chunks
+ 564  L28.norm1
+ 565  L28.q
+ 566  L28.k
+ 567  kvset V
+ 568  L28.v -> KV
+ 569  L28.rope_q
+ 570  kvset K
+ 571  L28.rope_k -> KV
+ 572  L28.attn
+ 573  dynq attn out
+ 574  L28.o
+ 575  L28.add1
+ 576  L28.norm2
+ 577  L28.gate
+ 578  L28.up
+ 579  L28.silu
+ 580  L28.down
+ 581  L28.add2
+ 582  L28 next
+ 583  L29 chunks
+ 584  L29.norm1
+ 585  L29.q
+ 586  L29.k
+ 587  kvset V
+ 588  L29.v -> KV
+ 589  L29.rope_q
+ 590  kvset K
+ 591  L29.rope_k -> KV
+ 592  L29.attn
+ 593  dynq attn out
+ 594  L29.o
+ 595  L29.add1
+ 596  L29.norm2
+ 597  L29.gate
+ 598  L29.up
+ 599  L29.silu
+ 600  L29.down
+ 601  L29.add2
+ 602  L29 next
+ 603  L30 chunks
+ 604  L30.norm1
+ 605  L30.q
+ 606  L30.k
+ 607  kvset V
+ 608  L30.v -> KV
+ 609  L30.rope_q
+ 610  kvset K
+ 611  L30.rope_k -> KV
+ 612  L30.attn
+ 613  dynq attn out
+ 614  L30.o
+ 615  L30.add1
+ 616  L30.norm2
+ 617  L30.gate
+ 618  L30.up
+ 619  L30.silu
+ 620  L30.down
+ 621  L30.add2
+ 622  L30 next
+ 623  L31 chunks
+ 624  L31.norm1
+ 625  L31.q
+ 626  L31.k
+ 627  kvset V
+ 628  L31.v -> KV
+ 629  L31.rope_q
+ 630  kvset K
+ 631  L31.rope_k -> KV
+ 632  L31.attn
+ 633  dynq attn out
+ 634  L31.o
+ 635  L31.add1
+ 636  L31.norm2
+ 637  L31.gate
+ 638  L31.up
+ 639  L31.silu
+ 640  L31.down
+ 641  L31.add2
+ 642  L31 next
+ 643  L32 chunks
+ 644  L32.norm1
+ 645  L32.q
+ 646  L32.k
+ 647  kvset V
+ 648  L32.v -> KV
+ 649  L32.rope_q
+ 650  kvset K
+ 651  L32.rope_k -> KV
+ 652  L32.attn
+ 653  dynq attn out
+ 654  L32.o
+ 655  L32.add1
+ 656  L32.norm2
+ 657  L32.gate
+ 658  L32.up
+ 659  L32.silu
+ 660  L32.down
+ 661  L32.add2
+ 662  L32 next
+ 663  L33 chunks
+ 664  L33.norm1
+ 665  L33.q
+ 666  L33.k
+ 667  kvset V
+ 668  L33.v -> KV
+ 669  L33.rope_q
+ 670  kvset K
+ 671  L33.rope_k -> KV
+ 672  L33.attn
+ 673  dynq attn out
+ 674  L33.o
+ 675  L33.add1
+ 676  L33.norm2
+ 677  L33.gate
+ 678  L33.up
+ 679  L33.silu
+ 680  L33.down
+ 681  L33.add2
+ 682  L33 next
+ 683  L34 chunks
+ 684  L34.norm1
+ 685  L34.q
+ 686  L34.k
+ 687  kvset V
+ 688  L34.v -> KV
+ 689  L34.rope_q
+ 690  kvset K
+ 691  L34.rope_k -> KV
+ 692  L34.attn
+ 693  dynq attn out
+ 694  L34.o
+ 695  L34.add1
+ 696  L34.norm2
+ 697  L34.gate
+ 698  L34.up
+ 699  L34.silu
+ 700  L34.down
+ 701  L34.add2
+ 702  L34 next
+ 703  L35 chunks
+ 704  L35.norm1
+ 705  L35.q
+ 706  L35.k
+ 707  kvset V
+ 708  L35.v -> KV
+ 709  L35.rope_q
+ 710  kvset K
+ 711  L35.rope_k -> KV
+ 712  L35.attn
+ 713  dynq attn out
+ 714  L35.o
+ 715  L35.add1
+ 716  L35.norm2
+ 717  L35.gate
+ 718  L35.up
+ 719  L35.silu
+ 720  L35.down
+ 721  L35.add2
+ 722  L35 next
+ 723  L36 chunks
+ 724  L36.norm1
+ 725  L36.q
+ 726  L36.k
+ 727  kvset V
+ 728  L36.v -> KV
+ 729  L36.rope_q
+ 730  kvset K
+ 731  L36.rope_k -> KV
+ 732  L36.attn
+ 733  dynq attn out
+ 734  L36.o
+ 735  L36.add1
+ 736  L36.norm2
+ 737  L36.gate
+ 738  L36.up
+ 739  L36.silu
+ 740  L36.down
+ 741  L36.add2
+ 742  L36 next
+ 743  L37 chunks
+ 744  L37.norm1
+ 745  L37.q
+ 746  L37.k
+ 747  kvset V
+ 748  L37.v -> KV
+ 749  L37.rope_q
+ 750  kvset K
+ 751  L37.rope_k -> KV
+ 752  L37.attn
+ 753  dynq attn out
+ 754  L37.o
+ 755  L37.add1
+ 756  L37.norm2
+ 757  L37.gate
+ 758  L37.up
+ 759  L37.silu
+ 760  L37.down
+ 761  L37.add2
+ 762  L37 next
+ 763  L38 chunks
+ 764  L38.norm1
+ 765  L38.q
+ 766  L38.k
+ 767  kvset V
+ 768  L38.v -> KV
+ 769  L38.rope_q
+ 770  kvset K
+ 771  L38.rope_k -> KV
+ 772  L38.attn
+ 773  dynq attn out
+ 774  L38.o
+ 775  L38.add1
+ 776  L38.norm2
+ 777  L38.gate
+ 778  L38.up
+ 779  L38.silu
+ 780  L38.down
+ 781  L38.add2
+ 782  L38 next
+ 783  L39 chunks
+ 784  L39.norm1
+ 785  L39.q
+ 786  L39.k
+ 787  kvset V
+ 788  L39.v -> KV
+ 789  L39.rope_q
+ 790  kvset K
+ 791  L39.rope_k -> KV
+ 792  L39.attn
+ 793  dynq attn out
+ 794  L39.o
+ 795  L39.add1
+ 796  L39.norm2
+ 797  L39.gate
+ 798  L39.up
+ 799  L39.silu
+ 800  L39.down
+ 801  L39.add2
+ 802  L39 next
+ 803  L40 chunks
+ 804  L40.norm1
+ 805  L40.q
+ 806  L40.k
+ 807  kvset V
+ 808  L40.v -> KV
+ 809  L40.rope_q
+ 810  kvset K
+ 811  L40.rope_k -> KV
+ 812  L40.attn
+ 813  dynq attn out
+ 814  L40.o
+ 815  L40.add1
+ 816  L40.norm2
+ 817  L40.gate
+ 818  L40.up
+ 819  L40.silu
+ 820  L40.down
+ 821  L40.add2
+ 822  L40 next
+ 823  L41 chunks
+ 824  L41.norm1
+ 825  L41.q
+ 826  L41.k
+ 827  kvset V
+ 828  L41.v -> KV
+ 829  L41.rope_q
+ 830  kvset K
+ 831  L41.rope_k -> KV
+ 832  L41.attn
+ 833  dynq attn out
+ 834  L41.o
+ 835  L41.add1
+ 836  L41.norm2
+ 837  L41.gate
+ 838  L41.up
+ 839  L41.silu
+ 840  L41.down
+ 841  L41.add2
+ 842  L41 next
+ 843  norm_f
+ 844  lm
+ 845  tok = argmax (emit; halt on eos / limit)
+ 846  next position
+ 847  halt
