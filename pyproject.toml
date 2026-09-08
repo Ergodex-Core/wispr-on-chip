@@ -1,0 +1,28 @@
+[project]
+name = "minicpm-si"
+version = "0.1.0"
+description = "MiniCPM5-2B LLM accelerator: numpy int golden model, weight generators, per-layer RTL vectors"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26,<3",
+    "torch>=2.4",
+    "safetensors>=0.4",
+    "tokenizers>=0.19",
+    "transformers>=4.44",
+    "pytest>=8",
+    "tqdm",
+]
+
+[tool.uv]
+package = false
+
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.pytest.ini_options]
+testpaths = ["golden/tests", "tests"]

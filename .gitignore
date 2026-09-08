@@ -1,0 +1,19 @@
+.venv/
+__pycache__/
+*.pyc
+target/
+project/target/
+project/project/
+.bsp/
+.metals/
+.bloop/
+out/
+test_run_dir/
+build/
+*.log
+*.vcd
+*.fst
+.pytest_cache/
+dumps/
+# generated weight images (2.4 GB int8): regenerate with `make weights`; MANIFEST.json is committed
+weights/*.bin
