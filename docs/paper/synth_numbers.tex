@@ -1,5 +1,13 @@
-\newcommand{\areaLogicTotal}{TBD}
-\newcommand{\fmaxSA}{TBD}
-\newcommand{\fmaxAll}{TBD}
-\newcommand{\synthRows}{SystolicArray & TBD & TBD & TBD & TBD \\}
-\newcommand{\synthDiscussion}{TBD.}
+\newcommand{\areaLogicTotal}{0.28}
+\newcommand{\fmaxSA}{\SI{0.79}{GHz}}
+\newcommand{\fmaxAll}{\SI{0.17}{GHz}}
+\newcommand{\synthRows}{Systolic array (32$\times$32 MAC, 8 rows/stage) & \num{706724} & \num{29477} & 0.076 & 1207 \\
+\quad variant: 4 rows/stage (not in total) & \num{759002} & \num{41389} & 0.083 & 1100 \\
+Matmul engine (array + requant + control) & \num{1118387} & \num{50626} & 0.120 & 1267 \\
+Vector unit (16 lanes) & \num{505826} & \num{1633} & 0.050 & 4843 \\
+Attention (softmax, divider) & \num{634784} & \num{13501} & 0.059 & 5824 \\
+KV cache logic (transposer) & \num{87073} & \num{16494} & 0.010 & 725 \\
+Sequencer & \num{4860} & \num{602} & 0.000 & 981 \\
+Sampler & \num{8821} & \num{385} & 0.001 & 977 \\
+Weight store mux (247 banks) & \num{513535} & \num{425} & 0.040 & 1027 \\}
+\newcommand{\synthDiscussion}{Three blocks meet the target once their serial reductions were replaced by trees (Section~\ref{sec:arch}; the sampler's original 31-deep compare chain synthesised to \SI{9.5}{ns}): the sequencer, the sampler and the KV-cache logic close at or under \SI{1}{ns}, and the 247-bank weight-store read mux at \SI{1.03}{ns}. The systolic array closes at \SI{1.21}{ns} with eight combinational MAC rows per stage; halving the chain to four rows per stage (a one-line generator parameter, verified bit-exact by the same engine tests) gives \SI{1.10}{ns} for \SI{10}{\percent} more area, which shows that about half of the array's path is the int8 multiplier and 32-bit accumulate rather than the chain. Two blocks are far from \SI{1}{GHz} and are the honest headline of this table: the attention unit's online-softmax step evaluates, in one FSM cycle, a 64-way maximum tree, a subtraction, the per-head scale multiply, a barrel shift, the exponential table and the rescale multiply (\SI{5.8}{ns}, 166 logic levels), and the vector unit's LayerNorm normalisation chains the inverse-square-root Newton step's three multiplies (\SI{4.8}{ns}). Both are single-cycle arithmetic chains inside step-sequenced state machines, so they pipeline mechanically: splitting the softmax step into five stages costs four cycles per query row per key tile, which the cycle model prices at \SI{3.5}{M} cycles (\SI{8}{\percent}) on a 3000-frame clip, and the Newton step is executed once per row so its pipeline costs nothing measurable. We did not make these changes for this paper; the figures below therefore state the design's clock as synthesised (\fmaxAll) and, separately, what the \SI{1}{GHz} cycle counts would deliver once the two chains are pipelined.}

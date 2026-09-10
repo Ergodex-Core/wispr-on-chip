@@ -254,7 +254,7 @@ Encoder attention dominates because 1500 queries × 1500 keys × 6 heads × 4 la
 overlapping the P·V of one tile with the exponentials of the next, and running the vector unit
 concurrently with the engine on independent rows; the analytic model makes both easy to size. At a
 nominal 500 MHz the current design transcribes a 30 s window in about 85 ms plus 0.4 ms per token,
-though no synthesis has been run to support a clock figure.
+and section 7.4 reports the synthesis that supports (and qualifies) that clock figure.
 
 ### 7.3 Simulation cost
 
@@ -263,6 +263,31 @@ Elaboration with firtool takes 16 s including the 247 `$readmemh` images; Verila
 6.6–8.9 k cycles/s on Modal's 8-vCPU containers, so a full-context clip is 54 minutes locally and up
 to 2.5 hours in the cloud. The harness keeps the RTL honest: tokens accumulate in the on-chip queue
 and the host polls the done flag every 4096 cycles, so no compute is skipped (decision #14).
+
+### 7.4 ASAP7 7 nm synthesis
+
+Every compute block was synthesised with Yosys and ABC onto the ASAP7 predictive PDK (7.5-track
+RVT cells, typical corner) against a 1 ns target, memories black-boxed. Logic totals 0.28 mm².
+
+| Block | Area (mm²) | Critical path (ps) |
+|---|---|---|
+| Matmul engine (array + requant + control) | 0.120 | 1267 |
+| Attention (softmax, divider) | 0.059 | 5824 |
+| Vector unit (16 lanes) | 0.050 | 4843 |
+| Weight store mux (247 banks) | 0.040 | 1027 |
+| KV cache logic | 0.010 | 725 |
+| Sampler / sequencer | 0.002 | 977 / 981 |
+
+The sequencer, sampler, KV cache and weight-store mux meet 1 GHz. The attention unit and vector
+unit do not: both put a whole arithmetic chain in one cycle of a step-sequenced state machine, the
+online-softmax step and the LayerNorm Newton step. Both pipeline mechanically, and the cycle model
+prices the softmax pipeline at 8 % more cycles. The array itself is 1.21 ns with 8 MAC rows per
+stage and 1.10 ns with 4, so about half its path is the multiplier and accumulate rather than the
+chain. Memories dominate area: 119 Mbit of SRAM and 308 Mbit of weight ROM come to roughly
+10–13 mm² against 0.28 mm² of logic.
+
+At 1 GHz the measured cycle counts give 42 ms per 30 s window plus 0.2 ms per generated token; as
+synthesised (0.17 GHz) the same window is 248 ms.
 
 ## 8. Deviations from the brief and known limitations
 

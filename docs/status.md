@@ -259,9 +259,52 @@ position 3 is bit-exact.
 * `make test` (python op tests + the six Scala/Verilator suites, RomLiteral included): see the
   "Final" section below for the last full run.
 
+## Phase 6 — ASAP7 7 nm logic synthesis (2026-09-08/10)
+
+Pre-layout standard-cell synthesis of every compute block with Yosys 0.33 + ABC onto the ASAP7
+predictive PDK (7.5-track RVT, typical corner), 1000 ps delay target, memories black-boxed; the
+Verilog is the same firtool output that runs under Verilator, re-emitted without packed arrays
+(`sbt "Test/runMain whisper.synth.EmitSynth"`). Reproduce with `synth/README.md`.
+
+| block | cells | flops | area (mm²) | critical path (ps) | est. Fmax (GHz) |
+|---|---|---|---|---|---|
+| SystolicArray (32×32, 8 rows/stage) | 706,724 | 29,477 | 0.076 | 1207 | 0.79 |
+| &nbsp;&nbsp;variant: 4 rows/stage | 759,002 | 41,389 | 0.083 | 1100 | 0.86 |
+| MatmulEngine (array + requant + control) | 1,118,387 | 50,626 | 0.120 | 1267 | 0.75 |
+| VectorUnit (16 lanes) | 505,826 | 1,633 | 0.050 | 4843 | 0.20 |
+| Attention (softmax, divider) | 634,784 | 13,501 | 0.059 | 5824 | 0.17 |
+| KVCache logic (transposer) | 87,073 | 16,494 | 0.010 | 725 | 1.27 |
+| Sequencer | 4,860 | 602 | 0.0005 | 981 | 0.96 |
+| Sampler | 8,821 | 385 | 0.001 | 977 | 0.96 |
+| WeightStore mux (247 banks) | 513,535 | 425 | 0.040 | 1027 | 0.92 |
+
+Logic total 0.28 mm² (the array is counted once, inside MatmulEngine). Fmax adds ~60 ps for setup
+plus clock-to-Q; wire load is not modelled, so these paths are optimistic.
+
+**Meets 1 GHz:** sequencer, sampler, KV-cache logic, weight-store mux — after the serial reductions
+were replaced by trees (decision #16; the sampler's original 31-deep compare chain was 9.5 ns).
+**Misses it:** the attention unit (5.8 ns) and the vector unit (4.8 ns), both single-cycle arithmetic
+chains inside step-sequenced state machines — the online-softmax step (64-way max tree, subtract,
+scale multiply, barrel shift, exp LUT, rescale multiply in one FSM cycle) and the LayerNorm
+inverse-square-root Newton step. Both pipeline mechanically: five stages on the softmax step costs
+4 cycles per query row per key tile = 3.5 M cycles (8 %) on a 3000-frame clip; the Newton step runs
+once per row so its pipeline costs nothing measurable. Not done here.
+**The array:** 1.21 ns with 8 combinational MAC rows per stage; 1.10 ns with 4 rows (a generator
+parameter, bit-exact on the same engine tests) for 10 % more area — so about half the path is the
+int8 multiplier and 32-bit accumulate, not the chain.
+
+Memories are not synthesised (ASAP7 ships no compiler): 119 Mbit of SRAM (banks 59, KV 58,
+accumulator 1.6, attention/row buffers 0.6) and 308 Mbit of weight ROM. At a published 7 nm
+high-density bit cell of 0.027 µm² and 50 % macro efficiency that is ≈ 6.4 mm² of SRAM plus ≈ 3 mm²
+of via-programmed ROM, so the chip is memory-dominated: ~10–13 mm² of memory against 0.28 mm² of logic.
+
+Latency from the measured cycle counts: a 30 s window is 42.1 M cycles = 248 ms as synthesised
+(0.17 GHz), 56 ms at 0.75 GHz (once the two chains are pipelined, engine-limited), 42 ms at 1 GHz;
+each generated token adds 200 k cycles (0.2 ms at 1 GHz).
+
 ## Final (2026-09-08)
 
-**Result: all five phases pass.** The RTL is bit-exact to the golden int model on every clip run
+**Result: all five phases pass, plus 7 nm synthesis of every block (Phase 6 above).** The RTL is bit-exact to the golden int model on every clip run
 (35 full-context runs: 1 + 13 + 21), the int model meets the WER gate on the 200-utterance set
 (5.52 % vs fp32 5.54 %), and the RTL meets it on the 20-utterance RTL set (7.58 % vs fp32 8.08 %).
 
@@ -289,6 +332,6 @@ Known risks / not done:
   int model (Phase 1), but the requant saturation counter is the only runtime guard.
 * The default and long sets overlap in 10 utterances (rtl_default ⊂ rtl_20), so the distinct clips run
   end-to-end on the RTL are 24, not 35.
-* No synthesis or timing numbers: the design is written for a single clock with registered memory
-  reads, 32×32 int8 MACs and 40-bit accumulators, but it has only been simulated.
+* Synthesis is pre-layout, from an open-source mapper, with memories black-boxed and no wire load;
+  no place-and-route or power simulation was run. Two blocks miss 1 GHz as written (Phase 6).
 * SmoothQuant folding was implemented but never validated (99 % WER); it is off and not needed.
