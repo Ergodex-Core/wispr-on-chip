@@ -63,12 +63,14 @@ class WhisperTop(cfg: WhisperConfig) extends Module {
   }
   seq.io.breakPc := breakPc
   seq.io.resume := resume
-  // Effective frame count. The host either writes it (reg 2; must be a multiple of 128, <= 3000, and
-  // <= the frames streamed) or leaves reg 2 at zero, in which case the streamed count is used as is and
-  // must itself be a multiple of 128. The chip never fabricates rows: a start with a bad count is refused
-  // and flagged in reg 0 bit 3 (frameErr) instead of reading unwritten / stale mel rows.
+  // Effective frame count: reg 2 if the host wrote one, else the number of frames streamed. It must be
+  // non-zero, even (conv2 has stride 2, so n_ctx = frames / 2), at most maxFrames, and at most the number
+  // of frames actually streamed -- that last condition is what stops the chip reading unwritten or stale
+  // mel rows. A start that violates it is refused and flagged in reg 0 bit 3 (frameErr).
+  // Note: the count is NOT required to be a multiple of 128. The accuracy configuration is 3000 frames
+  // (30 s), and 3000 = 128*23.4 is not; ragged tiles are handled throughout.
   val nFramesEff = Mux(regs.nFrames =/= 0.U, regs.nFrames, framesIn)
-  val framesOk = nFramesEff =/= 0.U && nFramesEff(6, 0) === 0.U && nFramesEff <= cfg.maxFrames.U && nFramesEff <= framesIn
+  val framesOk = nFramesEff =/= 0.U && !nFramesEff(0) && nFramesEff <= cfg.maxFrames.U && nFramesEff <= framesIn
   val frameErr = RegInit(false.B)
   val engBusyCycles = RegInit(0.U(32.W))           // cumulative engine-busy cycles (utilisation, reg 7)
   when(eng.io.busy) { engBusyCycles := engBusyCycles + 1.U }

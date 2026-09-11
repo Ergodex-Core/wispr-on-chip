@@ -101,13 +101,18 @@ left open, is recorded here.
     identical image (Debian, Verilator 5.006, sbt 1.10.7, committed weights). Locally, `make e2e`
     still runs the same sets serially.
 
-15. **2026-09-08 — The chip never fabricates mel rows.** The effective frame count is the value of
-    register 2 if non-zero, else the number of frames streamed; it must be a non-zero multiple of 128,
-    at most 3000, and at most the number of frames streamed. A start that violates this is refused and
-    flagged in register 0 bit 3 (`frameErr`). Previously the auto path rounded the streamed count up to
-    a multiple of 128, which would have read unwritten or stale rows of the mel bank (found in review of
-    PR #1; `FrameCheckSpec` covers the rule). The host rule (`n_frames_for`) already produced multiples of
-    128 from the 30 s mel, so no existing run is affected.
+15. **2026-09-08/11 — The chip never fabricates mel rows.** The effective frame count is register 2 if
+    non-zero, else the number of frames streamed; it must be non-zero, even (conv2 has stride 2, so
+    `n_ctx = frames/2`), at most 3000, and at most the number of frames streamed. A start that violates
+    this is refused and flagged in register 0 bit 3 (`frameErr`). Previously the auto path rounded the
+    streamed count up to a multiple of 128, which would have read unwritten or stale rows of the mel bank
+    (found in review of PR #1). **Correction (2026-09-11):** the first version of this check also *required*
+    the count to be a multiple of 128. That silently broke the accuracy configuration — 3000 frames is not a
+    multiple of 128 — so the sequencer never started and a full-context run produced no tokens. The
+    multiple-of-128 rule was never a real constraint (ragged tiles are handled throughout); safety comes
+    from `nFramesEff <= framesIn` alone. Caught by the full-context end-to-end run, not by the 1024-frame
+    smoke run, because 1024 *is* a multiple of 128. `FrameCheckSpec` now covers zero, odd, oversized and
+    unstreamed counts.
 
 16. **2026-09-08 — Reductions are balanced trees; the sampler argmax is pipelined.** ASAP7 logic
     synthesis (Yosys/ABC, 1 ns target; see `docs/paper`) showed the sampler's lowest-index
