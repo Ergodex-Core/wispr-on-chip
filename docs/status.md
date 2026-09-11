@@ -232,6 +232,25 @@ with the golden dumps): every intermediate tensor of the encoder (conv1/conv2/x0
 adds/FFN, encoder output + rowfac) and of decoder position 0 through layer 0 plus the LM-head input at
 position 3 is bit-exact.
 
+### Re-validation after the timing changes (2026-09-11)
+
+Decision #16 (balanced reductions, pipelined sampler) and decision #15 (frame check) changed the RTL
+after the 35-run table above. Re-validated on the changed design:
+
+| check | result |
+|---|---|
+| `make test` (18 pytest + 51 sbt/Verilator tests, 8 suites) | pass |
+| smoke clip at 1024 frames | tokens identical, 10,153,984 cycles (unchanged) |
+| smoke clip at 3000 frames (accuracy configuration) | tokens identical, **42,135,552 cycles — identical to the pre-change run**, WER 0, 0 saturations |
+
+Engine utilisation over the whole 3000-frame run: 62.2 % (26,213,784 of 42,135,552 busy cycles);
+69.7 % at 1024 frames, where the decoder is a larger share of a shorter run.
+
+The 3000-frame run is what caught the frame-check regression of decision #15: the 1024-frame smoke
+run passed it because 1024 is a multiple of 128 and 3000 is not. The 13-clip and 21-clip sets have
+not been re-run on the changed RTL — a cloud attempt was killed by 31 pre-emptions and the six-hour
+function timeout (the harness correctly reported `E2E FAIL`, which is the review fix working).
+
 ## Phase 5 — ROM-literal proof and hardening (2026-09-07/08) — PASS
 
 * `RomLiteralLayerSpec` (`make test`): the six weight tensors of encoder layer 0 elaborated as literal
