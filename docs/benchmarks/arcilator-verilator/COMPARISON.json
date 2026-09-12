@@ -1,0 +1,4586 @@
+{
+  "generated_utc": "2026-09-12T17:37:06.309037+00:00",
+  "expected_original_scala_cases": 51,
+  "coverage_totals": {
+    "reference": {
+      "passed": 51
+    },
+    "arcilator_2s": {
+      "passed": 9,
+      "simulation_failed": 3,
+      "jit_or_startup_timeout": 39
+    },
+    "verilator_2s": {
+      "passed": 51
+    },
+    "arcilator_4s": {
+      "not_run": 51
+    }
+  },
+  "coverage": [
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.attn.q.mult under RomInit",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.attn.q.mult under Sram",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "simulation_failed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.ln1.g under RomLiteral",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.ln1.g under RomInit",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of enc.0.ln1.g under Sram",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "simulation_failed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of dec.emb.resmult under RomLiteral",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of dec.emb.resmult under RomInit",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "return the committed contents of dec.emb.resmult under Sram",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "simulation_failed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "match the whole of enc.0.attn.q.w under RomInit",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "match the whole of enc.pos under RomInit",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "WeightStoreEquivalenceSpec",
+      "case": "decode the flat w8 address space correctly (RomInit, one layer)",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_1_5x32x32_raw",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_2_70x96x64_int8_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_3_33x384x384_int8",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_6_3x64x64_raw_u8",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_7_64x64x96_wide",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_8_130x288x384_int8_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on rand_10_2x32x32_int8_dyn",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_conv1",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_conv2",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_enc0_q",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_enc0_k",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_enc0_o",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_enc0_fc1",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_enc0_fc2",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_dec0_xk",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "MatmulEngineSpec",
+      "case": "be bit-exact on real_lm",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on ln_enc0",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on gelu_dynq_enc0",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on dynq_attn_enc0",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on gelu_static8_conv1",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on add_resid_enc0",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on add_pos_enc",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on add_gelu_pos_enc",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on embed",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "VectorUnitSpec",
+      "case": "be bit-exact on add_embed_dec",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "AttentionSpec",
+      "case": "be bit-exact on enc0_full",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "AttentionSpec",
+      "case": "be bit-exact on enc0_ragged",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "AttentionSpec",
+      "case": "be bit-exact on dec0_self_pos41",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "AttentionSpec",
+      "case": "be bit-exact on dec0_cross_pos41",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "KVWriteSpec",
+      "case": "write K (transposed) and V through the engine bit-exactly",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "FrameCheckSpec",
+      "case": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "SamplerSpec",
+      "case": "pick the lowest-index maximum with suppression, and pulse done",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/TEST-whisper.SamplerSpec.xml",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "passed",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "RomLiteralLayerSpec",
+      "case": "be bit-exact on real_enc0_q",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "RomLiteralLayerSpec",
+      "case": "be bit-exact on real_enc0_fc1",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    },
+    {
+      "suite": "RomLiteralLayerSpec",
+      "case": "be bit-exact on real_enc0_fc2",
+      "reference": "passed",
+      "reference_source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json",
+      "conversion_status": "not_assessed",
+      "detail": "",
+      "arcilator_2s": "jit_or_startup_timeout",
+      "verilator_2s": "passed",
+      "arcilator_4s": "not_run"
+    }
+  ],
+  "python": {
+    "expected_cases": 18,
+    "status": "passed",
+    "observed_cases": 18,
+    "passed_cases": 18,
+    "source": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/python.xml",
+    "wall_s": 3.141
+  },
+  "named_e2e_executions": 34,
+  "unique_e2e_clips": 24,
+  "e2e": {
+    "default": {
+      "expected_executions": 13,
+      "status": "pending"
+    },
+    "long": {
+      "expected_executions": 21,
+      "status": "pending"
+    }
+  },
+  "e2e_debug": "not_assessed_by_this_report",
+  "timings": [
+    {
+      "bench": "SamplerSpec-01",
+      "source_suite": "SamplerSpec",
+      "source_case": "pick the lowest-index maximum with suppression, and pulse done",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 3,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 15594,
+      "frontend_build_wall_s": 0.106378842,
+      "startup_before_region_median_s": 3.2789348,
+      "total_build_estimate_s": 3.385313642,
+      "process_wall_median_s": 21.219047911,
+      "region_wall_median_s": 17.945963107,
+      "cycles_per_s_median": 868.9419401468292,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/sampler-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220678.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "sampler-provenance.json",
+        "sha256": "e77f9647f333504a56a83c3d81e57bea2d6009e8f1b396adecd1b183c4ff28e8"
+      }
+    },
+    {
+      "bench": "SamplerSpec-01",
+      "source_suite": "SamplerSpec",
+      "source_case": "pick the lowest-index maximum with suppression, and pulse done",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 3,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 15594,
+      "frontend_build_wall_s": 5.823649209,
+      "startup_before_region_median_s": 0.002535977,
+      "total_build_estimate_s": 5.826185186,
+      "process_wall_median_s": 0.324519171,
+      "region_wall_median_s": 0.321069524,
+      "cycles_per_s_median": 48568.91992028493,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/sampler-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220742.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "sampler-provenance.json",
+        "sha256": "e77f9647f333504a56a83c3d81e57bea2d6009e8f1b396adecd1b183c4ff28e8"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-01",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 0.034365214,
+      "startup_before_region_median_s": 8.079995231,
+      "total_build_estimate_s": 8.114360444999999,
+      "process_wall_median_s": 8.086648281,
+      "region_wall_median_s": 0.000333461,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220930.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-01",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 3.770792597,
+      "startup_before_region_median_s": 0.00236605,
+      "total_build_estimate_s": 3.773158647,
+      "process_wall_median_s": 0.003203748,
+      "region_wall_median_s": 0.000452359,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220938.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-02",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under RomInit",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 0.033712674,
+      "startup_before_region_median_s": 6.811006894,
+      "total_build_estimate_s": 6.844719568,
+      "process_wall_median_s": 6.819352753,
+      "region_wall_median_s": 0.000459979,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220942.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-02",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under RomInit",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 3.754078301,
+      "startup_before_region_median_s": 0.002490759,
+      "total_build_estimate_s": 3.75656906,
+      "process_wall_median_s": 0.00362005,
+      "region_wall_median_s": 0.000433388,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220949.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-03",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under Sram",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "simulation_failed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.037910864,
+      "startup_before_region_median_s": 8.124817814,
+      "total_build_estimate_s": 8.162728678,
+      "process_wall_median_s": 8.139245419,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220953.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-03",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.attn.q.mult under Sram",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 397,
+      "frontend_build_wall_s": 3.760809202,
+      "startup_before_region_median_s": 0.002327654,
+      "total_build_estimate_s": 3.763136856,
+      "process_wall_median_s": 0.005544737,
+      "region_wall_median_s": 0.002858229,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220961.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-04",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 0.034905183,
+      "startup_before_region_median_s": 8.1273448,
+      "total_build_estimate_s": 8.162249982999999,
+      "process_wall_median_s": 8.133522021,
+      "region_wall_median_s": 0.00044951,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220965.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-04",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 3.761261046,
+      "startup_before_region_median_s": 0.002354689,
+      "total_build_estimate_s": 3.763615735,
+      "process_wall_median_s": 0.003164148,
+      "region_wall_median_s": 0.000418323,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220973.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-05",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under RomInit",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 0.03344934,
+      "startup_before_region_median_s": 6.765891083,
+      "total_build_estimate_s": 6.799340422999999,
+      "process_wall_median_s": 6.775195395,
+      "region_wall_median_s": 0.000447432,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220977.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-05",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under RomInit",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 13,
+      "frontend_build_wall_s": 3.754435913,
+      "startup_before_region_median_s": 0.002493604,
+      "total_build_estimate_s": 3.756929517,
+      "process_wall_median_s": 0.003519428,
+      "region_wall_median_s": 0.000398474,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220983.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-06",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under Sram",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "simulation_failed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.043511515,
+      "startup_before_region_median_s": 8.13963638,
+      "total_build_estimate_s": 8.183147895000001,
+      "process_wall_median_s": 8.154863532,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220987.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-06",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of enc.0.ln1.g under Sram",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 397,
+      "frontend_build_wall_s": 3.751817031,
+      "startup_before_region_median_s": 0.002357496,
+      "total_build_estimate_s": 3.754174527,
+      "process_wall_median_s": 0.005562154,
+      "region_wall_median_s": 0.002859107,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220995.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-07",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 1622,
+      "frontend_build_wall_s": 0.177168254,
+      "startup_before_region_median_s": 7.466038314,
+      "total_build_estimate_s": 7.643206568,
+      "process_wall_median_s": 8.000613646,
+      "region_wall_median_s": 0.52180011,
+      "cycles_per_s_median": 3108.470023128205,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789220999.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-07",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 1622,
+      "frontend_build_wall_s": 35.865752079,
+      "startup_before_region_median_s": 0.00228414,
+      "total_build_estimate_s": 35.868036219000004,
+      "process_wall_median_s": 0.055904905,
+      "region_wall_median_s": 0.053052503,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221007.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-08",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under RomInit",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 1622,
+      "frontend_build_wall_s": 0.036256966,
+      "startup_before_region_median_s": 219.199148109,
+      "total_build_estimate_s": 219.235405075,
+      "process_wall_median_s": 219.891549532,
+      "region_wall_median_s": 0.66077509,
+      "cycles_per_s_median": 2454.693018164471,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221043.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-08",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under RomInit",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 1622,
+      "frontend_build_wall_s": 3.788096489,
+      "startup_before_region_median_s": 0.019661297,
+      "total_build_estimate_s": 3.807757786,
+      "process_wall_median_s": 0.071838988,
+      "region_wall_median_s": 0.051548836,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221263.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-09",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under Sram",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "simulation_failed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.038613347,
+      "startup_before_region_median_s": 8.179684586,
+      "total_build_estimate_s": 8.218297933,
+      "process_wall_median_s": 60.746693851,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221267.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-09",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "return the committed contents of dec.emb.resmult under Sram",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 53494,
+      "frontend_build_wall_s": 3.765572806,
+      "startup_before_region_median_s": 0.002662156,
+      "total_build_estimate_s": 3.768234962,
+      "process_wall_median_s": 0.385671985,
+      "region_wall_median_s": 0.382428866,
+      "cycles_per_s_median": 139879.60835571444,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221328.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-10",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 33,
+      "frontend_build_wall_s": 0.0418171,
+      "startup_before_region_median_s": 3.633027048,
+      "total_build_estimate_s": 3.674844148,
+      "process_wall_median_s": 3.642688462,
+      "region_wall_median_s": 0.001768297,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221332.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-10",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 33,
+      "frontend_build_wall_s": 3.801924718,
+      "startup_before_region_median_s": 0.00244376,
+      "total_build_estimate_s": 3.8043684779999998,
+      "process_wall_median_s": 0.004506062,
+      "region_wall_median_s": 0.001628655,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221336.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-11",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match the whole of enc.0.attn.q.w under RomInit",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 577,
+      "frontend_build_wall_s": 0.034538054,
+      "startup_before_region_median_s": 134.566949945,
+      "total_build_estimate_s": 134.601487999,
+      "process_wall_median_s": 134.747680408,
+      "region_wall_median_s": 0.14927879,
+      "cycles_per_s_median": 3865.2510514052265,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221340.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-11",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match the whole of enc.0.attn.q.w under RomInit",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 577,
+      "frontend_build_wall_s": 3.786010122,
+      "startup_before_region_median_s": 0.018003181,
+      "total_build_estimate_s": 3.804013303,
+      "process_wall_median_s": 0.047327765,
+      "region_wall_median_s": 0.028738045,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221474.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-12",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match the whole of enc.pos under RomInit",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.034393922,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.09797617,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221478.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-12",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "match the whole of enc.pos under RomInit",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 18001,
+      "frontend_build_wall_s": 3.753624437,
+      "startup_before_region_median_s": 0.044191701,
+      "total_build_estimate_s": 3.797816138,
+      "process_wall_median_s": 0.389440636,
+      "region_wall_median_s": 0.344766457,
+      "cycles_per_s_median": 52212.15589427251,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221778.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-13",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "decode the flat w8 address space correctly (RomInit, one layer)",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.055268273,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.044334884,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789221782.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-13",
+      "source_suite": "WeightStoreEquivalenceSpec",
+      "source_case": "decode the flat w8 address space correctly (RomInit, one layer)",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 25,
+      "frontend_build_wall_s": 9.960968621,
+      "startup_before_region_median_s": 0.189607822,
+      "total_build_estimate_s": 10.150576442999999,
+      "process_wall_median_s": 0.191702449,
+      "region_wall_median_s": 0.00115455,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222083.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-01",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_1_5x32x32_raw",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.746447205,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.138891248,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222093.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-01",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_1_5x32x32_raw",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 358,
+      "frontend_build_wall_s": 21.325966218,
+      "startup_before_region_median_s": 0.006153728,
+      "total_build_estimate_s": 21.332119946000002,
+      "process_wall_median_s": 0.011940104,
+      "region_wall_median_s": 0.004988408,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222396.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-02",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_2_70x96x64_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.772398753,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.134721407,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222417.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-02",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_2_70x96x64_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 2542,
+      "frontend_build_wall_s": 21.406794255,
+      "startup_before_region_median_s": 0.006490143,
+      "total_build_estimate_s": 21.413284398000002,
+      "process_wall_median_s": 0.043402873,
+      "region_wall_median_s": 0.035978217,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222720.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-03",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_3_33x384x384_int8",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.793693289,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.129027326,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789222741.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-03",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_3_33x384x384_int8",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 43799,
+      "frontend_build_wall_s": 21.272827516,
+      "startup_before_region_median_s": 0.006297515,
+      "total_build_estimate_s": 21.279125031,
+      "process_wall_median_s": 0.56998168,
+      "region_wall_median_s": 0.562613354,
+      "cycles_per_s_median": 77849.20085633089,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223044.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-04",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.746081685,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.169910421,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223066.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-04",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 176502,
+      "frontend_build_wall_s": 21.490735715,
+      "startup_before_region_median_s": 0.006086617,
+      "total_build_estimate_s": 21.496822332,
+      "process_wall_median_s": 2.271396023,
+      "region_wall_median_s": 2.26397673,
+      "cycles_per_s_median": 77961.04865441793,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223369.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-05",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.749182519,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.170743183,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223393.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-05",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 153531,
+      "frontend_build_wall_s": 21.401073234,
+      "startup_before_region_median_s": 0.00612575,
+      "total_build_estimate_s": 21.407198983999997,
+      "process_wall_median_s": 1.972788881,
+      "region_wall_median_s": 1.964707995,
+      "cycles_per_s_median": 78144.4369294176,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223696.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-06",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_6_3x64x64_raw_u8",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.746092876,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.169438093,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789223719.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-06",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_6_3x64x64_raw_u8",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 1209,
+      "frontend_build_wall_s": 21.420694277,
+      "startup_before_region_median_s": 0.005998894,
+      "total_build_estimate_s": 21.426693171,
+      "process_wall_median_s": 0.023048715,
+      "region_wall_median_s": 0.016336701,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224022.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-07",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_7_64x64x96_wide",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.766549587,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.080596169,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224043.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-07",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_7_64x64x96_wide",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 2534,
+      "frontend_build_wall_s": 21.48733409,
+      "startup_before_region_median_s": 0.006174536,
+      "total_build_estimate_s": 21.493508626,
+      "process_wall_median_s": 0.044685097,
+      "region_wall_median_s": 0.037566483,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224346.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-08",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_8_130x288x384_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.769556745,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.151783436,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224368.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-08",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_8_130x288x384_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 45762,
+      "frontend_build_wall_s": 21.475122308,
+      "startup_before_region_median_s": 0.006237299,
+      "total_build_estimate_s": 21.481359606999998,
+      "process_wall_median_s": 0.605493728,
+      "region_wall_median_s": 0.598137927,
+      "cycles_per_s_median": 76507.4373891024,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224671.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-09",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.761591614,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.07548479,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224693.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-09",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 291722,
+      "frontend_build_wall_s": 21.355851268,
+      "startup_before_region_median_s": 0.006178688,
+      "total_build_estimate_s": 21.362029955999997,
+      "process_wall_median_s": 3.986223052,
+      "region_wall_median_s": 3.978509509,
+      "cycles_per_s_median": 73324.44457907666,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789224996.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-10",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_10_2x32x32_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.752902065,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.093598956,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225021.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-10",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on rand_10_2x32x32_int8_dyn",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 346,
+      "frontend_build_wall_s": 21.237561487,
+      "startup_before_region_median_s": 0.006247745,
+      "total_build_estimate_s": 21.243809232,
+      "process_wall_median_s": 0.011669604,
+      "region_wall_median_s": 0.004825379,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225324.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-11",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_conv1",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.668075588,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.096309948,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225345.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-11",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_conv1",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 35262,
+      "frontend_build_wall_s": 12.368269419,
+      "startup_before_region_median_s": 0.016568807,
+      "total_build_estimate_s": 12.384838226000001,
+      "process_wall_median_s": 0.404277133,
+      "region_wall_median_s": 0.386429792,
+      "cycles_per_s_median": 91250.7284117473,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225648.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-12",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_conv2",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.685597562,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.113807658,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225661.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-12",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_conv2",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 63310,
+      "frontend_build_wall_s": 12.487556247,
+      "startup_before_region_median_s": 0.05221805,
+      "total_build_estimate_s": 12.539774297000001,
+      "process_wall_median_s": 0.680806555,
+      "region_wall_median_s": 0.627657621,
+      "cycles_per_s_median": 100867.09359018522,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225963.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-13",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_q",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.698926542,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.119599668,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789225977.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-13",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_q",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 22222,
+      "frontend_build_wall_s": 12.663059375,
+      "startup_before_region_median_s": 0.020912434,
+      "total_build_estimate_s": 12.683971808999999,
+      "process_wall_median_s": 0.251420468,
+      "region_wall_median_s": 0.229438611,
+      "cycles_per_s_median": 96853.79415062795,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226279.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-14",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_k",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.697186348,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.098792684,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226292.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-14",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_k",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 22222,
+      "frontend_build_wall_s": 12.464968155,
+      "startup_before_region_median_s": 0.02034942,
+      "total_build_estimate_s": 12.485317575,
+      "process_wall_median_s": 0.249739727,
+      "region_wall_median_s": 0.228391086,
+      "cycles_per_s_median": 97298.018014591,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226595.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-15",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_o",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.67739399,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.135328365,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226608.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-15",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_o",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 23758,
+      "frontend_build_wall_s": 12.377897158,
+      "startup_before_region_median_s": 0.021057257,
+      "total_build_estimate_s": 12.398954415,
+      "process_wall_median_s": 0.281516438,
+      "region_wall_median_s": 0.25940842,
+      "cycles_per_s_median": 91585.30783233637,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226911.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-16",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_fc1",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.69755369,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.150155651,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789226923.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-16",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_fc1",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 89998,
+      "frontend_build_wall_s": 12.387657426,
+      "startup_before_region_median_s": 0.06923916,
+      "total_build_estimate_s": 12.456896586000001,
+      "process_wall_median_s": 1.011340903,
+      "region_wall_median_s": 0.941072166,
+      "cycles_per_s_median": 95633.47344819887,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227226.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-17",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_fc2",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.685176648,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.0925778,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227240.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-17",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_enc0_fc2",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 85390,
+      "frontend_build_wall_s": 12.586481149,
+      "startup_before_region_median_s": 0.068386864,
+      "total_build_estimate_s": 12.654868013000002,
+      "process_wall_median_s": 0.926741058,
+      "region_wall_median_s": 0.857253898,
+      "cycles_per_s_median": 99608.76258389438,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227542.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-18",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_dec0_xk",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.698494661,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.123239926,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227556.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-18",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_dec0_xk",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 22222,
+      "frontend_build_wall_s": 12.583087461,
+      "startup_before_region_median_s": 0.021479986,
+      "total_build_estimate_s": 12.604567446999999,
+      "process_wall_median_s": 0.252052944,
+      "region_wall_median_s": 0.229525147,
+      "cycles_per_s_median": 96817.2781520972,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227859.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-19",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_lm",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.696651271,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.133327894,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789227872.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "MatmulEngineSpec-19",
+      "source_suite": "MatmulEngineSpec",
+      "source_case": "be bit-exact on real_lm",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 98908,
+      "frontend_build_wall_s": 12.183941259,
+      "startup_before_region_median_s": 1.947934971,
+      "total_build_estimate_s": 14.13187623,
+      "process_wall_median_s": 2.866514791,
+      "region_wall_median_s": 0.915882919,
+      "cycles_per_s_median": 107991.9692224329,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228175.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-01",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on ln_enc0",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.343761712,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.064757123,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228190.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-01",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on ln_enc0",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 6404,
+      "frontend_build_wall_s": 8.705452108,
+      "startup_before_region_median_s": 1.987987613,
+      "total_build_estimate_s": 10.693439720999999,
+      "process_wall_median_s": 2.042989727,
+      "region_wall_median_s": 0.052200227,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228490.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-02",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on gelu_dynq_enc0",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.346806705,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.103694131,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228501.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-02",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on gelu_dynq_enc0",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 14964,
+      "frontend_build_wall_s": 8.733285016,
+      "startup_before_region_median_s": 1.985582122,
+      "total_build_estimate_s": 10.718867138,
+      "process_wall_median_s": 2.124805138,
+      "region_wall_median_s": 0.136674564,
+      "cycles_per_s_median": 109486.35621767925,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228801.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-03",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on dynq_attn_enc0",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.338452438,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.098055582,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789228812.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-03",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on dynq_attn_enc0",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 4884,
+      "frontend_build_wall_s": 8.698985862,
+      "startup_before_region_median_s": 1.983727757,
+      "total_build_estimate_s": 10.682713619000001,
+      "process_wall_median_s": 2.027962662,
+      "region_wall_median_s": 0.042269099,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229113.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-04",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on gelu_static8_conv1",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.337671737,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.097058739,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229123.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-04",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on gelu_static8_conv1",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 3804,
+      "frontend_build_wall_s": 8.92751976,
+      "startup_before_region_median_s": 1.988713796,
+      "total_build_estimate_s": 10.916233556,
+      "process_wall_median_s": 2.026358838,
+      "region_wall_median_s": 0.034745558,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229424.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-05",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_resid_enc0",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.339969134,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.07389836,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229435.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-05",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_resid_enc0",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 4084,
+      "frontend_build_wall_s": 8.946465933,
+      "startup_before_region_median_s": 1.984253784,
+      "total_build_estimate_s": 10.930719717,
+      "process_wall_median_s": 2.032341586,
+      "region_wall_median_s": 0.045099394,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229735.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-06",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_pos_enc",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.339624602,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.113578823,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789229746.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-06",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_pos_enc",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 3124,
+      "frontend_build_wall_s": 8.867626754,
+      "startup_before_region_median_s": 1.98670581,
+      "total_build_estimate_s": 10.854332564,
+      "process_wall_median_s": 2.022742193,
+      "region_wall_median_s": 0.033927638,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230047.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-07",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_gelu_pos_enc",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.34168636,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.073256224,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230057.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-07",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_gelu_pos_enc",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 3124,
+      "frontend_build_wall_s": 8.777729994,
+      "startup_before_region_median_s": 1.986102373,
+      "total_build_estimate_s": 10.763832367,
+      "process_wall_median_s": 2.023341501,
+      "region_wall_median_s": 0.034186385,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230358.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-08",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on embed",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.335393775,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.031214251,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230369.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-08",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on embed",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 759,
+      "frontend_build_wall_s": 8.867875284,
+      "startup_before_region_median_s": 1.978702351,
+      "total_build_estimate_s": 10.846577635,
+      "process_wall_median_s": 1.988107577,
+      "region_wall_median_s": 0.006620282,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230669.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-09",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_embed_dec",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 0.341656382,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.048999187,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230680.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "VectorUnitSpec-09",
+      "source_suite": "VectorUnitSpec",
+      "source_case": "be bit-exact on add_embed_dec",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 493,
+      "frontend_build_wall_s": 8.961961258,
+      "startup_before_region_median_s": 1.985226595,
+      "total_build_estimate_s": 10.947187853,
+      "process_wall_median_s": 1.992574572,
+      "region_wall_median_s": 0.005403073,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230980.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-01",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on enc0_full",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.909800216,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.070789629,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789230991.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-01",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on enc0_full",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 71272,
+      "frontend_build_wall_s": 21.312424361,
+      "startup_before_region_median_s": 0.006641246,
+      "total_build_estimate_s": 21.319065607000002,
+      "process_wall_median_s": 0.996396177,
+      "region_wall_median_s": 0.988213738,
+      "cycles_per_s_median": 72122.04936984999,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231294.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-02",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on enc0_ragged",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.923639409,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.097005928,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231317.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-02",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on enc0_ragged",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 57160,
+      "frontend_build_wall_s": 21.520758521,
+      "startup_before_region_median_s": 0.006667941,
+      "total_build_estimate_s": 21.527426462,
+      "process_wall_median_s": 0.833495569,
+      "region_wall_median_s": 0.82533418,
+      "cycles_per_s_median": 69256.79486580817,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231620.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-03",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on dec0_self_pos41",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.929885858,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.079399633,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231642.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-03",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on dec0_self_pos41",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 2248,
+      "frontend_build_wall_s": 21.627098089,
+      "startup_before_region_median_s": 0.006319678,
+      "total_build_estimate_s": 21.633417767,
+      "process_wall_median_s": 0.076571418,
+      "region_wall_median_s": 0.069525626,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231945.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-04",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on dec0_cross_pos41",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.916934682,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.154236372,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789231967.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "AttentionSpec-04",
+      "source_suite": "AttentionSpec",
+      "source_case": "be bit-exact on dec0_cross_pos41",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 6190,
+      "frontend_build_wall_s": 21.619551957,
+      "startup_before_region_median_s": 0.006372155,
+      "total_build_estimate_s": 21.625924112,
+      "process_wall_median_s": 0.226423797,
+      "region_wall_median_s": 0.2186239,
+      "cycles_per_s_median": 28313.46435590985,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789232270.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "KVWriteSpec-01",
+      "source_suite": "KVWriteSpec",
+      "source_case": "write K (transposed) and V through the engine bit-exactly",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 3.039536075,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.192040767,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789232292.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "KVWriteSpec-01",
+      "source_suite": "KVWriteSpec",
+      "source_case": "write K (transposed) and V through the engine bit-exactly",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 42361,
+      "frontend_build_wall_s": 24.427291156,
+      "startup_before_region_median_s": 0.03938903,
+      "total_build_estimate_s": 24.466680185999998,
+      "process_wall_median_s": 0.576512154,
+      "region_wall_median_s": 0.535397839,
+      "cycles_per_s_median": 79120.60324920362,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789232595.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "FrameCheckSpec-01",
+      "source_suite": "FrameCheckSpec",
+      "source_case": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 4.637114216,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.226066526,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789232620.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "FrameCheckSpec-01",
+      "source_suite": "FrameCheckSpec",
+      "source_case": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 442,
+      "frontend_build_wall_s": 189.389437796,
+      "startup_before_region_median_s": 4.048073723,
+      "total_build_estimate_s": 193.437511519,
+      "process_wall_median_s": 4.067880366,
+      "region_wall_median_s": 0.015628147,
+      "cycles_per_s_median": null,
+      "throughput_status": "region_too_short",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789232925.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-01",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_q",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 2.913748285,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.165500421,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789233118.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-01",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_q",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 22222,
+      "frontend_build_wall_s": 21.932907637,
+      "startup_before_region_median_s": 0.004971038,
+      "total_build_estimate_s": 21.937878675,
+      "process_wall_median_s": 0.236049719,
+      "region_wall_median_s": 0.229985904,
+      "cycles_per_s_median": 96623.3130531339,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789233421.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-02",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_fc1",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 3.535259685,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.127015056,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789233444.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-02",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_fc1",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 89998,
+      "frontend_build_wall_s": 167.882197163,
+      "startup_before_region_median_s": 0.00494911,
+      "total_build_estimate_s": 167.887146273,
+      "process_wall_median_s": 0.949308664,
+      "region_wall_median_s": 0.943135228,
+      "cycles_per_s_median": 95424.27992097013,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789233747.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-03",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_fc2",
+      "counts_toward_51": true,
+      "engine": "arcilator",
+      "semantics": "2s",
+      "status": "jit_or_startup_timeout",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": null,
+      "frontend_build_wall_s": 3.533298812,
+      "startup_before_region_median_s": null,
+      "total_build_estimate_s": null,
+      "process_wall_median_s": 300.166458776,
+      "region_wall_median_s": null,
+      "cycles_per_s_median": null,
+      "throughput_status": "unavailable",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789233916.0,
+      "detail": "process failed or timed out; required exact PASS marker missing; expected exactly one BENCH_BEGIN followed by one BENCH_END",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    },
+    {
+      "bench": "RomLiteralLayerSpec-03",
+      "source_suite": "RomLiteralLayerSpec",
+      "source_case": "be bit-exact on real_enc0_fc2",
+      "counts_toward_51": true,
+      "engine": "verilator",
+      "semantics": "2s",
+      "status": "passed",
+      "runner_repetitions": 1,
+      "replay_iterations": 1,
+      "cycles_per_repetition": 85390,
+      "frontend_build_wall_s": 165.014477607,
+      "startup_before_region_median_s": 0.004997279,
+      "total_build_estimate_s": 165.019474886,
+      "process_wall_median_s": 0.867247941,
+      "region_wall_median_s": 0.861039648,
+      "cycles_per_s_median": 99170.81077316431,
+      "throughput_status": "valid",
+      "result_path": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/unit-results.json",
+      "manifest": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/replay-manifest.json",
+      "rank": 1789234220.0,
+      "detail": "",
+      "source_provenance": {
+        "file": "unit-provenance.json",
+        "sha256": "3ddc5cfa59d8697f0848f39b565764f25f2d012e8ed5557e413536bdd435ae07"
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "bench": "AttentionSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "AttentionSpec-02",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "AttentionSpec-03",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "AttentionSpec-04",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "FrameCheckSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "KVWriteSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-02",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-03",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-04",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-05",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-06",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-07",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-08",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-09",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-10",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-11",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-12",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-13",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-14",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-15",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-16",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-17",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-18",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "MatmulEngineSpec-19",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "RomLiteralLayerSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "RomLiteralLayerSpec-02",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "RomLiteralLayerSpec-03",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "SamplerSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": 0.017890905162663777,
+      "status": "valid"
+    },
+    {
+      "bench": "VectorUnitSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-02",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-03",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-04",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-05",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-06",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-07",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-08",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "VectorUnitSpec-09",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-01",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-02",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-03",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-04",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-05",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-06",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-07",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-08",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-09",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-10",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-11",
+      "same_source_hashes": true,
+      "same_cycles": true,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-12",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    },
+    {
+      "bench": "WeightStoreEquivalenceSpec-13",
+      "same_source_hashes": true,
+      "same_cycles": false,
+      "arcilator_region_speedup": null,
+      "status": "unavailable"
+    }
+  ],
+  "reference_attempts": [
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.WeightStoreEquivalenceSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:16:15.318643+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789218975318654974,
+      "exit_code": 0,
+      "wall_s": 94.27381887799993,
+      "status": "passed",
+      "suite": "WeightStoreEquivalenceSpec",
+      "expected_count": 13,
+      "observed_count": 13,
+      "expected_cases": [
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.0.attn.q.w under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.pos under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "decode the flat w8 address space correctly (RomInit, one layer)",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.538"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.035"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.111"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.03"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.017"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.049"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.198"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.248"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "5.646"
+        },
+        {
+          "name": "should match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.045"
+        },
+        {
+          "name": "should match the whole of enc.0.attn.q.w under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.152"
+        },
+        {
+          "name": "should match the whole of enc.pos under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.811"
+        },
+        {
+          "name": "should decode the flat w8 address space correctly (RomInit, one layer)",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "6.879"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/TEST-whisper.WeightStoreEquivalenceSpec.xml"
+      ],
+      "key": "scala-WeightStoreEquivalenceSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.MatmulEngineSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:17:49.595324+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219069595339605,
+      "exit_code": 0,
+      "wall_s": 504.021694005,
+      "status": "passed",
+      "suite": "MatmulEngineSpec",
+      "expected_count": 19,
+      "observed_count": 19,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on rand_1_5x32x32_raw",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_2_70x96x64_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_3_33x384x384_int8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_6_3x64x64_raw_u8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_7_64x64x96_wide",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_8_130x288x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_10_2x32x32_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_k",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_o",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_dec0_xk",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_lm",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on rand_10_2x32x32_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.147"
+        },
+        {
+          "name": "should be bit-exact on rand_1_5x32x32_raw",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.862"
+        },
+        {
+          "name": "should be bit-exact on rand_2_70x96x64_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.773"
+        },
+        {
+          "name": "should be bit-exact on rand_3_33x384x384_int8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.068"
+        },
+        {
+          "name": "should be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.889"
+        },
+        {
+          "name": "should be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.51"
+        },
+        {
+          "name": "should be bit-exact on rand_6_3x64x64_raw_u8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.876"
+        },
+        {
+          "name": "should be bit-exact on rand_7_64x64x96_wide",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.424"
+        },
+        {
+          "name": "should be bit-exact on rand_8_130x288x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.098"
+        },
+        {
+          "name": "should be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "36.706"
+        },
+        {
+          "name": "should be bit-exact on real_conv1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.521"
+        },
+        {
+          "name": "should be bit-exact on real_conv2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.736"
+        },
+        {
+          "name": "should be bit-exact on real_dec0_xk",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.009"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.563"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.542"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_k",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.294"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_o",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.289"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.808"
+        },
+        {
+          "name": "should be bit-exact on real_lm",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "24.351"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/TEST-whisper.MatmulEngineSpec.xml"
+      ],
+      "key": "scala-MatmulEngineSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.VectorUnitSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:26:13.619693+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219573619706685,
+      "exit_code": 0,
+      "wall_s": 136.99696326100002,
+      "status": "passed",
+      "suite": "VectorUnitSpec",
+      "expected_count": 9,
+      "observed_count": 9,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on ln_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_dynq_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dynq_attn_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_static8_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_resid_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_gelu_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on embed",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_embed_dec",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on add_embed_dec",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.558"
+        },
+        {
+          "name": "should be bit-exact on add_gelu_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.939"
+        },
+        {
+          "name": "should be bit-exact on add_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.547"
+        },
+        {
+          "name": "should be bit-exact on add_resid_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.529"
+        },
+        {
+          "name": "should be bit-exact on dynq_attn_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.539"
+        },
+        {
+          "name": "should be bit-exact on embed",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.459"
+        },
+        {
+          "name": "should be bit-exact on gelu_dynq_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.76"
+        },
+        {
+          "name": "should be bit-exact on gelu_static8_conv1",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.501"
+        },
+        {
+          "name": "should be bit-exact on ln_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.559"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/TEST-whisper.VectorUnitSpec.xml"
+      ],
+      "key": "scala-VectorUnitSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.AttentionSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:28:30.618896+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219710618910585,
+      "exit_code": 0,
+      "wall_s": 121.4682130150004,
+      "status": "passed",
+      "suite": "AttentionSpec",
+      "expected_count": 4,
+      "observed_count": 4,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on enc0_full",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on enc0_ragged",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_self_pos41",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_cross_pos41",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on dec0_cross_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.534"
+        },
+        {
+          "name": "should be bit-exact on dec0_self_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "30.627"
+        },
+        {
+          "name": "should be bit-exact on enc0_full",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "29.045"
+        },
+        {
+          "name": "should be bit-exact on enc0_ragged",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.603"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/TEST-whisper.AttentionSpec.xml"
+      ],
+      "key": "scala-AttentionSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.KVWriteSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:30:32.089571+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219832089586099,
+      "exit_code": 0,
+      "wall_s": 46.095177779999176,
+      "status": "passed",
+      "suite": "KVWriteSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "write K (transposed) and V through the engine bit-exactly",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should write K (transposed) and V through the engine bit-exactly",
+          "class": "whisper.KVWriteSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "41.441"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/TEST-whisper.KVWriteSpec.xml"
+      ],
+      "key": "scala-KVWriteSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.FrameCheckSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:31:18.186907+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219878186922436,
+      "exit_code": 0,
+      "wall_s": 233.26126521399965,
+      "status": "passed",
+      "suite": "FrameCheckSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "WhisperTop frame-count check should refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "class": "whisper.FrameCheckSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "227.736"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/TEST-whisper.FrameCheckSpec.xml"
+      ],
+      "key": "scala-FrameCheckSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.RomLiteralLayerSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:35:11.450497+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789220111450513015,
+      "exit_code": 0,
+      "wall_s": 386.6243018259993,
+      "status": "passed",
+      "suite": "RomLiteralLayerSpec",
+      "expected_count": 3,
+      "observed_count": 3,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.094"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "179.705"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "176.279"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/TEST-whisper.RomLiteralLayerSpec.xml"
+      ],
+      "key": "scala-RomLiteralLayerSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001",
+      "report": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/reference-report.json"
+    }
+  ],
+  "conversion_results": [],
+  "asset_inventories": [
+    {
+      "checked_utc": "2026-09-12T13:16:15.318235+00:00",
+      "data_dir": "/home/ubuntu/data-cache",
+      "checkpoint": "/home/ubuntu/data-cache/whisper/tiny.pt",
+      "checkpoint_expected_sha256": "65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9",
+      "checkpoint_sha256": "65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9",
+      "checkpoint_ok": true,
+      "missing_varied": [],
+      "missing_e2e_libri_files": []
+    }
+  ],
+  "warnings": [],
+  "finalization": {
+    "completed_exit": 1,
+    "completion_marker": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/completed.exit",
+    "finalized_utc": "2026-09-12T17:37:06.569033+00:00",
+    "distinct_cases": 51,
+    "engine_records": 102,
+    "engine_status_totals": {
+      "arcilator": {
+        "passed": 9,
+        "simulation_failed": 3,
+        "jit_or_startup_timeout": 39
+      },
+      "verilator": {
+        "passed": 51
+      }
+    },
+    "measurement_setup": {
+      "ec2_instance_type": "m7i.xlarge",
+      "memory_gib": 16,
+      "repository_commit": "42847240bad0d496b47093e0a4f7f1a706d447b8",
+      "arcilator_environment": {
+        "ARC_DESEQ_DISABLE": "1"
+      },
+      "arcilator_compiler_threading": "default; no explicit job/thread cap",
+      "frontend_cpu_utilization": {
+        "arcilator": {
+          "recorded_stages": 51,
+          "median_effective_cores": 1.1602900649544727,
+          "minimum_effective_cores": 0.8274272039199307,
+          "maximum_effective_cores": 2.0163402418984115
+        },
+        "verilator": {
+          "recorded_stages": 51,
+          "median_effective_cores": 1.7775969379724759,
+          "minimum_effective_cores": 1.0626498998389213,
+          "maximum_effective_cores": 1.9275141722108842
+        }
+      },
+      "stage_timeout_limits_s": [
+        300.0
+      ],
+      "provenance": {
+        "platform": "Linux-6.17.0-1017-aws-x86_64-with-glibc2.39",
+        "machine": "x86_64",
+        "logical_cpu_count": 4,
+        "simulation_threads": 1,
+        "verilator_build_jobs": 2,
+        "affinity": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "manifest": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/bulk-manifest.json",
+        "manifest_sha256": "27297fc6ff0cfc27243302d404398b0fe479bebef5bb3081c9603e61d5980f7f",
+        "versions": {
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/circt-verilog": "LLVM (http://llvm.org/):\n  LLVM version 23.0.0git\n  Optimized build.\nCIRCT 04824a080\nslang version 11.0.0+0",
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator": "LLVM (http://llvm.org/):\n  LLVM version 23.0.0git\n  Optimized build.\nCIRCT 04824a080",
+          "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+        },
+        "time_resource_collection": "/usr/bin/time",
+        "notes": [
+          "Arcilator process wall includes LLVM/JIT compilation on every repetition.",
+          "total_build_estimate_s is frontend/build plus median pre-region startup: a JIT/load/runtime-initialization proxy, not compiler-exclusive time.",
+          "Marker region wall measures host-observed full testbench stimulus, checks and simulation.",
+          "Marker timestamps include pipe/scheduling latency; short intervals are flagged.",
+          "No waveform flags are enabled. This runner executes engines sequentially."
+        ],
+        "cpu_model": "Intel(R) Xeon(R) Platinum 8488C"
+      }
+    }
+  },
+  "evidence_verification": {
+    "schema_version": 1,
+    "verified": true,
+    "verified_utc": "2026-09-12T17:35:46.937511+00:00",
+    "archive": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/evidence-final-001.tar.gz",
+    "archive_sha256": "ea3037caa329b276297759c92f5d0495bf135eab1dc0da84928bc1d18b2f1cb0",
+    "inventory_sha256": "f82eb1bb60b8a79b2e8186a56c38f5132205a09b1e0cafd4ba0da628ce63458a",
+    "included_files_verified": 1004,
+    "included_bytes_verified": 10086838,
+    "paired_case_count": 51,
+    "unique_engine_records": 102,
+    "bulk_exit_code": 1,
+    "inventory_omission_count": 0,
+    "referenced_stage_logs": 208,
+    "logs_copied": 208,
+    "identical_logs_reused": 0,
+    "logs_out": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results",
+    "note": "Integrity and completed paired coverage verified. This does not assert that all tests passed."
+  }
+}

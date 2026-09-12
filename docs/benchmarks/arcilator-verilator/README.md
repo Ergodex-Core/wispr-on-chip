@@ -1,93 +1,102 @@
 # Arcilator / Verilator comparison
 
-Snapshot recorded on 2026-09-12 at 16:05 UTC, against source commit
-`42847240bad0d496b47093e0a4f7f1a706d447b8`.
+All **51 planned unit-test replay pairs are complete** (102 simulator records),
+against source commit `42847240bad0d496b47093e0a4f7f1a706d447b8`.
 
-**The batch is still running. This is an interim report.**
-The [full 51-case table](CURRENT_COMPARISON.md) and
-[comparison CSV](CURRENT_COMPARISON.csv) distinguish completed measurements
-from pending cases.
-
-Read [the methodology review](METHODOLOGY_REVIEW.md) for the exact DUT scope,
-compiler-optimization caveats and distinction between replay execution and
-native hardware-model throughput.
+Read the [final 51-case report](COMPARISON.md), [comparison CSV](COMPARISON.csv),
+and [methodology review](METHODOLOGY_REVIEW.md). Completion includes failures
+and timeouts; it does not mean every case passed.
 
 | Validation | Passed | Other outcomes |
 |---|---:|---|
 | Original Scala hardware tests with Verilator | 51/51 | None |
 | Python golden-model tests | 18/18 | None |
-| Paired Verilator replays | 35/51 | 16 pending |
-| Paired Arcilator replays | 9/51 | 3 readback mismatches, 23 JIT/startup timeouts, 16 pending |
+| Verilator standalone replays | 51/51 | None |
+| Arcilator standalone replays | 9/51 | 3 SRAM readback failures; 39 JIT/startup timeouts |
 
-Completed pairs cover all 13 weight-store cases, all 19 Matmul cases,
-the first two VectorUnit cases, and Sampler. The separately invoked 34 end-to-end
-clip executions have inputs and golden outputs prepared, but have no paired
-simulation results here.
+Every Arcilator timeout occurred before the BEGIN marker, at the 300-second
+runtime-stage limit. The three SRAM cases reached simulation and failed
+readback checks. Those failures do not establish whether their cause is
+simulator lowering, scheduling or the replay interface. The completed batch
+[exited 1](completed.exit) because some cases did not pass.
 
-## Measurement setup
+The 34 named E2E clip executions (24 unique clips) have no paired simulation
+results in this benchmark. These unit-replay results make no transcription
+claim. Python tests are separate software validation and have no hardware
+cycles-per-second metric.
+
+## Measurement setup and limits
 
 - Same EC2 `m7i.xlarge`: 4 vCPUs, 16 GiB RAM, Intel Xeon Platinum 8488C.
-- Supplied Arcilator/CIRCT binary `04824a080`, LLVM `23.0.0git`.
-- Arcilator uses `ARC_DESEQ_DISABLE=1`, the supplied package's validated
-  configuration with clock promotion disabled.
-- Verilator `5.020`, GCC 13; two native build jobs, one simulation thread.
-- Both engines use two-state semantics and the same generated SystemVerilog
-  replay. Engines run sequentially, with fresh builds and no waveform output.
-- The runner applies a 300-second limit to each compiler/runtime stage.
-  Sampler uses three process repetitions; other cases use one.
+- Supplied Arcilator/CIRCT `04824a080`, LLVM `23.0.0git`; Verilator `5.020`.
+- Both engines use two-state semantics, equivalent generated SystemVerilog
+  replays and one simulation thread. Engines ran sequentially with fresh
+  frontend/build outputs and no waveform output.
+- Verilator used two C++ build jobs. Arcilator used its default internal
+  compiler threading, with no explicit compiler job/thread cap.
+  `OMP_NUM_THREADS=1` does not cap every MLIR/LLVM compiler thread; this was not
+  an equal-thread controlled compilation comparison.
+- Arcilator used **`ARC_DESEQ_DISABLE=1`**, the supplied package's validated
+  mode with clock promotion disabled. The runner applied a 300-second limit
+  to each frontend/build or runtime stage.
+- Sampler used three process repetitions; the other cases used one. Repeats
+  and internal replay iterations do not increase the 51 distinct-case count.
 
-The original Scala assertions ran against golden vectors with Verilator.
-Standalone replays reproduce the recorded input protocol and check the
-captured observations. The replay clock and explicit zero-time evaluations
-use a compensated 1 ps settling interval in both engines. Original generated
-source defines, including `VERILATOR`, are preserved. A successful replay is
-evidence that the engine reproduces those observations under that stimulus.
+Fifty cases already instantiate components or subsystems; only FrameCheck
+instantiates the full WhisperTop. Some wrappers include broad weight
+selections. The [methodology review](METHODOLOGY_REVIEW.md) identifies the
+hardware and explains why these results do not prove which logic either
+compiler pruned.
 
-## Interpreting the table
+The final table separates frontend, startup, build estimate and simulation
+wall time. Arcilator startup includes LLVM/JIT, loading and initialization;
+Verilator's frontend/build includes translation and C++ compilation. Their
+build estimates are not compiler-exclusive measurements. A valid BEGIN still
+provides startup timing for a later failed run.
 
-Each timing cell is **build plus startup / simulation**, in wall-clock seconds.
-Arcilator's build estimate includes its SystemVerilog frontend, LLVM/JIT
-compilation, loading and initialization. Verilator's estimate includes its
-translation, C++ compilation, loading and initialization. These are estimates
-of preparation time, not compiler-exclusive measurements.
+Simulation timing includes text replay parsing, dispatch, settling, reset and
+checks. The original Scala assertions passed against golden vectors; the
+standalone replays check captured observations from those executions. Original
+source defines, including `VERILATOR`, are preserved. The compensated 1 ps
+settling interval is the same for both engines.
 
-Simulation time spans flushed BEGIN/END markers and includes replay-file
-parsing, stimulus, reset, DUT execution and checks. Cycles per second is the
-measured region's cycle count divided by its wall time. This is not pure DUT
-evaluation throughput. Intervals below 0.1 seconds are marked with a dagger;
-their throughput is withheld. The clock column specifies the planned cycles
-per execution. Passing runs validate that count; failed runs may stop earlier.
+Failed measurements and intervals below 0.1 seconds have no throughput claim.
+Sampler is the only pair with two passing, sufficiently long intervals:
+Verilator ran 15,594 replay cycles in 0.321 s versus Arcilator's 17.946 s,
+approximately 55.9 times faster for this replay. This is not pure Sampler
+hardware-model evaluation speed. **No suite-wide speedup is claimed.**
 
-Timeouts before BEGIN have no completed simulation measurement. Their
-`≥300` entry describes the attempted JIT/startup duration, not a measured
-completed build. The three SRAM cases failed readback checks; these results
-do not establish whether the cause is simulator lowering, scheduling or the
-replay interface.
+## Final evidence
 
-Sampler is currently the only passing pair with both simulation intervals
-above 0.1 seconds: Verilator simulated 15,594 cycles in 0.321 s versus
-Arcilator's 17.946 s (approximately 55.9 times faster for this replay).
-Arcilator's build-plus-startup estimate was 3.385 s versus 5.826 s.
-No suite-wide performance ratio is claimed.
+- [All 51 numeric comparisons](COMPARISON.csv), [102 timing records](COMPARISON_RAW.csv),
+  [coverage](COMPARISON_COVERAGE.csv), and [complete report data](COMPARISON.json).
+- [Original hardware reference](reference-report.json),
+  [Sampler JUnit](TEST-whisper.SamplerSpec.xml), and [Python JUnit](python.xml).
+- [Unit raw records](unit-results.json), [unit summary](unit-summary.json),
+  [Sampler raw records](sampler-results.json), and [Sampler summary](sampler-summary.json).
+- [Unit provenance](unit-provenance.json), [Sampler provenance](sampler-provenance.json),
+  [all-case manifest](replay-manifest.json), and [exact bulk manifest](bulk-manifest.json).
+- [Verified audit archive](evidence-final-001.tar.gz),
+  [SHA-256 sidecar](evidence-final-001.tar.gz.sha256),
+  [per-file inventory](evidence-final-001.tar.gz.inventory.json), and
+  [verification result](evidence-verification.json).
+- SRAM readback logs: [case 03](logs/weight-sram-03.log),
+  [case 06](logs/weight-sram-06.log), [case 09](logs/weight-sram-09.log).
 
-## Evidence
+The archive contains **1,004 files**, including **208 referenced stage logs**,
+with **zero omissions**. Its SHA-256 is
+`ea3037caa329b276297759c92f5d0495bf135eab1dc0da84928bc1d18b2f1cb0`.
+Archive integrity, every included file's hash/size and all 51 paired cases were
+verified. Final raw records, summaries and provenances exactly match that
+archive. It excludes generated RTL, replay payloads, models and native compiler
+products. Recorded filesystem paths identify the original measurement or
+verification environment, rather than files included at those paths in Git.
 
-- [Original hardware reference report](reference-report.json),
-  [separately captured Sampler JUnit](TEST-whisper.SamplerSpec.xml), and
-  [Python JUnit](python.xml).
-- [Unit raw stage/process records](unit-results.json) and
-  [unit summary](unit-summary.json).
-- [Sampler raw stage/process records](sampler-results.json) and
-  [Sampler summary](sampler-summary.json).
-- [Unit provenance](unit-provenance.json) and
-  [Sampler provenance](sampler-provenance.json), including tool versions,
-  CPU metadata and source SHA-256 hashes.
-- [All-case replay manifest](replay-manifest.json) and the exact
-  [bulk manifest](bulk-manifest.json) referenced by the unit provenance.
-- SRAM mismatch logs: [case 03](logs/weight-sram-03.log),
-  [case 06](logs/weight-sram-06.log), and [case 09](logs/weight-sram-09.log).
+## Preserved interim snapshot
 
-Raw records retain the executed commands and original EC2 filesystem paths.
-Those paths identify the measurement environment; they are not links to
-files in this Git checkout. Generated RTL, replay payloads, model binaries
-and compiler products are not part of this results snapshot.
+[CURRENT_COMPARISON.md](CURRENT_COMPARISON.md) and
+[CURRENT_COMPARISON.csv](CURRENT_COMPARISON.csv) retain the **35-pair snapshot
+from 2026-09-12 16:05 UTC**. Its original supporting records remain in
+[commit fbd9476](https://github.com/Ergodex-Core/wispr-on-chip/tree/fbd94760baf816be36e40af5343ecfcbc6eb1ad2/docs/benchmarks/arcilator-verilator).
+The raw files at this branch's current revision describe the final 51-pair
+batch and should not be interpreted as that earlier snapshot's records.

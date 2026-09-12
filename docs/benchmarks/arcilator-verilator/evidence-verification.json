@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "verified": true,
+  "verified_utc": "2026-09-12T17:35:46.937511+00:00",
+  "archive": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results/evidence-final-001.tar.gz",
+  "archive_sha256": "ea3037caa329b276297759c92f5d0495bf135eab1dc0da84928bc1d18b2f1cb0",
+  "inventory_sha256": "f82eb1bb60b8a79b2e8186a56c38f5132205a09b1e0cafd4ba0da628ce63458a",
+  "included_files_verified": 1004,
+  "included_bytes_verified": 10086838,
+  "paired_case_count": 51,
+  "unique_engine_records": 102,
+  "bulk_exit_code": 1,
+  "inventory_omission_count": 0,
+  "referenced_stage_logs": 208,
+  "logs_copied": 208,
+  "identical_logs_reused": 0,
+  "logs_out": "/Users/rachittibrewal/ergodex/warecaml/arcilator-linux-x86_64-04824a080/aws-output/benchmark-results",
+  "note": "Integrity and completed paired coverage verified. This does not assert that all tests passed."
+}
