@@ -19,20 +19,20 @@ number,case,cycles,verilator_build_sim_s,arcilator_build_sim_s,cycles_per_s_v_a,
 18,Matmul: rand_5_1x384x1536_int16_dyn,"153,531",21.407 / 1.965,≥300 / —,"78,144 / —",JIT timeout
 19,Matmul: rand_6_3x64x64_raw_u8,"1,209",21.427 / 0.016337†,≥300 / —,short† / —,JIT timeout
 20,Matmul: rand_7_64x64x96_wide,"2,534",21.494 / 0.037566†,≥300 / —,short† / —,JIT timeout
-21,Matmul: rand_8_130x288x384_int8_dyn,"45,762",Pending,Pending,— / —,Pending
-22,Matmul: rand_9_1500x384x384_int8_dyn,"291,722",Pending,Pending,— / —,Pending
-23,Matmul: rand_10_2x32x32_int8_dyn,346,Pending,Pending,— / —,Pending
-24,Matmul: real_conv1,"35,262",Pending,Pending,— / —,Pending
-25,Matmul: real_conv2,"63,310",Pending,Pending,— / —,Pending
-26,Matmul: real_enc0_q,"22,222",Pending,Pending,— / —,Pending
-27,Matmul: real_enc0_k,"22,222",Pending,Pending,— / —,Pending
-28,Matmul: real_enc0_o,"23,758",Pending,Pending,— / —,Pending
-29,Matmul: real_enc0_fc1,"89,998",Pending,Pending,— / —,Pending
-30,Matmul: real_enc0_fc2,"85,390",Pending,Pending,— / —,Pending
-31,Matmul: real_dec0_xk,"22,222",Pending,Pending,— / —,Pending
-32,Matmul: real_lm,"98,908",Pending,Pending,— / —,Pending
-33,Vector: ln_enc0,"6,404",Pending,Pending,— / —,Pending
-34,Vector: gelu_dynq_enc0,"14,964",Pending,Pending,— / —,Pending
+21,Matmul: rand_8_130x288x384_int8_dyn,"45,762",21.481 / 0.598,≥300 / —,"76,507 / —",JIT timeout
+22,Matmul: rand_9_1500x384x384_int8_dyn,"291,722",21.362 / 3.979,≥300 / —,"73,324 / —",JIT timeout
+23,Matmul: rand_10_2x32x32_int8_dyn,346,21.244 / 0.004825†,≥300 / —,short† / —,JIT timeout
+24,Matmul: real_conv1,"35,262",12.385 / 0.386,≥300 / —,"91,251 / —",JIT timeout
+25,Matmul: real_conv2,"63,310",12.540 / 0.628,≥300 / —,"100,867 / —",JIT timeout
+26,Matmul: real_enc0_q,"22,222",12.684 / 0.229,≥300 / —,"96,854 / —",JIT timeout
+27,Matmul: real_enc0_k,"22,222",12.485 / 0.228,≥300 / —,"97,298 / —",JIT timeout
+28,Matmul: real_enc0_o,"23,758",12.399 / 0.259,≥300 / —,"91,585 / —",JIT timeout
+29,Matmul: real_enc0_fc1,"89,998",12.457 / 0.941,≥300 / —,"95,633 / —",JIT timeout
+30,Matmul: real_enc0_fc2,"85,390",12.655 / 0.857,≥300 / —,"99,609 / —",JIT timeout
+31,Matmul: real_dec0_xk,"22,222",12.605 / 0.230,≥300 / —,"96,817 / —",JIT timeout
+32,Matmul: real_lm,"98,908",14.132 / 0.916,≥300 / —,"107,992 / —",JIT timeout
+33,Vector: ln_enc0,"6,404",10.693 / 0.052200†,≥300 / —,short† / —,JIT timeout
+34,Vector: gelu_dynq_enc0,"14,964",10.719 / 0.137,≥300 / —,"109,486 / —",JIT timeout
 35,Vector: dynq_attn_enc0,"4,884",Pending,Pending,— / —,Pending
 36,Vector: gelu_static8_conv1,"3,804",Pending,Pending,— / —,Pending
 37,Vector: add_resid_enc0,"4,084",Pending,Pending,— / —,Pending

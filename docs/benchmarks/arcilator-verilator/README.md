@@ -1,6 +1,6 @@
 # Arcilator / Verilator comparison
 
-Snapshot recorded on 2026-09-12 at 14:48 UTC, against source commit
+Snapshot recorded on 2026-09-12 at 16:05 UTC, against source commit
 `42847240bad0d496b47093e0a4f7f1a706d447b8`.
 
 **The batch is still running. This is an interim report.**
@@ -16,12 +16,13 @@ native hardware-model throughput.
 |---|---:|---|
 | Original Scala hardware tests with Verilator | 51/51 | None |
 | Python golden-model tests | 18/18 | None |
-| Paired Verilator replays | 21/51 | 30 pending |
-| Paired Arcilator replays | 9/51 | 3 readback mismatches, 9 JIT/startup timeouts, 30 pending |
+| Paired Verilator replays | 35/51 | 16 pending |
+| Paired Arcilator replays | 9/51 | 3 readback mismatches, 23 JIT/startup timeouts, 16 pending |
 
-Completed pairs cover all 13 weight-store cases, the first seven Matmul cases,
-and Sampler. The separately invoked 34 end-to-end clip executions have inputs
-and golden outputs prepared, but have no paired simulation results here.
+Completed pairs cover all 13 weight-store cases, all 19 Matmul cases,
+the first two VectorUnit cases, and Sampler. The separately invoked 34 end-to-end
+clip executions have inputs and golden outputs prepared, but have no paired
+simulation results here.
 
 ## Measurement setup
 
