@@ -32,11 +32,14 @@ Source examples: [MatmulTestbench](../../../src/test/scala/whisper/MatmulTestben
 There is still room to reduce some component wrappers. Random Matmul cases
 select all `enc.0` tensors, then exercise one weight bank and two parameter
 banks. Vector cases share a tensor selection containing layer-normalization,
-GELU, position, embedding and `dec.lm.w` data, even when a particular operation
-needs fewer tensors. Real Matmul cases already select their operation's tensor
-prefix. These selections are visible in
+position, embedding and `dec.lm.w` data, even when a particular operation needs
+fewer tensors. The `dec.lm.w` bank alone has 77,808 words of 2,048 bits, about
+19 MiB of logical storage. The selection also names `enc.0.gelu`, which matches
+no tensor in this revision's generated table. Real Matmul cases already select
+their operation's tensor prefix. These selections are visible in
 [MatmulEngineSpec](../../../src/test/scala/whisper/MatmulEngineSpec.scala) and
-[VectorUnitSpec](../../../src/test/scala/whisper/VectorUnitSpec.scala).
+[VectorUnitSpec](../../../src/test/scala/whisper/VectorUnitSpec.scala), with bank
+dimensions in [WeightTables](../../../src/main/scala/whisper/generated/WeightTables.scala).
 
 This is evidence of a broader elaborated model for some cases. It does not
 prove which logic either compiler removes or how much time that logic costs.
