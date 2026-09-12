@@ -1,0 +1,50 @@
+{
+  "benchmarks": [
+    {
+      "bench": "SamplerSpec-01",
+      "engine": "arcilator",
+      "semantics": "2s",
+      "passed": true,
+      "repeats": 3,
+      "cycles": 15594,
+      "frontend_build_wall_s": 0.106378842,
+      "startup_before_region_median_s": 3.2789348,
+      "total_build_estimate_s": 3.385313642,
+      "process_wall_median_s": 21.219047911,
+      "region_wall_median_s": 17.945963107,
+      "cycles_per_s_median": 868.9419401468292,
+      "region_too_short": false,
+      "frontend_user_s": 0.12,
+      "frontend_system_s": 0.0,
+      "frontend_max_rss_kb": 30676.0,
+      "runtime_max_rss_kb": 130444.0
+    },
+    {
+      "bench": "SamplerSpec-01",
+      "engine": "verilator",
+      "semantics": "2s",
+      "passed": true,
+      "repeats": 3,
+      "cycles": 15594,
+      "frontend_build_wall_s": 5.823649209,
+      "startup_before_region_median_s": 0.002535977,
+      "total_build_estimate_s": 5.826185186,
+      "process_wall_median_s": 0.324519171,
+      "region_wall_median_s": 0.321069524,
+      "cycles_per_s_median": 48568.91992028493,
+      "region_too_short": false,
+      "frontend_user_s": 10.01,
+      "frontend_system_s": 0.78,
+      "frontend_max_rss_kb": 288824.0,
+      "runtime_max_rss_kb": 4496.0
+    }
+  ],
+  "comparisons": [
+    {
+      "bench": "SamplerSpec-01",
+      "both_pass_same_cycles": true,
+      "arcilator_region_speedup": 0.017890905162663777,
+      "speedup_note": "Verilator region time / Arcilator region time"
+    }
+  ]
+}

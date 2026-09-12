@@ -1,0 +1,1794 @@
+{
+  "history": [
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.WeightStoreEquivalenceSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:16:15.318643+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789218975318654974,
+      "exit_code": 0,
+      "wall_s": 94.27381887799993,
+      "status": "passed",
+      "suite": "WeightStoreEquivalenceSpec",
+      "expected_count": 13,
+      "observed_count": 13,
+      "expected_cases": [
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.0.attn.q.w under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.pos under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "decode the flat w8 address space correctly (RomInit, one layer)",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.538"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.035"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.111"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.03"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.017"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.049"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.198"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.248"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "5.646"
+        },
+        {
+          "name": "should match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.045"
+        },
+        {
+          "name": "should match the whole of enc.0.attn.q.w under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.152"
+        },
+        {
+          "name": "should match the whole of enc.pos under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.811"
+        },
+        {
+          "name": "should decode the flat w8 address space correctly (RomInit, one layer)",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "6.879"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/TEST-whisper.WeightStoreEquivalenceSpec.xml"
+      ],
+      "key": "scala-WeightStoreEquivalenceSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.MatmulEngineSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:17:49.595324+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219069595339605,
+      "exit_code": 0,
+      "wall_s": 504.021694005,
+      "status": "passed",
+      "suite": "MatmulEngineSpec",
+      "expected_count": 19,
+      "observed_count": 19,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on rand_1_5x32x32_raw",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_2_70x96x64_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_3_33x384x384_int8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_6_3x64x64_raw_u8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_7_64x64x96_wide",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_8_130x288x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_10_2x32x32_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_k",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_o",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_dec0_xk",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_lm",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on rand_10_2x32x32_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.147"
+        },
+        {
+          "name": "should be bit-exact on rand_1_5x32x32_raw",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.862"
+        },
+        {
+          "name": "should be bit-exact on rand_2_70x96x64_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.773"
+        },
+        {
+          "name": "should be bit-exact on rand_3_33x384x384_int8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.068"
+        },
+        {
+          "name": "should be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.889"
+        },
+        {
+          "name": "should be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.51"
+        },
+        {
+          "name": "should be bit-exact on rand_6_3x64x64_raw_u8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.876"
+        },
+        {
+          "name": "should be bit-exact on rand_7_64x64x96_wide",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.424"
+        },
+        {
+          "name": "should be bit-exact on rand_8_130x288x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.098"
+        },
+        {
+          "name": "should be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "36.706"
+        },
+        {
+          "name": "should be bit-exact on real_conv1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.521"
+        },
+        {
+          "name": "should be bit-exact on real_conv2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.736"
+        },
+        {
+          "name": "should be bit-exact on real_dec0_xk",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.009"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.563"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.542"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_k",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.294"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_o",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.289"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.808"
+        },
+        {
+          "name": "should be bit-exact on real_lm",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "24.351"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/TEST-whisper.MatmulEngineSpec.xml"
+      ],
+      "key": "scala-MatmulEngineSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.VectorUnitSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:26:13.619693+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219573619706685,
+      "exit_code": 0,
+      "wall_s": 136.99696326100002,
+      "status": "passed",
+      "suite": "VectorUnitSpec",
+      "expected_count": 9,
+      "observed_count": 9,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on ln_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_dynq_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dynq_attn_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_static8_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_resid_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_gelu_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on embed",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_embed_dec",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on add_embed_dec",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.558"
+        },
+        {
+          "name": "should be bit-exact on add_gelu_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.939"
+        },
+        {
+          "name": "should be bit-exact on add_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.547"
+        },
+        {
+          "name": "should be bit-exact on add_resid_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.529"
+        },
+        {
+          "name": "should be bit-exact on dynq_attn_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.539"
+        },
+        {
+          "name": "should be bit-exact on embed",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.459"
+        },
+        {
+          "name": "should be bit-exact on gelu_dynq_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.76"
+        },
+        {
+          "name": "should be bit-exact on gelu_static8_conv1",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.501"
+        },
+        {
+          "name": "should be bit-exact on ln_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.559"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/TEST-whisper.VectorUnitSpec.xml"
+      ],
+      "key": "scala-VectorUnitSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.AttentionSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:28:30.618896+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219710618910585,
+      "exit_code": 0,
+      "wall_s": 121.4682130150004,
+      "status": "passed",
+      "suite": "AttentionSpec",
+      "expected_count": 4,
+      "observed_count": 4,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on enc0_full",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on enc0_ragged",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_self_pos41",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_cross_pos41",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on dec0_cross_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.534"
+        },
+        {
+          "name": "should be bit-exact on dec0_self_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "30.627"
+        },
+        {
+          "name": "should be bit-exact on enc0_full",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "29.045"
+        },
+        {
+          "name": "should be bit-exact on enc0_ragged",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.603"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/TEST-whisper.AttentionSpec.xml"
+      ],
+      "key": "scala-AttentionSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.KVWriteSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:30:32.089571+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219832089586099,
+      "exit_code": 0,
+      "wall_s": 46.095177779999176,
+      "status": "passed",
+      "suite": "KVWriteSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "write K (transposed) and V through the engine bit-exactly",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should write K (transposed) and V through the engine bit-exactly",
+          "class": "whisper.KVWriteSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "41.441"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/TEST-whisper.KVWriteSpec.xml"
+      ],
+      "key": "scala-KVWriteSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.FrameCheckSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:31:18.186907+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219878186922436,
+      "exit_code": 0,
+      "wall_s": 233.26126521399965,
+      "status": "passed",
+      "suite": "FrameCheckSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "WhisperTop frame-count check should refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "class": "whisper.FrameCheckSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "227.736"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/TEST-whisper.FrameCheckSpec.xml"
+      ],
+      "key": "scala-FrameCheckSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001"
+    },
+    {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.RomLiteralLayerSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:35:11.450497+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789220111450513015,
+      "exit_code": 0,
+      "wall_s": 386.6243018259993,
+      "status": "passed",
+      "suite": "RomLiteralLayerSpec",
+      "expected_count": 3,
+      "observed_count": 3,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.094"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "179.705"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "176.279"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/TEST-whisper.RomLiteralLayerSpec.xml"
+      ],
+      "key": "scala-RomLiteralLayerSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001"
+    }
+  ],
+  "latest": {
+    "scala-WeightStoreEquivalenceSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.WeightStoreEquivalenceSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:16:15.318643+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789218975318654974,
+      "exit_code": 0,
+      "wall_s": 94.27381887799993,
+      "status": "passed",
+      "suite": "WeightStoreEquivalenceSpec",
+      "expected_count": 13,
+      "observed_count": 13,
+      "expected_cases": [
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.0.attn.q.w under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.pos under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "decode the flat w8 address space correctly (RomInit, one layer)",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.538"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.035"
+        },
+        {
+          "name": "should return the committed contents of enc.0.attn.q.mult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.111"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.03"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.017"
+        },
+        {
+          "name": "should return the committed contents of enc.0.ln1.g under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.049"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.198"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.248"
+        },
+        {
+          "name": "should return the committed contents of dec.emb.resmult under Sram",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "5.646"
+        },
+        {
+          "name": "should match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.045"
+        },
+        {
+          "name": "should match the whole of enc.0.attn.q.w under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.152"
+        },
+        {
+          "name": "should match the whole of enc.pos under RomInit",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "4.811"
+        },
+        {
+          "name": "should decode the flat w8 address space correctly (RomInit, one layer)",
+          "class": "whisper.WeightStoreEquivalenceSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "6.879"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001/TEST-whisper.WeightStoreEquivalenceSpec.xml"
+      ],
+      "key": "scala-WeightStoreEquivalenceSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-WeightStoreEquivalenceSpec/attempt-001"
+    },
+    "scala-MatmulEngineSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.MatmulEngineSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:17:49.595324+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219069595339605,
+      "exit_code": 0,
+      "wall_s": 504.021694005,
+      "status": "passed",
+      "suite": "MatmulEngineSpec",
+      "expected_count": 19,
+      "observed_count": 19,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on rand_1_5x32x32_raw",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_2_70x96x64_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_3_33x384x384_int8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_6_3x64x64_raw_u8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_7_64x64x96_wide",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_8_130x288x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_10_2x32x32_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_k",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_o",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_dec0_xk",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_lm",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on rand_10_2x32x32_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.147"
+        },
+        {
+          "name": "should be bit-exact on rand_1_5x32x32_raw",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "33.862"
+        },
+        {
+          "name": "should be bit-exact on rand_2_70x96x64_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.773"
+        },
+        {
+          "name": "should be bit-exact on rand_3_33x384x384_int8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "35.068"
+        },
+        {
+          "name": "should be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.889"
+        },
+        {
+          "name": "should be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "44.51"
+        },
+        {
+          "name": "should be bit-exact on rand_6_3x64x64_raw_u8",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.876"
+        },
+        {
+          "name": "should be bit-exact on rand_7_64x64x96_wide",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.424"
+        },
+        {
+          "name": "should be bit-exact on rand_8_130x288x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.098"
+        },
+        {
+          "name": "should be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "36.706"
+        },
+        {
+          "name": "should be bit-exact on real_conv1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.521"
+        },
+        {
+          "name": "should be bit-exact on real_conv2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.736"
+        },
+        {
+          "name": "should be bit-exact on real_dec0_xk",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "16.009"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.563"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "17.542"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_k",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.294"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_o",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.289"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.808"
+        },
+        {
+          "name": "should be bit-exact on real_lm",
+          "class": "whisper.MatmulEngineSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "24.351"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001/TEST-whisper.MatmulEngineSpec.xml"
+      ],
+      "key": "scala-MatmulEngineSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-MatmulEngineSpec/attempt-001"
+    },
+    "scala-VectorUnitSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.VectorUnitSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:26:13.619693+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219573619706685,
+      "exit_code": 0,
+      "wall_s": 136.99696326100002,
+      "status": "passed",
+      "suite": "VectorUnitSpec",
+      "expected_count": 9,
+      "observed_count": 9,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on ln_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_dynq_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dynq_attn_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_static8_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_resid_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_gelu_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on embed",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_embed_dec",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on add_embed_dec",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "15.558"
+        },
+        {
+          "name": "should be bit-exact on add_gelu_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.939"
+        },
+        {
+          "name": "should be bit-exact on add_pos_enc",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.547"
+        },
+        {
+          "name": "should be bit-exact on add_resid_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.529"
+        },
+        {
+          "name": "should be bit-exact on dynq_attn_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.539"
+        },
+        {
+          "name": "should be bit-exact on embed",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.459"
+        },
+        {
+          "name": "should be bit-exact on gelu_dynq_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.76"
+        },
+        {
+          "name": "should be bit-exact on gelu_static8_conv1",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.501"
+        },
+        {
+          "name": "should be bit-exact on ln_enc0",
+          "class": "whisper.VectorUnitSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "14.559"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001/TEST-whisper.VectorUnitSpec.xml"
+      ],
+      "key": "scala-VectorUnitSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-VectorUnitSpec/attempt-001"
+    },
+    "scala-AttentionSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.AttentionSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:28:30.618896+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219710618910585,
+      "exit_code": 0,
+      "wall_s": 121.4682130150004,
+      "status": "passed",
+      "suite": "AttentionSpec",
+      "expected_count": 4,
+      "observed_count": 4,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on enc0_full",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on enc0_ragged",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_self_pos41",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_cross_pos41",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on dec0_cross_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.534"
+        },
+        {
+          "name": "should be bit-exact on dec0_self_pos41",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "30.627"
+        },
+        {
+          "name": "should be bit-exact on enc0_full",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "29.045"
+        },
+        {
+          "name": "should be bit-exact on enc0_ragged",
+          "class": "whisper.AttentionSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "28.603"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001/TEST-whisper.AttentionSpec.xml"
+      ],
+      "key": "scala-AttentionSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-AttentionSpec/attempt-001"
+    },
+    "scala-KVWriteSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.KVWriteSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:30:32.089571+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219832089586099,
+      "exit_code": 0,
+      "wall_s": 46.095177779999176,
+      "status": "passed",
+      "suite": "KVWriteSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "write K (transposed) and V through the engine bit-exactly",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should write K (transposed) and V through the engine bit-exactly",
+          "class": "whisper.KVWriteSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "41.441"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001/TEST-whisper.KVWriteSpec.xml"
+      ],
+      "key": "scala-KVWriteSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-KVWriteSpec/attempt-001"
+    },
+    "scala-FrameCheckSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.FrameCheckSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:31:18.186907+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789219878186922436,
+      "exit_code": 0,
+      "wall_s": 233.26126521399965,
+      "status": "passed",
+      "suite": "FrameCheckSpec",
+      "expected_count": 1,
+      "observed_count": 1,
+      "expected_cases": [
+        {
+          "name": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "WhisperTop frame-count check should refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "class": "whisper.FrameCheckSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "227.736"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001/TEST-whisper.FrameCheckSpec.xml"
+      ],
+      "key": "scala-FrameCheckSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-FrameCheckSpec/attempt-001"
+    },
+    "scala-RomLiteralLayerSpec": {
+      "command": [
+        "sbt",
+        "-batch",
+        "testOnly whisper.RomLiteralLayerSpec"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip",
+      "started_utc": "2026-09-12T13:35:11.450497+00:00",
+      "timeout_s": 1800,
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/run.log",
+      "timed_out": false,
+      "start_epoch_ns": 1789220111450513015,
+      "exit_code": 0,
+      "wall_s": 386.6243018259993,
+      "status": "passed",
+      "suite": "RomLiteralLayerSpec",
+      "expected_count": 3,
+      "observed_count": 3,
+      "expected_cases": [
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        }
+      ],
+      "observed_cases": [
+        {
+          "name": "should be bit-exact on real_enc0_q",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "26.094"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc1",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "179.705"
+        },
+        {
+          "name": "should be bit-exact on real_enc0_fc2",
+          "class": "whisper.RomLiteralLayerSpec",
+          "status": "passed",
+          "detail": "",
+          "seconds": "176.279"
+        }
+      ],
+      "junit_reports": [
+        "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001/TEST-whisper.RomLiteralLayerSpec.xml"
+      ],
+      "key": "scala-RomLiteralLayerSpec",
+      "attempt": 1,
+      "directory": "/home/ubuntu/wispr-on-chip/out/benchmark/reference/scala-RomLiteralLayerSpec/attempt-001"
+    }
+  },
+  "schema_version": 1,
+  "repository": "/home/ubuntu/wispr-on-chip",
+  "expected_scala_count": 51,
+  "expected_pytest_count": 18,
+  "assets": {
+    "checked_utc": "2026-09-12T13:16:15.318235+00:00",
+    "data_dir": "/home/ubuntu/data-cache",
+    "checkpoint": "/home/ubuntu/data-cache/whisper/tiny.pt",
+    "checkpoint_expected_sha256": "65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9",
+    "checkpoint_sha256": "65147644a518d12f04e32d6f3b26facc3f8dd46e5390956a9424a650c0ce22b9",
+    "checkpoint_ok": true,
+    "missing_varied": [],
+    "missing_e2e_libri_files": []
+  },
+  "environment_overrides": {
+    "WHISPER_SI_DATA": "/home/ubuntu/data-cache",
+    "JAVA_TOOL_OPTIONS": "-XX:ActiveProcessorCount=2",
+    "WHISPER_SIM_THREADS": "1"
+  },
+  "unset_environment_variables": [
+    "MATMUL_CASES",
+    "VEC_CASES",
+    "ATT_CASES",
+    "ROMLIT_CASES",
+    "SVSIM_EXECUTION_SCRIPT_LIMIT"
+  ],
+  "timing_scope": "Original command wall time includes elaboration, compilation, simulation and host checks; it is not simulator-only throughput.",
+  "updated_utc": "2026-09-12T13:41:38.075886+00:00",
+  "scala_coverage": {
+    "WeightStoreEquivalenceSpec": {
+      "expected_count": 13,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.attn.q.mult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of enc.0.ln1.g under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "return the committed contents of dec.emb.resmult under Sram",
+          "status": "passed"
+        },
+        {
+          "name": "match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.0.attn.q.w under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "match the whole of enc.pos under RomInit",
+          "status": "passed"
+        },
+        {
+          "name": "decode the flat w8 address space correctly (RomInit, one layer)",
+          "status": "passed"
+        }
+      ]
+    },
+    "MatmulEngineSpec": {
+      "expected_count": 19,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "be bit-exact on rand_1_5x32x32_raw",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_2_70x96x64_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_3_33x384x384_int8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_4_40x1536x384_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_5_1x384x1536_int16_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_6_3x64x64_raw_u8",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_7_64x64x96_wide",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_8_130x288x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_9_1500x384x384_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on rand_10_2x32x32_int8_dyn",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_conv2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_k",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_o",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_dec0_xk",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_lm",
+          "status": "passed"
+        }
+      ]
+    },
+    "VectorUnitSpec": {
+      "expected_count": 9,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "be bit-exact on ln_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_dynq_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dynq_attn_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on gelu_static8_conv1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_resid_enc0",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_gelu_pos_enc",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on embed",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on add_embed_dec",
+          "status": "passed"
+        }
+      ]
+    },
+    "AttentionSpec": {
+      "expected_count": 4,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "be bit-exact on enc0_full",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on enc0_ragged",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_self_pos41",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on dec0_cross_pos41",
+          "status": "passed"
+        }
+      ]
+    },
+    "KVWriteSpec": {
+      "expected_count": 1,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "write K (transposed) and V through the engine bit-exactly",
+          "status": "passed"
+        }
+      ]
+    },
+    "FrameCheckSpec": {
+      "expected_count": 1,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "refuse zero, odd, oversized and unstreamed frame counts, and accept a valid one",
+          "status": "passed"
+        }
+      ]
+    },
+    "SamplerSpec": {
+      "expected_count": 1,
+      "status": "not_run_by_this_runner",
+      "cases": [
+        {
+          "name": "pick the lowest-index maximum with suppression, and pulse done",
+          "status": "not_observed"
+        }
+      ]
+    },
+    "RomLiteralLayerSpec": {
+      "expected_count": 3,
+      "status": "passed",
+      "cases": [
+        {
+          "name": "be bit-exact on real_enc0_q",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc1",
+          "status": "passed"
+        },
+        {
+          "name": "be bit-exact on real_enc0_fc2",
+          "status": "passed"
+        }
+      ]
+    }
+  }
+}

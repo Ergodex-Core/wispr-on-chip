@@ -1,0 +1,531 @@
+[
+  {
+    "bench": "SamplerSpec-01",
+    "engine": "arcilator",
+    "semantics": "2s",
+    "frontend": {
+      "command": [
+        "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/circt-verilog",
+        "--single-unit",
+        "--timescale=1ns/100ps",
+        "--top=svsimTestbench",
+        "-DENABLE_INITIAL_MEM_",
+        "-DASSERT_VERBOSE_COND=!svsimTestbench.reset",
+        "-DPRINTF_COND=!svsimTestbench.reset",
+        "-DSTOP_COND=!svsimTestbench.reset",
+        "-Dlayer$Verification$Assert$Temporal",
+        "-Dlayer$Verification$Assume$Temporal",
+        "-Dlayer$Verification$Cover$Temporal",
+        "-DRANDOMIZE_REG_INIT",
+        "-DRANDOMIZE_MEM_INIT",
+        "-DRANDOMIZE_DELAY=1",
+        "-DRANDOM=$urandom",
+        "-DVERILATOR",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/Sampler.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover/layers-Sampler-Verification-Cover.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/layers-Sampler-Verification.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume/layers-Sampler-Verification-Assume.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert/layers-Sampler-Verification-Assert.sv",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01/replay.sv",
+        "-o",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+      ],
+      "executed_command": [
+        "/usr/bin/time",
+        "-f",
+        "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+        "-o",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/frontend.resources",
+        "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/circt-verilog",
+        "--single-unit",
+        "--timescale=1ns/100ps",
+        "--top=svsimTestbench",
+        "-DENABLE_INITIAL_MEM_",
+        "-DASSERT_VERBOSE_COND=!svsimTestbench.reset",
+        "-DPRINTF_COND=!svsimTestbench.reset",
+        "-DSTOP_COND=!svsimTestbench.reset",
+        "-Dlayer$Verification$Assert$Temporal",
+        "-Dlayer$Verification$Assume$Temporal",
+        "-Dlayer$Verification$Cover$Temporal",
+        "-DRANDOMIZE_REG_INIT",
+        "-DRANDOMIZE_MEM_INIT",
+        "-DRANDOMIZE_DELAY=1",
+        "-DRANDOM=$urandom",
+        "-DVERILATOR",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/Sampler.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover/layers-Sampler-Verification-Cover.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/layers-Sampler-Verification.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume/layers-Sampler-Verification-Assume.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert/layers-Sampler-Verification-Assert.sv",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01/replay.sv",
+        "-o",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+      "environment_overrides": {},
+      "timeout_s": 300.0,
+      "started_utc": "2026-09-12T13:44:38Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_s": 0.106378842,
+      "markers": [],
+      "resources": {
+        "user_s": 0.12,
+        "system_s": 0.0,
+        "max_rss_kb": 30676.0
+      },
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/frontend.log"
+    },
+    "runs": [
+      {
+        "command": [
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-1.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "ARC_DESEQ_DISABLE": "1",
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:44:38Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 21.193039241,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5396152562096,
+            "process_elapsed_s": 3.2789348
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5414060299283,
+            "process_elapsed_s": 21.186671987
+          }
+        ],
+        "resources": {
+          "user_s": 13.7,
+          "system_s": 7.51,
+          "max_rss_kb": 127876.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-1.log",
+        "cycles": 15594,
+        "region_wall_s": 17.907737187,
+        "region_too_short": false,
+        "cycles_per_s": 870.7967867274912,
+        "startup_before_region_s": 3.2789348,
+        "validation_errors": [],
+        "passed": true
+      },
+      {
+        "command": [
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-2.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "ARC_DESEQ_DISABLE": "1",
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:44:59Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 21.444017496,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5417365439739,
+            "process_elapsed_s": 3.298031157
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5435504369301,
+            "process_elapsed_s": 21.436960719
+          }
+        ],
+        "resources": {
+          "user_s": 13.84,
+          "system_s": 7.62,
+          "max_rss_kb": 128176.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-2.log",
+        "cycles": 15594,
+        "region_wall_s": 18.138929562,
+        "region_too_short": false,
+        "cycles_per_s": 859.697919146702,
+        "startup_before_region_s": 3.298031157,
+        "validation_errors": [],
+        "passed": true
+      },
+      {
+        "command": [
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-3.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator",
+          "--run",
+          "--jit-entry=svsimTestbench_main",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/svsimTestbench.mlir"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "ARC_DESEQ_DISABLE": "1",
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:45:21Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 21.219047911,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5438778608161,
+            "process_elapsed_s": 3.266586885
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5456724571268,
+            "process_elapsed_s": 21.212549992
+          }
+        ],
+        "resources": {
+          "user_s": 13.68,
+          "system_s": 7.56,
+          "max_rss_kb": 130444.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/arcilator/runtime-3.log",
+        "cycles": 15594,
+        "region_wall_s": 17.945963107,
+        "region_too_short": false,
+        "cycles_per_s": 868.9419401468292,
+        "startup_before_region_s": 3.266586885,
+        "validation_errors": [],
+        "passed": true
+      }
+    ]
+  },
+  {
+    "bench": "SamplerSpec-01",
+    "engine": "verilator",
+    "semantics": "2s",
+    "frontend": {
+      "command": [
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "--threads",
+        "1",
+        "-j",
+        "2",
+        "-O3",
+        "-CFLAGS",
+        "-O3",
+        "-Wno-fatal",
+        "--timescale",
+        "1ns/100ps",
+        "--top-module",
+        "svsimTestbench",
+        "--Mdir",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir",
+        "-o",
+        "bench_sim",
+        "-DENABLE_INITIAL_MEM_",
+        "-DASSERT_VERBOSE_COND=!svsimTestbench.reset",
+        "-DPRINTF_COND=!svsimTestbench.reset",
+        "-DSTOP_COND=!svsimTestbench.reset",
+        "-Dlayer$Verification$Assert$Temporal",
+        "-Dlayer$Verification$Assume$Temporal",
+        "-Dlayer$Verification$Cover$Temporal",
+        "-DRANDOMIZE_REG_INIT",
+        "-DRANDOMIZE_MEM_INIT",
+        "-DRANDOMIZE_DELAY=1",
+        "-DRANDOM=$urandom",
+        "-DVERILATOR",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/Sampler.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover/layers-Sampler-Verification-Cover.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/layers-Sampler-Verification.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume/layers-Sampler-Verification-Assume.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert/layers-Sampler-Verification-Assert.sv",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01/replay.sv"
+      ],
+      "executed_command": [
+        "/usr/bin/time",
+        "-f",
+        "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+        "-o",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/frontend.resources",
+        "verilator",
+        "--binary",
+        "--timing",
+        "--assert",
+        "--threads",
+        "1",
+        "-j",
+        "2",
+        "-O3",
+        "-CFLAGS",
+        "-O3",
+        "-Wno-fatal",
+        "--timescale",
+        "1ns/100ps",
+        "--top-module",
+        "svsimTestbench",
+        "--Mdir",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir",
+        "-o",
+        "bench_sim",
+        "-DENABLE_INITIAL_MEM_",
+        "-DASSERT_VERBOSE_COND=!svsimTestbench.reset",
+        "-DPRINTF_COND=!svsimTestbench.reset",
+        "-DSTOP_COND=!svsimTestbench.reset",
+        "-Dlayer$Verification$Assert$Temporal",
+        "-Dlayer$Verification$Assume$Temporal",
+        "-Dlayer$Verification$Cover$Temporal",
+        "-DRANDOMIZE_REG_INIT",
+        "-DRANDOMIZE_MEM_INIT",
+        "-DRANDOMIZE_DELAY=1",
+        "-DRANDOM=$urandom",
+        "-DVERILATOR",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume",
+        "-I/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/Sampler.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover/layers-Sampler-Verification-Cover.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/layers-Sampler-Verification.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume/layers-Sampler-Verification-Assume.sv",
+        "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert/layers-Sampler-Verification-Assert.sv",
+        "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01/replay.sv"
+      ],
+      "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+      "environment_overrides": {},
+      "timeout_s": 300.0,
+      "started_utc": "2026-09-12T13:45:42Z",
+      "exit_code": 0,
+      "timed_out": false,
+      "wall_s": 5.823649209,
+      "markers": [],
+      "resources": {
+        "user_s": 10.01,
+        "system_s": 0.78,
+        "max_rss_kb": 288824.0
+      },
+      "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/frontend.log"
+    },
+    "runs": [
+      {
+        "command": [
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-1.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:45:48Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 0.325752786,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5462558809432,
+            "process_elapsed_s": 0.00250527
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5462880902024,
+            "process_elapsed_s": 0.324597862
+          }
+        ],
+        "resources": {
+          "user_s": 0.32,
+          "system_s": 0.0,
+          "max_rss_kb": 4496.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-1.log",
+        "cycles": 15594,
+        "region_wall_s": 0.322092592,
+        "region_too_short": false,
+        "cycles_per_s": 48414.64966074103,
+        "startup_before_region_s": 0.00250527,
+        "validation_errors": [],
+        "passed": true
+      },
+      {
+        "command": [
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-2.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:45:48Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 0.324519171,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5462885239945,
+            "process_elapsed_s": 0.002535977
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5463206309469,
+            "process_elapsed_s": 0.323605501
+          }
+        ],
+        "resources": {
+          "user_s": 0.32,
+          "system_s": 0.0,
+          "max_rss_kb": 4448.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-2.log",
+        "cycles": 15594,
+        "region_wall_s": 0.321069524,
+        "region_too_short": false,
+        "cycles_per_s": 48568.91992028493,
+        "startup_before_region_s": 0.002535977,
+        "validation_errors": [],
+        "passed": true
+      },
+      {
+        "command": [
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "executed_command": [
+          "/usr/bin/time",
+          "-f",
+          "user_s=%U\nsystem_s=%S\nmax_rss_kb=%M",
+          "-o",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-3.resources",
+          "stdbuf",
+          "-oL",
+          "-eL",
+          "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/obj_dir/bench_sim"
+        ],
+        "cwd": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01",
+        "environment_overrides": {
+          "OMP_NUM_THREADS": "1"
+        },
+        "timeout_s": 300.0,
+        "started_utc": "2026-09-12T13:45:48Z",
+        "exit_code": 0,
+        "timed_out": false,
+        "wall_s": 0.323979018,
+        "markers": [
+          {
+            "line": "BENCH_BEGIN name=SamplerSpec-01",
+            "observed_monotonic_ns": 5463210343288,
+            "process_elapsed_s": 0.002583711
+          },
+          {
+            "line": "BENCH_END name=SamplerSpec-01 cycles=15594",
+            "observed_monotonic_ns": 5463530660168,
+            "process_elapsed_s": 0.322900591
+          }
+        ],
+        "resources": {
+          "user_s": 0.32,
+          "system_s": 0.0,
+          "max_rss_kb": 4388.0
+        },
+        "log": "/home/ubuntu/wispr-on-chip/out/benchmark/official/sampler-001/SamplerSpec-01/verilator/runtime-3.log",
+        "cycles": 15594,
+        "region_wall_s": 0.32031688,
+        "region_too_short": false,
+        "cycles_per_s": 48683.041618037736,
+        "startup_before_region_s": 0.002583711,
+        "validation_errors": [],
+        "passed": true
+      }
+    ]
+  }
+]

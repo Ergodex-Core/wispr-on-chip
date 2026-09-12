@@ -1,0 +1,52 @@
+number,case,cycles,verilator_build_sim_s,arcilator_build_sim_s,cycles_per_s_v_a,arcilator_status
+1,Weight: enc.0.attn.q.mult under RomLiteral,13,3.773 / 0.000452†,8.114 / 0.000333†,short† / short†,Pass
+2,Weight: enc.0.attn.q.mult under RomInit,13,3.757 / 0.000433†,6.845 / 0.000460†,short† / short†,Pass
+3,Weight: enc.0.attn.q.mult under Sram,397,3.763 / 0.002858†,8.163 / failed,short† / —,Mismatch
+4,Weight: enc.0.ln1.g under RomLiteral,13,3.764 / 0.000418†,8.162 / 0.000450†,short† / short†,Pass
+5,Weight: enc.0.ln1.g under RomInit,13,3.757 / 0.000398†,6.799 / 0.000447†,short† / short†,Pass
+6,Weight: enc.0.ln1.g under Sram,397,3.754 / 0.002859†,8.183 / failed,short† / —,Mismatch
+7,Weight: dec.emb.resmult under RomLiteral,"1,622",35.868 / 0.053053†,7.643 / 0.522,"short† / 3,108",Pass
+8,Weight: dec.emb.resmult under RomInit,"1,622",3.808 / 0.051549†,219.235 / 0.661,"short† / 2,455",Pass
+9,Weight: dec.emb.resmult under Sram,"53,494",3.768 / 0.382,8.218 / failed,"139,880 / —",Mismatch
+10,Weight: match on a 64 Kbit window of enc.0.attn.q.w under RomLiteral,33,3.804 / 0.001629†,3.675 / 0.001768†,short† / short†,Pass
+11,Weight: match the whole of enc.0.attn.q.w under RomInit,577,3.804 / 0.028738†,134.601 / 0.149,"short† / 3,865",Pass
+12,Weight: match the whole of enc.pos under RomInit,"18,001",3.798 / 0.345,≥300 / —,"52,212 / —",JIT timeout
+13,"Weight: decode the flat w8 address space correctly (RomInit, one layer)",25,10.151 / 0.001155†,≥300 / —,short† / —,JIT timeout
+14,Matmul: rand_1_5x32x32_raw,358,21.332 / 0.004988†,≥300 / —,short† / —,JIT timeout
+15,Matmul: rand_2_70x96x64_int8_dyn,"2,542",21.413 / 0.035978†,≥300 / —,short† / —,JIT timeout
+16,Matmul: rand_3_33x384x384_int8,"43,799",21.279 / 0.563,≥300 / —,"77,849 / —",JIT timeout
+17,Matmul: rand_4_40x1536x384_int16_dyn,"176,502",21.497 / 2.264,≥300 / —,"77,961 / —",JIT timeout
+18,Matmul: rand_5_1x384x1536_int16_dyn,"153,531",21.407 / 1.965,≥300 / —,"78,144 / —",JIT timeout
+19,Matmul: rand_6_3x64x64_raw_u8,"1,209",21.427 / 0.016337†,≥300 / —,short† / —,JIT timeout
+20,Matmul: rand_7_64x64x96_wide,"2,534",21.494 / 0.037566†,≥300 / —,short† / —,JIT timeout
+21,Matmul: rand_8_130x288x384_int8_dyn,"45,762",Pending,Pending,— / —,Pending
+22,Matmul: rand_9_1500x384x384_int8_dyn,"291,722",Pending,Pending,— / —,Pending
+23,Matmul: rand_10_2x32x32_int8_dyn,346,Pending,Pending,— / —,Pending
+24,Matmul: real_conv1,"35,262",Pending,Pending,— / —,Pending
+25,Matmul: real_conv2,"63,310",Pending,Pending,— / —,Pending
+26,Matmul: real_enc0_q,"22,222",Pending,Pending,— / —,Pending
+27,Matmul: real_enc0_k,"22,222",Pending,Pending,— / —,Pending
+28,Matmul: real_enc0_o,"23,758",Pending,Pending,— / —,Pending
+29,Matmul: real_enc0_fc1,"89,998",Pending,Pending,— / —,Pending
+30,Matmul: real_enc0_fc2,"85,390",Pending,Pending,— / —,Pending
+31,Matmul: real_dec0_xk,"22,222",Pending,Pending,— / —,Pending
+32,Matmul: real_lm,"98,908",Pending,Pending,— / —,Pending
+33,Vector: ln_enc0,"6,404",Pending,Pending,— / —,Pending
+34,Vector: gelu_dynq_enc0,"14,964",Pending,Pending,— / —,Pending
+35,Vector: dynq_attn_enc0,"4,884",Pending,Pending,— / —,Pending
+36,Vector: gelu_static8_conv1,"3,804",Pending,Pending,— / —,Pending
+37,Vector: add_resid_enc0,"4,084",Pending,Pending,— / —,Pending
+38,Vector: add_pos_enc,"3,124",Pending,Pending,— / —,Pending
+39,Vector: add_gelu_pos_enc,"3,124",Pending,Pending,— / —,Pending
+40,Vector: embed,759,Pending,Pending,— / —,Pending
+41,Vector: add_embed_dec,493,Pending,Pending,— / —,Pending
+42,Attention: enc0_full,"71,272",Pending,Pending,— / —,Pending
+43,Attention: enc0_ragged,"57,160",Pending,Pending,— / —,Pending
+44,Attention: dec0_self_pos41,"2,248",Pending,Pending,— / —,Pending
+45,Attention: dec0_cross_pos41,"6,190",Pending,Pending,— / —,Pending
+46,KV write,"42,361",Pending,Pending,— / —,Pending
+47,Full-chip frame,442,Pending,Pending,— / —,Pending
+48,Sampler,"15,594",5.826 / 0.321,3.385 / 17.946,"48,569 / 869",Pass
+49,Literal ROM: real_enc0_q,"22,222",Pending,Pending,— / —,Pending
+50,Literal ROM: real_enc0_fc1,"89,998",Pending,Pending,— / —,Pending
+51,Literal ROM: real_enc0_fc2,"85,390",Pending,Pending,— / —,Pending

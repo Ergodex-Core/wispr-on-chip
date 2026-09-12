@@ -1,0 +1,37 @@
+{
+  "platform": "Linux-6.17.0-1017-aws-x86_64-with-glibc2.39",
+  "machine": "x86_64",
+  "logical_cpu_count": 4,
+  "simulation_threads": 1,
+  "verilator_build_jobs": 2,
+  "affinity": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "manifest": "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/manifest.json",
+  "manifest_sha256": "bcb84f0d9c5434261c47cfe2367880b570320cc0dcba6bf091b622d06bd96317",
+  "source_sha256": {
+    "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/Sampler.sv": "d556137abf42da1297870a1a050d159fe0690cc08c7448385fba8eb0b40d7e57",
+    "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/cover/layers-Sampler-Verification-Cover.sv": "1d2743c34e3350781fd5429263824f55d9b54766fc1c107dc65717d854f16dc3",
+    "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/layers-Sampler-Verification.sv": "21da9b9c708a4c79b73ea56e01d8a237ea4fd108fad39f057c3a0cbfdc42f72e",
+    "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assume/layers-Sampler-Verification-Assume.sv": "c03e116f3d1bcf6dc5cb76051eec782a44ccd1e1c468252fb9ee37d686b28590",
+    "/home/ubuntu/wispr-on-chip/build/chiselsim/SamplerSpec/Sampler/should-pick-the-lowest-index-maximum-with-suppression--and-pulse-done/sampler/primary-sources/verification/assert/layers-Sampler-Verification-Assert.sv": "934c4d724243b170c6048672317ca35fc06ceafec6023a136ff7278b5c162ab7",
+    "/home/ubuntu/wispr-on-chip/out/benchmark/replays-single-001/SamplerSpec-01/replay.sv": "543e5574c6acd9b616687da81dda285005b3f9fe245e7f66d2f718467d9d5d75"
+  },
+  "versions": {
+    "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/circt-verilog": "LLVM (http://llvm.org/):\n  LLVM version 23.0.0git\n  Optimized build.\nCIRCT 04824a080\nslang version 11.0.0+0",
+    "/home/ubuntu/arcilator-linux-x86_64-04824a080/bin/arcilator": "LLVM (http://llvm.org/):\n  LLVM version 23.0.0git\n  Optimized build.\nCIRCT 04824a080",
+    "verilator": "Verilator 5.020 2024-01-01 rev (Debian 5.020-1)"
+  },
+  "time_resource_collection": "/usr/bin/time",
+  "notes": [
+    "Arcilator process wall includes LLVM/JIT compilation on every repetition.",
+    "total_build_estimate_s is frontend/build plus median pre-region startup: a JIT/load/runtime-initialization proxy, not compiler-exclusive time.",
+    "Marker region wall measures host-observed full testbench stimulus, checks and simulation.",
+    "Marker timestamps include pipe/scheduling latency; short intervals are flagged.",
+    "No waveform flags are enabled. This runner executes engines sequentially."
+  ],
+  "cpu_model": "Intel(R) Xeon(R) Platinum 8488C"
+}
