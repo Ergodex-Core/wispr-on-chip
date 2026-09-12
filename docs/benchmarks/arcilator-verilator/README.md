@@ -8,6 +8,10 @@ The [full 51-case table](CURRENT_COMPARISON.md) and
 [comparison CSV](CURRENT_COMPARISON.csv) distinguish completed measurements
 from pending cases.
 
+Read [the methodology review](METHODOLOGY_REVIEW.md) for the exact DUT scope,
+compiler-optimization caveats and distinction between replay execution and
+native hardware-model throughput.
+
 | Validation | Passed | Other outcomes |
 |---|---:|---|
 | Original Scala hardware tests with Verilator | 51/51 | None |
@@ -23,6 +27,8 @@ and golden outputs prepared, but have no paired simulation results here.
 
 - Same EC2 `m7i.xlarge`: 4 vCPUs, 16 GiB RAM, Intel Xeon Platinum 8488C.
 - Supplied Arcilator/CIRCT binary `04824a080`, LLVM `23.0.0git`.
+- Arcilator uses `ARC_DESEQ_DISABLE=1`, the supplied package's validated
+  configuration with clock promotion disabled.
 - Verilator `5.020`, GCC 13; two native build jobs, one simulation thread.
 - Both engines use two-state semantics and the same generated SystemVerilog
   replay. Engines run sequentially, with fresh builds and no waveform output.
