@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.37227516174316405,
+ "duration_s": 4.41,
+ "language": "en",
+ "n_samples": 70560,
+ "no_speech_prob": 0.0341193862259388,
+ "ref_text": "ANGOR PAIN PAINFUL TO HEAR",
+ "text": "Angor, pain, painful to hear.",
+ "tokens": [
+  4521,
+  284,
+  11,
+  1822,
+  11,
+  11697,
+  281,
+  1568,
+  13
+ ],
+ "uid": "121-121726-0002"
+}

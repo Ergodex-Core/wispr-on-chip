@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.14070757627487182,
+ "duration_s": 5.865,
+ "language": "en",
+ "n_samples": 93840,
+ "no_speech_prob": 0.01920517534017563,
+ "ref_text": "IT WAS THE SCARLET LETTER IN ANOTHER FORM THE SCARLET LETTER ENDOWED WITH LIFE",
+ "text": "It was the Scarlet Letter in another form. The Scarlet Letter endowed with life.",
+ "tokens": [
+  467,
+  390,
+  264,
+  23181,
+  2631,
+  43426,
+  294,
+  1071,
+  1254,
+  13,
+  440,
+  23181,
+  2631,
+  43426,
+  917,
+  24347,
+  365,
+  993,
+  13
+ ],
+ "uid": "1221-135767-0005"
+}

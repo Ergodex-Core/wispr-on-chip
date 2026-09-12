@@ -1,0 +1,25 @@
+{
+ "avg_logprob": -0.18745601177215576,
+ "duration_s": 5.0,
+ "language": "en",
+ "n_samples": 80000,
+ "no_speech_prob": 0.014304107055068016,
+ "ref_text": "THE GREATNESS OF THE RANSOM CHRIST THE SON OF GOD INDICATES THIS",
+ "text": "The greatness of the ransom priced the son of God indicates this.",
+ "tokens": [
+  440,
+  31196,
+  295,
+  264,
+  38279,
+  30349,
+  264,
+  1872,
+  295,
+  1265,
+  16203,
+  341,
+  13
+ ],
+ "uid": "varied/en_5s_m"
+}

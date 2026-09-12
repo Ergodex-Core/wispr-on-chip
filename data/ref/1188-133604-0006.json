@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.09618825912475586,
+ "duration_s": 2.4,
+ "language": "en",
+ "n_samples": 38400,
+ "no_speech_prob": 0.08372234553098679,
+ "ref_text": "THEN HE COMES TO THE BEAK OF IT",
+ "text": "Then he comes to the beak of it.",
+ "tokens": [
+  1396,
+  415,
+  1487,
+  281,
+  264,
+  48663,
+  295,
+  309,
+  13
+ ],
+ "uid": "1188-133604-0006"
+}

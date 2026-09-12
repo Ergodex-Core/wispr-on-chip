@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.5815917491912842,
+ "duration_s": 5.0,
+ "language": "en",
+ "n_samples": 80000,
+ "no_speech_prob": 0.007920917123556137,
+ "ref_text": "BUT IN SUCH A CASE MISS MILNER'S ELECTION OF A HUSBAND SHALL NOT DIRECT MINE",
+ "text": "But in such a case, this known as election overhows and shall not direct mine.",
+ "tokens": [
+  583,
+  294,
+  1270,
+  257,
+  1389,
+  11,
+  341,
+  2570,
+  382,
+  6618,
+  670,
+  71,
+  1509,
+  293,
+  4393,
+  406,
+  2047,
+  3892,
+  13
+ ],
+ "uid": "varied/en_5s_f_white10db"
+}

@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.65570251758282,
+ "duration_s": 3.275,
+ "language": "en",
+ "n_samples": 52400,
+ "no_speech_prob": 0.0072660893201828,
+ "ref_text": "STUFF IT INTO YOU HIS BELLY COUNSELLED HIM",
+ "text": "Stuffed into you, his belly, couchled him.",
+ "tokens": [
+  31347,
+  292,
+  666,
+  291,
+  11,
+  702,
+  11696,
+  11,
+  16511,
+  1493,
+  796,
+  13
+ ],
+ "uid": "1089-134686-0001"
+}

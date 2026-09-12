@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.10563562466548039,
+ "duration_s": 2.695,
+ "language": "en",
+ "n_samples": 43120,
+ "no_speech_prob": 0.004872699733823538,
+ "ref_text": "IT WAS ALMOST THE TONE OF HOPE EVERYBODY WILL STAY",
+ "text": "It was almost the tone of hope. Everybody will stay.",
+ "tokens": [
+  467,
+  390,
+  1920,
+  264,
+  8027,
+  295,
+  1454,
+  13,
+  7646,
+  486,
+  1754,
+  13
+ ],
+ "uid": "121-127105-0017"
+}

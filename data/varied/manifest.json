@@ -1,0 +1,94 @@
+[
+ {
+  "id": "en_2s_f",
+  "file": "en_2s_f.flac",
+  "text": "WON'T YOU TELL DOUGLAS",
+  "language": "en",
+  "source": "121-127105-0021",
+  "kind": "clean",
+  "duration_s": 2.0
+ },
+ {
+  "id": "en_5s_m",
+  "file": "en_5s_m.flac",
+  "text": "THE GREATNESS OF THE RANSOM CHRIST THE SON OF GOD INDICATES THIS",
+  "language": "en",
+  "source": "2830-3980-0068",
+  "kind": "clean",
+  "duration_s": 5.0
+ },
+ {
+  "id": "en_12s_f",
+  "file": "en_12s_f.flac",
+  "text": "IT TAKES ME SEVERAL YEARS TO MAKE THIS MAGIC POWDER BUT AT THIS MOMENT I AM PLEASED TO SAY IT IS NEARLY DONE YOU SEE I AM MAKING IT FOR MY GOOD WIFE MARGOLOTTE WHO WANTS TO USE SOME OF IT FOR A PURPOSE OF HER OWN",
+  "language": "en",
+  "source": "1284-1180-0018",
+  "kind": "clean",
+  "duration_s": 12.005
+ },
+ {
+  "id": "en_29s_m",
+  "file": "en_29s_m.flac",
+  "text": "TO THE SURPRISE OF ALL AND ESPECIALLY OF LIEUTENANT PROCOPE THE LINE INDICATED A BOTTOM AT A NEARLY UNIFORM DEPTH OF FROM FOUR TO FIVE FATHOMS AND ALTHOUGH THE SOUNDING WAS PERSEVERED WITH CONTINUOUSLY FOR MORE THAN TWO HOURS OVER A CONSIDERABLE AREA THE DIFFERENCES OF LEVEL WERE INSIGNIFICANT NOT CORRESPONDING IN ANY DEGREE TO WHAT WOULD BE EXPECTED OVER THE SITE OF A CITY THAT HAD BEEN TERRACED LIKE THE SEATS OF AN AMPHITHEATER",
+  "language": "en",
+  "source": "5105-28241-0015",
+  "kind": "clean",
+  "duration_s": 29.14
+ },
+ {
+  "id": "en_12s_m",
+  "file": "en_12s_m.flac",
+  "text": "THE LIEUTENANT GOVERNOR LILBURN W BOGGS AFTERWARD GOVERNOR WAS A PRONOUNCED MORMON HATER AND THROUGHOUT THE PERIOD OF THE TROUBLES HE MANIFESTED SYMPATHY WITH THE PERSECUTORS",
+  "language": "en",
+  "source": "4077-13751-0012",
+  "kind": "clean",
+  "duration_s": 12.015
+ },
+ {
+  "id": "en_5s_f_white10db",
+  "file": "en_5s_f_white10db.flac",
+  "text": "BUT IN SUCH A CASE MISS MILNER'S ELECTION OF A HUSBAND SHALL NOT DIRECT MINE",
+  "language": "en",
+  "source": "4992-23283-0010",
+  "kind": "white_10dB",
+  "seed": 20260907,
+  "duration_s": 5.0
+ },
+ {
+  "id": "en_5s_m_babble10db",
+  "file": "en_5s_m_babble10db.flac",
+  "text": "I SAY YOU DO KNOW WHAT THIS MEANS AND YOU MUST TELL US",
+  "language": "en",
+  "source": "6930-81414-0020",
+  "kind": "babble_10dB",
+  "seed": 20260907,
+  "duration_s": 5.0
+ },
+ {
+  "id": "en_silence",
+  "file": "en_silence.flac",
+  "text": "WHEN WE WERE OUT IN THE DARKNESS OF THE QUADRANGLE WE AGAIN LOOKED UP AT THE WINDOWS WON'T YOU TELL DOUGLAS",
+  "language": "en",
+  "source": "1580-141084-0011+8s_silence+121-127105-0021",
+  "kind": "silence",
+  "duration_s": 15.0
+ },
+ {
+  "id": "de_fleurs_10229344228128634115",
+  "file": "de_fleurs_10229344228128634115.flac",
+  "text": "Jeder nimmt an der Gesellschaft teil und benutzt Transportsysteme. Fast jeder beklagt sich über die Transportsysteme.",
+  "language": "de",
+  "source": "fleurs/de_de/10229344228128634115.wav",
+  "kind": "non_english",
+  "duration_s": 7.14
+ },
+ {
+  "id": "fr_fleurs_10174413140250646001",
+  "file": "fr_fleurs_10174413140250646001.flac",
+  "text": "Giancarlo Fisichella a perdu le contrôle de sa voiture et a terminé la course peu après le démarrage.",
+  "language": "fr",
+  "source": "fleurs/fr_fr/10174413140250646001.wav",
+  "kind": "non_english",
+  "duration_s": 7.2
+ }
+]

@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.17386677048423074,
+ "duration_s": 4.02,
+ "language": "en",
+ "n_samples": 64320,
+ "no_speech_prob": 0.042697079479694366,
+ "ref_text": "HEAVEN A GOOD PLACE TO BE RAISED TO",
+ "text": "Heaven, a good place to be raised to.",
+ "tokens": [
+  13676,
+  11,
+  257,
+  665,
+  1081,
+  281,
+  312,
+  6005,
+  281,
+  13
+ ],
+ "uid": "121-121726-0004"
+}

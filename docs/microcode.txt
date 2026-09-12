@@ -1,0 +1,186 @@
+   0  conv1 chunks
+   1  enc.conv1
+   2  gelu8 conv1
+   3  conv1 next
+   4  enc.conv2
+   5  x0 = gelu(conv2)+pos
+   6  enc.0.ln1
+   7  enc.0.attn.q
+   8  kvset K
+   9  enc.0.attn.k -> KV
+  10  kvset V
+  11  enc.0.attn.v -> KV
+  12  enc.0.attn
+  13  dynq attn out
+  14  enc.0.attn.o
+  15  enc.0.add1
+  16  enc.0.ln2
+  17  enc.0 ffn chunks
+  18  enc.0.fc1
+  19  gelu+dynq
+  20  enc.0.fc2
+  21  enc.0.add2
+  22  enc.0 ffn next
+  23  enc.1.ln1
+  24  enc.1.attn.q
+  25  kvset K
+  26  enc.1.attn.k -> KV
+  27  kvset V
+  28  enc.1.attn.v -> KV
+  29  enc.1.attn
+  30  dynq attn out
+  31  enc.1.attn.o
+  32  enc.1.add1
+  33  enc.1.ln2
+  34  enc.1 ffn chunks
+  35  enc.1.fc1
+  36  gelu+dynq
+  37  enc.1.fc2
+  38  enc.1.add2
+  39  enc.1 ffn next
+  40  enc.2.ln1
+  41  enc.2.attn.q
+  42  kvset K
+  43  enc.2.attn.k -> KV
+  44  kvset V
+  45  enc.2.attn.v -> KV
+  46  enc.2.attn
+  47  dynq attn out
+  48  enc.2.attn.o
+  49  enc.2.add1
+  50  enc.2.ln2
+  51  enc.2 ffn chunks
+  52  enc.2.fc1
+  53  gelu+dynq
+  54  enc.2.fc2
+  55  enc.2.add2
+  56  enc.2 ffn next
+  57  enc.3.ln1
+  58  enc.3.attn.q
+  59  kvset K
+  60  enc.3.attn.k -> KV
+  61  kvset V
+  62  enc.3.attn.v -> KV
+  63  enc.3.attn
+  64  dynq attn out
+  65  enc.3.attn.o
+  66  enc.3.add1
+  67  enc.3.ln2
+  68  enc.3 ffn chunks
+  69  enc.3.fc1
+  70  gelu+dynq
+  71  enc.3.fc2
+  72  enc.3.add2
+  73  enc.3 ffn next
+  74  enc.ln_post
+  75  kvset K
+  76  dec.0.xattn.k -> KV
+  77  kvset V
+  78  dec.0.xattn.v -> KV
+  79  kvset K
+  80  dec.1.xattn.k -> KV
+  81  kvset V
+  82  dec.1.xattn.v -> KV
+  83  kvset K
+  84  dec.2.xattn.k -> KV
+  85  kvset V
+  86  dec.2.xattn.v -> KV
+  87  kvset K
+  88  dec.3.xattn.k -> KV
+  89  kvset V
+  90  dec.3.xattn.v -> KV
+  91  pos = 0, tok = prompt[0]
+  92  embed tok
+  93  xd = emb*me + pos
+  94  dec.0.ln1
+  95  dec.0.attn.q
+  96  kvset K
+  97  dec.0.attn.k -> KV
+  98  kvset V
+  99  dec.0.attn.v -> KV
+ 100  dec.0.attn
+ 101  dynq attn out
+ 102  dec.0.attn.o
+ 103  dec.0.add1
+ 104  dec.0.lnc
+ 105  dec.0.xattn.q
+ 106  dec.0.xattn
+ 107  dynq xattn out
+ 108  dec.0.xattn.o
+ 109  dec.0.add2
+ 110  dec.0.ln2
+ 111  dec.0.fc1
+ 112  gelu+dynq
+ 113  dec.0.fc2
+ 114  dec.0.add3
+ 115  dec.1.ln1
+ 116  dec.1.attn.q
+ 117  kvset K
+ 118  dec.1.attn.k -> KV
+ 119  kvset V
+ 120  dec.1.attn.v -> KV
+ 121  dec.1.attn
+ 122  dynq attn out
+ 123  dec.1.attn.o
+ 124  dec.1.add1
+ 125  dec.1.lnc
+ 126  dec.1.xattn.q
+ 127  dec.1.xattn
+ 128  dynq xattn out
+ 129  dec.1.xattn.o
+ 130  dec.1.add2
+ 131  dec.1.ln2
+ 132  dec.1.fc1
+ 133  gelu+dynq
+ 134  dec.1.fc2
+ 135  dec.1.add3
+ 136  dec.2.ln1
+ 137  dec.2.attn.q
+ 138  kvset K
+ 139  dec.2.attn.k -> KV
+ 140  kvset V
+ 141  dec.2.attn.v -> KV
+ 142  dec.2.attn
+ 143  dynq attn out
+ 144  dec.2.attn.o
+ 145  dec.2.add1
+ 146  dec.2.lnc
+ 147  dec.2.xattn.q
+ 148  dec.2.xattn
+ 149  dynq xattn out
+ 150  dec.2.xattn.o
+ 151  dec.2.add2
+ 152  dec.2.ln2
+ 153  dec.2.fc1
+ 154  gelu+dynq
+ 155  dec.2.fc2
+ 156  dec.2.add3
+ 157  dec.3.ln1
+ 158  dec.3.attn.q
+ 159  kvset K
+ 160  dec.3.attn.k -> KV
+ 161  kvset V
+ 162  dec.3.attn.v -> KV
+ 163  dec.3.attn
+ 164  dynq attn out
+ 165  dec.3.attn.o
+ 166  dec.3.add1
+ 167  dec.3.lnc
+ 168  dec.3.xattn.q
+ 169  dec.3.xattn
+ 170  dynq xattn out
+ 171  dec.3.xattn.o
+ 172  dec.3.add2
+ 173  dec.3.ln2
+ 174  dec.3.fc1
+ 175  gelu+dynq
+ 176  dec.3.fc2
+ 177  dec.3.add3
+ 178  skip LM head while feeding the prompt
+ 179  dec.ln
+ 180  dec.lm
+ 181  tok = argmax (emit; halt on eot / limit)
+ 182  pos++ ; loop
+ 183  tok = prompt[pos+1]
+ 184  pos++ ; loop
+ 185  halt

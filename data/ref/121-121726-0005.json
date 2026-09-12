@@ -1,0 +1,18 @@
+{
+ "avg_logprob": -0.5022680078233991,
+ "duration_s": 3.1,
+ "language": "en",
+ "n_samples": 49600,
+ "no_speech_prob": 0.11837580800056458,
+ "ref_text": "HEDGE A FENCE",
+ "text": "Hedge. A fence.",
+ "tokens": [
+  389,
+  12203,
+  13,
+  316,
+  15422,
+  13
+ ],
+ "uid": "121-121726-0005"
+}

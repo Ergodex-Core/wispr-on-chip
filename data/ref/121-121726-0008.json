@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.31926841002244216,
+ "duration_s": 4.99,
+ "language": "en",
+ "n_samples": 79840,
+ "no_speech_prob": 0.06918134540319443,
+ "ref_text": "HOSE MAN'S EXCUSE FOR WETTING THE WALK",
+ "text": "Hose. Man's excuse for wetting the walk.",
+ "tokens": [
+  389,
+  541,
+  13,
+  2458,
+  311,
+  8960,
+  337,
+  6630,
+  783,
+  264,
+  1792,
+  13
+ ],
+ "uid": "121-121726-0008"
+}

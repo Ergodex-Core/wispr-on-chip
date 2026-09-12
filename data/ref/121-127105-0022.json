@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.050992670513334726,
+ "duration_s": 5.075,
+ "language": "en",
+ "n_samples": 81200,
+ "no_speech_prob": 0.02121102064847946,
+ "ref_text": "WELL IF I DON'T KNOW WHO SHE WAS IN LOVE WITH I KNOW WHO HE WAS",
+ "text": "Well, if I don't know who she was in love with, I know who he was.",
+ "tokens": [
+  1042,
+  11,
+  498,
+  286,
+  500,
+  380,
+  458,
+  567,
+  750,
+  390,
+  294,
+  959,
+  365,
+  11,
+  286,
+  458,
+  567,
+  415,
+  390,
+  13
+ ],
+ "uid": "121-127105-0022"
+}

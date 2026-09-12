@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.1574231743812561,
+ "duration_s": 6.55,
+ "language": "en",
+ "n_samples": 104800,
+ "no_speech_prob": 0.008868592791259289,
+ "ref_text": "IF A LAYMAN IN GIVING BAPTISM POUR THE WATER BEFORE SAYING THE WORDS IS THE CHILD BAPTIZED",
+ "text": "If a layman in giving baptism poor the water before saying the words is the child baptized.",
+ "tokens": [
+  759,
+  257,
+  2360,
+  1601,
+  294,
+  2902,
+  34352,
+  4716,
+  264,
+  1281,
+  949,
+  1566,
+  264,
+  2283,
+  307,
+  264,
+  1440,
+  34006,
+  13
+ ],
+ "uid": "1089-134686-0021"
+}

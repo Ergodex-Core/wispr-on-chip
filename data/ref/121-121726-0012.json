@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.5131166198036887,
+ "duration_s": 4.045,
+ "language": "en",
+ "n_samples": 64720,
+ "no_speech_prob": 0.012765692546963692,
+ "ref_text": "HUSSY WOMAN AND BOND TIE",
+ "text": "Hussie, woman and bond. Tie.",
+ "tokens": [
+  389,
+  2023,
+  414,
+  11,
+  3059,
+  293,
+  6086,
+  13,
+  36804,
+  13
+ ],
+ "uid": "121-121726-0012"
+}

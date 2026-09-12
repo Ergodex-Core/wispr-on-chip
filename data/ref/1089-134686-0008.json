@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.19657820747012184,
+ "duration_s": 6.73,
+ "language": "en",
+ "n_samples": 107680,
+ "no_speech_prob": 0.0014710098039358854,
+ "ref_text": "THE CHAOS IN WHICH HIS ARDOUR EXTINGUISHED ITSELF WAS A COLD INDIFFERENT KNOWLEDGE OF HIMSELF",
+ "text": "The chaos in which his order extinguished itself was a cold indifference knowledge of himself.",
+ "tokens": [
+  440,
+  14158,
+  294,
+  597,
+  702,
+  1668,
+  33829,
+  84,
+  4729,
+  2564,
+  390,
+  257,
+  3554,
+  1016,
+  351,
+  5158,
+  3601,
+  295,
+  3647,
+  13
+ ],
+ "uid": "1089-134686-0008"
+}

@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.2570612695482042,
+ "duration_s": 5.79,
+ "language": "en",
+ "n_samples": 92640,
+ "no_speech_prob": 0.026755008846521378,
+ "ref_text": "TO THIS HIS ANSWER WAS PROMPT OH THANK GOD NO AND IS THE RECORD YOURS",
+ "text": "To this his answer was prompt. Oh thank god no and is the record yours?",
+ "tokens": [
+  1407,
+  341,
+  702,
+  1867,
+  390,
+  12391,
+  13,
+  876,
+  1309,
+  3044,
+  572,
+  293,
+  307,
+  264,
+  2136,
+  6342,
+  30
+ ],
+ "uid": "121-127105-0007"
+}

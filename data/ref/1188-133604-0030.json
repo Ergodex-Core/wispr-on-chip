@@ -1,0 +1,17 @@
+{
+ "avg_logprob": -0.08292647699515025,
+ "duration_s": 1.915,
+ "language": "en",
+ "n_samples": 30640,
+ "no_speech_prob": 0.02492651157081127,
+ "ref_text": "HE KNOWS THEM BOTH",
+ "text": "He knows them both.",
+ "tokens": [
+  634,
+  3255,
+  552,
+  1293,
+  13
+ ],
+ "uid": "1188-133604-0030"
+}

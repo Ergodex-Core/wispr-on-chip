@@ -1,0 +1,27 @@
+{
+ "avg_logprob": -0.3487764000892639,
+ "duration_s": 4.825,
+ "language": "en",
+ "n_samples": 77200,
+ "no_speech_prob": 0.03371049836277962,
+ "ref_text": "YET THESE THOUGHTS AFFECTED HESTER PRYNNE LESS WITH HOPE THAN APPREHENSION",
+ "text": "yet these thoughts affected Hester prin less with hope than apprehension.",
+ "tokens": [
+  1939,
+  613,
+  4598,
+  8028,
+  389,
+  3011,
+  582,
+  259,
+  1570,
+  365,
+  1454,
+  813,
+  38675,
+  3378,
+  13
+ ],
+ "uid": "1221-135766-0002"
+}

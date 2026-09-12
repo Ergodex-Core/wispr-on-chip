@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.236491945054796,
+ "duration_s": 6.755,
+ "language": "en",
+ "n_samples": 108080,
+ "no_speech_prob": 0.032508525997400284,
+ "ref_text": "HAY FEVER A HEART TROUBLE CAUSED BY FALLING IN LOVE WITH A GRASS WIDOW",
+ "text": "Hey, fever! A heart trouble caused by falling in love with a grass widow.",
+ "tokens": [
+  1911,
+  11,
+  18277,
+  0,
+  316,
+  1917,
+  5253,
+  7008,
+  538,
+  7440,
+  294,
+  959,
+  365,
+  257,
+  8054,
+  37207,
+  13
+ ],
+ "uid": "121-121726-0003"
+}

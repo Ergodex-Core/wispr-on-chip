@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -1.0749625205993651,
+ "duration_s": 2.215,
+ "language": "en",
+ "n_samples": 35440,
+ "no_speech_prob": 0.1758088320493698,
+ "ref_text": "STEPHANOS DEDALOS",
+ "text": "Steffin' or Steadless?",
+ "tokens": [
+  3592,
+  602,
+  259,
+  6,
+  420,
+  745,
+  2056,
+  1832,
+  30
+ ],
+ "uid": "1089-134691-0024"
+}

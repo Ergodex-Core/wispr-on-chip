@@ -1,0 +1,29 @@
+{
+ "avg_logprob": -0.05413755774497986,
+ "duration_s": 5.025,
+ "language": "en",
+ "n_samples": 80400,
+ "no_speech_prob": 0.0037074924912303686,
+ "ref_text": "SOMEONE ELSE TOLD A STORY NOT PARTICULARLY EFFECTIVE WHICH I SAW HE WAS NOT FOLLOWING",
+ "text": "Someone else told a story not particularly effective, which I saw he was not following.",
+ "tokens": [
+  8734,
+  1646,
+  1907,
+  257,
+  1657,
+  406,
+  4098,
+  4942,
+  11,
+  597,
+  286,
+  1866,
+  415,
+  390,
+  406,
+  3480,
+  13
+ ],
+ "uid": "121-127105-0001"
+}

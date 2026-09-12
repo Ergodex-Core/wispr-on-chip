@@ -1,0 +1,33 @@
+{
+ "avg_logprob": -0.10420415618202904,
+ "duration_s": 15.0,
+ "language": "en",
+ "n_samples": 240000,
+ "no_speech_prob": 0.031208902597427368,
+ "ref_text": "WHEN WE WERE OUT IN THE DARKNESS OF THE QUADRANGLE WE AGAIN LOOKED UP AT THE WINDOWS WON'T YOU TELL DOUGLAS",
+ "text": "When we were out in the darkness of the quadrangle, we again looked up at the windows.",
+ "tokens": [
+  1133,
+  321,
+  645,
+  484,
+  294,
+  264,
+  11262,
+  295,
+  264,
+  10787,
+  81,
+  7846,
+  11,
+  321,
+  797,
+  2956,
+  493,
+  412,
+  264,
+  9309,
+  13
+ ],
+ "uid": "varied/en_silence"
+}

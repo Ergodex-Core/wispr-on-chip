@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.10893659591674805,
+ "duration_s": 3.155,
+ "language": "en",
+ "n_samples": 50480,
+ "no_speech_prob": 0.01204537134617567,
+ "ref_text": "A VOICE FROM BEYOND THE WORLD WAS CALLING",
+ "text": "A voice from beyond the world was calling.",
+ "tokens": [
+  316,
+  3177,
+  490,
+  4399,
+  264,
+  1002,
+  390,
+  5141,
+  13
+ ],
+ "uid": "1089-134691-0019"
+}

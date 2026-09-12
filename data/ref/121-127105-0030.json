@@ -1,0 +1,17 @@
+{
+ "avg_logprob": -0.09000658988952637,
+ "duration_s": 2.175,
+ "language": "en",
+ "n_samples": 34800,
+ "no_speech_prob": 0.00633235415443778,
+ "ref_text": "I DON'T ANTICIPATE",
+ "text": "I don't anticipate.",
+ "tokens": [
+  286,
+  500,
+  380,
+  21685,
+  13
+ ],
+ "uid": "121-127105-0030"
+}

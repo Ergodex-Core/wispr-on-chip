@@ -1,0 +1,32 @@
+{
+ "avg_logprob": -0.16729312851315453,
+ "duration_s": 5.365,
+ "language": "en",
+ "n_samples": 85840,
+ "no_speech_prob": 0.0051257554441690445,
+ "ref_text": "BUT NOW HERE IS A SUBJECT OF WHICH YOU WILL WONDER AT FIRST WHY TURNER DREW IT AT ALL",
+ "text": "But now here's a subject of which you will wonder it first why Turner drew it at all.",
+ "tokens": [
+  583,
+  586,
+  510,
+  311,
+  257,
+  3983,
+  295,
+  597,
+  291,
+  486,
+  2441,
+  309,
+  700,
+  983,
+  28950,
+  12804,
+  309,
+  412,
+  439,
+  13
+ ],
+ "uid": "1188-133604-0038"
+}

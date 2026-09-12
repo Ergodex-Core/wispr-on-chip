@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.05160265564918518,
+ "duration_s": 6.61,
+ "language": "en",
+ "n_samples": 105760,
+ "no_speech_prob": 0.0026390275452286005,
+ "ref_text": "A GENTLE KICK FROM THE TALL BOY IN THE BENCH BEHIND URGED STEPHEN TO ASK A DIFFICULT QUESTION",
+ "text": "A gentle kick from the tall boy in the bench behind urged Stephen to ask a difficult question.",
+ "tokens": [
+  316,
+  6424,
+  4437,
+  490,
+  264,
+  6764,
+  3237,
+  294,
+  264,
+  10638,
+  2261,
+  44206,
+  13391,
+  281,
+  1029,
+  257,
+  2252,
+  1168,
+  13
+ ],
+ "uid": "1089-134686-0025"
+}

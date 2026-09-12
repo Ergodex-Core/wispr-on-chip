@@ -1,0 +1,15 @@
+{
+ "avg_logprob": -0.7120739221572876,
+ "duration_s": 1.87,
+ "language": "en",
+ "n_samples": 29920,
+ "no_speech_prob": 0.3159504234790802,
+ "ref_text": "AY ME",
+ "text": "I mean.",
+ "tokens": [
+  286,
+  914,
+  13
+ ],
+ "uid": "121-123852-0001"
+}

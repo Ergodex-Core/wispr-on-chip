@@ -1,0 +1,19 @@
+{
+ "avg_logprob": -0.5352688431739807,
+ "duration_s": 3.165,
+ "language": "en",
+ "n_samples": 50640,
+ "no_speech_prob": 0.02645036019384861,
+ "ref_text": "HYPOCRITE A HORSE DEALER",
+ "text": "hypocrite. A horse dealer.",
+ "tokens": [
+  39419,
+  642,
+  13,
+  316,
+  6832,
+  24896,
+  13
+ ],
+ "uid": "121-121726-0014"
+}

@@ -1,0 +1,18 @@
+{
+ "avg_logprob": -0.26693689823150635,
+ "duration_s": 2.49,
+ "language": "en",
+ "n_samples": 39840,
+ "no_speech_prob": 0.03183156996965408,
+ "ref_text": "TIED TO A WOMAN",
+ "text": "Tied to a woman.",
+ "tokens": [
+  314,
+  1091,
+  281,
+  257,
+  3059,
+  13
+ ],
+ "uid": "121-121726-0013"
+}

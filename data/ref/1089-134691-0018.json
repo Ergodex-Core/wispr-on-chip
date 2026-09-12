@@ -1,0 +1,16 @@
+{
+ "avg_logprob": -0.31234092712402345,
+ "duration_s": 3.09,
+ "language": "en",
+ "n_samples": 49440,
+ "no_speech_prob": 0.05158060044050217,
+ "ref_text": "AGAIN AGAIN",
+ "text": "Again. Again.",
+ "tokens": [
+  3764,
+  13,
+  3764,
+  13
+ ],
+ "uid": "1089-134691-0018"
+}

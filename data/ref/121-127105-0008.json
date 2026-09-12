@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.2947110176086426,
+ "duration_s": 2.76,
+ "language": "en",
+ "n_samples": 44160,
+ "no_speech_prob": 0.034554507583379745,
+ "ref_text": "HE HUNG FIRE AGAIN A WOMAN'S",
+ "text": "He hung fire again. A woman's.",
+ "tokens": [
+  634,
+  5753,
+  2610,
+  797,
+  13,
+  316,
+  3059,
+  311,
+  13
+ ],
+ "uid": "121-127105-0008"
+}

@@ -1,0 +1,31 @@
+{
+ "avg_logprob": -0.14814795255661012,
+ "duration_s": 6.095,
+ "language": "en",
+ "n_samples": 97520,
+ "no_speech_prob": 0.008127407170832157,
+ "ref_text": "BUT IN THIS VIGNETTE COPIED FROM TURNER YOU HAVE THE TWO PRINCIPLES BROUGHT OUT PERFECTLY",
+ "text": "But in this vignette copied from Turner, you have the two principles brought out perfectly.",
+ "tokens": [
+  583,
+  294,
+  341,
+  371,
+  788,
+  3007,
+  25365,
+  490,
+  28950,
+  11,
+  291,
+  362,
+  264,
+  732,
+  9156,
+  3038,
+  484,
+  6239,
+  13
+ ],
+ "uid": "1188-133604-0010"
+}

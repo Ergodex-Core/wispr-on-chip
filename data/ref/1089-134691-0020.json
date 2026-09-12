@@ -1,0 +1,23 @@
+{
+ "avg_logprob": -0.41087766488393146,
+ "duration_s": 3.99,
+ "language": "en",
+ "n_samples": 63840,
+ "no_speech_prob": 0.053504880517721176,
+ "ref_text": "HELLO STEPHANOS HERE COMES THE DEDALUS",
+ "text": "Hello, Stefanos. Here comes the deadliest.",
+ "tokens": [
+  2425,
+  11,
+  32158,
+  329,
+  13,
+  1692,
+  1487,
+  264,
+  3116,
+  16850,
+  13
+ ],
+ "uid": "1089-134691-0020"
+}

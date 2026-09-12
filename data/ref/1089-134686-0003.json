@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.41562063043767755,
+ "duration_s": 2.68,
+ "language": "en",
+ "n_samples": 42880,
+ "no_speech_prob": 0.04664000868797302,
+ "ref_text": "HELLO BERTIE ANY GOOD IN YOUR MIND",
+ "text": "Hey Bertie, any good in your mind?",
+ "tokens": [
+  1911,
+  29594,
+  414,
+  11,
+  604,
+  665,
+  294,
+  428,
+  1575,
+  30
+ ],
+ "uid": "1089-134686-0003"
+}

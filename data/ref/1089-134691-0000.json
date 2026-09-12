@@ -1,0 +1,18 @@
+{
+ "avg_logprob": -0.062163936240332465,
+ "duration_s": 2.085,
+ "language": "en",
+ "n_samples": 33360,
+ "no_speech_prob": 0.01863454282283783,
+ "ref_text": "HE COULD WAIT NO LONGER",
+ "text": "He could wait no longer.",
+ "tokens": [
+  634,
+  727,
+  1699,
+  572,
+  2854,
+  13
+ ],
+ "uid": "1089-134691-0000"
+}

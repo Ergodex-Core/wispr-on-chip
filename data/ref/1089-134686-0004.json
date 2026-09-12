@@ -1,0 +1,26 @@
+{
+ "avg_logprob": -0.2839077949523926,
+ "duration_s": 5.2150625,
+ "language": "en",
+ "n_samples": 83441,
+ "no_speech_prob": 0.049378179013729095,
+ "ref_text": "NUMBER TEN FRESH NELLY IS WAITING ON YOU GOOD NIGHT HUSBAND",
+ "text": "Number 10 Fresh Nelly is waiting on you. Good night husband.",
+ "tokens": [
+  5118,
+  1266,
+  22843,
+  426,
+  7442,
+  307,
+  3806,
+  322,
+  291,
+  13,
+  2205,
+  1818,
+  5213,
+  13
+ ],
+ "uid": "1089-134686-0004"
+}

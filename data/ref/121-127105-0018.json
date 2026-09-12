@@ -1,0 +1,22 @@
+{
+ "avg_logprob": -0.21274384585293857,
+ "duration_s": 2.77,
+ "language": "en",
+ "n_samples": 44320,
+ "no_speech_prob": 0.030228836461901665,
+ "ref_text": "CRIED THE LADIES WHOSE DEPARTURE HAD BEEN FIXED",
+ "text": "Cry the ladies who's departure had been fixed.",
+ "tokens": [
+  12267,
+  264,
+  9974,
+  567,
+  311,
+  25866,
+  632,
+  668,
+  6806,
+  13
+ ],
+ "uid": "121-127105-0018"
+}

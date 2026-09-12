@@ -1,0 +1,21 @@
+{
+ "avg_logprob": -0.3538964748382568,
+ "duration_s": 4.035,
+ "language": "en",
+ "n_samples": 64560,
+ "no_speech_prob": 0.03831919655203819,
+ "ref_text": "HUSBAND THE NEXT THING TO A WIFE",
+ "text": "husband. The next thing to a wife.",
+ "tokens": [
+  5213,
+  13,
+  440,
+  958,
+  551,
+  281,
+  257,
+  3836,
+  13
+ ],
+ "uid": "121-121726-0011"
+}

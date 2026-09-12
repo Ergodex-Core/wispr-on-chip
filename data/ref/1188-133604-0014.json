@@ -1,0 +1,24 @@
+{
+ "avg_logprob": -0.2175731658935547,
+ "duration_s": 4.39,
+ "language": "en",
+ "n_samples": 70240,
+ "no_speech_prob": 0.014089059084653854,
+ "ref_text": "DO NOT THEREFORE THINK THAT THE GOTHIC SCHOOL IS AN EASY ONE",
+ "text": "Do not therefore think that the Gothic schools an easy one.",
+ "tokens": [
+  1144,
+  406,
+  4412,
+  519,
+  300,
+  264,
+  47143,
+  4656,
+  364,
+  1858,
+  472,
+  13
+ ],
+ "uid": "1188-133604-0014"
+}

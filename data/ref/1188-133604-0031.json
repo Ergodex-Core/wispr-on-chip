@@ -1,0 +1,27 @@
+{
+ "avg_logprob": -0.13613750040531158,
+ "duration_s": 4.25,
+ "language": "en",
+ "n_samples": 68000,
+ "no_speech_prob": 0.004306348040699959,
+ "ref_text": "THERE'S ONE AND THERE'S ANOTHER THE DUDLEY AND THE FLINT",
+ "text": "There's one and there's another, the Dudley and the Flint.",
+ "tokens": [
+  821,
+  311,
+  472,
+  293,
+  456,
+  311,
+  1071,
+  11,
+  264,
+  42622,
+  3420,
+  293,
+  264,
+  35587,
+  13
+ ],
+ "uid": "1188-133604-0031"
+}

@@ -1,0 +1,27 @@
+{
+ "avg_logprob": -0.13263364136219025,
+ "duration_s": 4.75,
+ "language": "en",
+ "n_samples": 76000,
+ "no_speech_prob": 0.07912693917751312,
+ "ref_text": "PEARL SAW AND GAZED INTENTLY BUT NEVER SOUGHT TO MAKE ACQUAINTANCE",
+ "text": "Pearl saw and gazed intently but never sought to make acquaintance.",
+ "tokens": [
+  24639,
+  1866,
+  293,
+  290,
+  17262,
+  560,
+  2276,
+  457,
+  1128,
+  17532,
+  281,
+  652,
+  36954,
+  719,
+  13
+ ],
+ "uid": "1221-135766-0014"
+}
